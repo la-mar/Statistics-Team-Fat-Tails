@@ -23,6 +23,7 @@ run;
 data train3;                                                                                                                       
 set train2;   
 rGrLIvArea = round(GrLIvArea, 100);
+log2GrlivArea = log(GrLIvArea / 100);
 logGrLIvArea = log(GrLIvArea);
 logSalePrice = log(SalePrice);
 run;
@@ -90,10 +91,16 @@ proc univariate data=train4; var logSaleprice; run;
 ** Model Attempt #1- Log Ames Data  ;
 proc glm data = train4 plots = all;
 class Neighborhood(ref='NAmes');
-model logSalePrice = Neighborhood | logGrLIvArea   /  solution clm;
-output out = resultsQ1 p = Predict;
+model logSalePrice = Neighborhood | logGrLIvArea / CLPARM solution clm;;
+output out = results p = Predict;
 run;
 
+** Model Attempt #1- No Ames Data  ;
+proc glm data = train4 plots = all;
+class Neighborhood(ref='NAmes');
+model SalePrice = Neighborhood | GrLIvArea / CLPARM solution clm;;
+output out = results p = Predict;
+run;
 
 proc print data = resultsQ1;
 run;
