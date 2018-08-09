@@ -1,5 +1,5 @@
 require(rmarkdown)
 setwd('./Statistics-Team-Fat-Tails')
 getwd()
-rmarkdown::render('rmd.Rmd')
-browseURL('rmd.html')
+rmarkdown::render('slides.Rmd')
+browseURL('slides.html')
