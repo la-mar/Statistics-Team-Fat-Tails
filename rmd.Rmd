@@ -1,0 +1,16 @@
+
+https://www.kaggle.com/c/house-prices-advanced-regression-techniques
+
+```{r, engine="sas", engine.path="C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"}
+
+proc import datafile="C:/Repositories/Statistics-Team-Fat-Tails/data/train.csv"
+     out=data
+     dbms=csv
+     replace;
+     getnames=yes;
+run;
+
+```
+
+
+
