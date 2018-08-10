@@ -3,5 +3,7 @@ setwd('./Statistics-Team-Fat-Tails')
 getwd()
 
 rmarkdown::render('Analysis.Rmd')
-browseURL('Analysis.html')
+browseURL('Analysis.pdf')
+# browseURL('Analysis.html')
+
 

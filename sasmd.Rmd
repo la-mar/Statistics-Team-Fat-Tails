@@ -1,0 +1,55 @@
+---
+title: "Kaggle Projects"
+author:
+output: html_document
+
+date: "July 24, 2018"
+
+---
+
+```{r}
+require(SASmarkdown)
+```
+
+
+
+```{r}
+
+saspath <- "C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"
+sasopts <- "-nosplash -ls 75"
+# knitr::opts_chunk$set(engine="sashtml"
+#                       , engine.path=saspath
+#                       , engine.opts=sasopts
+#                       , comment=NA)
+
+knitr::opts_chunk$set(engine="sas", engine.path=saspath, 
+        engine.opts=sasopts, comment=NA)
+
+
+```
+
+
+
+
+https://www.kaggle.com/c/house-prices-advanced-regression-techniques
+
+```{r, engine="sas", engine.path="C:/Program Files/SASHome/SASFoundation/9.4/sas.exe", engine.opts="-nosplash -linesize 75", comment=NA}
+
+
+#"C:\\Repositories\\Statistics-Team-Fat-Tails\\data\\train.csv"
+proc import datafile = "C:\\Repositories\\Statistics-Team-Fat-Tails\\data\\train.csv"
+     out=train_original
+     dbms=csv
+     replace;
+     getnames=yes;
+run;
+
+
+proc univariate data=train_original noprint;
+   var SalePrice;
+   histogram / nrows = 5 kernel normal(noprint);
+run;
+```
+
+
+
