@@ -1,0 +1,72 @@
+1                                                          The SAS System                              15:04 Friday, August 10, 2018
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+WARNING: Unable to copy SASUSER registry to WORK registry. Because of this, you will not see registry customizations during this 
+         session.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M3) 
+      Licensed to SOUTHERN METHODIST UNIVERSITY - T&R - SFA, Site 70092941.
+NOTE: This session is executing on the X64_8PRO  platform.
+
+
+
+NOTE: Updated analytical products:
+      
+      SAS/STAT 14.1
+      SAS/ETS 14.1
+      SAS/OR 14.1
+      SAS/IML 14.1
+      SAS/QC 14.1
+
+NOTE: Additional host information:
+
+ X64_8PRO WIN 6.2.9200  Workstation
+
+NOTE: SAS initialization used:
+      real time           1.18 seconds
+      cpu time            0.79 seconds
+      
+1          proc import datafile="/home/bfriedrich0/sasuser.v94/train.csv"
+2               out=train_original
+3               dbms=csv
+4               replace;
+5               getnames=yes;
+6          run;
+
+ERROR: Physical file does not exist, c:\home\bfriedrich0\sasuser.v94\train.csv. 
+ERROR: Import unsuccessful.  See SAS Log for details.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE IMPORT used (Total process time):
+      real time           0.17 seconds
+      cpu time            0.07 seconds
+      
+7          
+
+
+8          proc univariate data=train_original noprint;
+ERROR: File WORK.TRAIN_ORIGINAL.DATA does not exist.
+9          var SalePrice;
+10         histogram / nrows = 5 kernel normal(noprint);
+11         run;
+
+2                                         The SAS System             15:04 Friday, August 10, 2018
+
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE UNIVARIATE used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+12         
+
+
+ERROR: Errors printed on page 1.
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           1.43 seconds
+      cpu time            0.92 seconds
+      

@@ -1,30 +1,21 @@
 ---
-title: "Unit 12 - Homework"
-author: "| Grant Bourzikas
+title: "Kaggle Project - Team Fat Tails"
+author: | 
+        | Grant Bourzikas
         | Quinton Nixon
-        | Brock Friedrich"
-date: " ```r format(Sys.time(), '%B %d, %Y')```"
+        | Brock Friedrich
+date: ""
 output:
   pdf_document:
     df_print: kable
     toc: yes
   html_document:
     df_print: kable
-    toc: yes
-  markdown:
-    df_print: kable
-    toc: yes
+    toc: true
+    css: css/darkly.css
+  notebook:
+    css: css/darkly.css
 geometry: margin=1in
-header-includes:
-- \usepackage{amsmath}
-- \usepackage{mathtools}
-- \usepackage{float}
-- \usepackage{xcolor,pifont}
-- \usepackage{ulem}
-- \newcommand{\cmark}{\Large\textcolor{green}{\ding{52}}}
-- \newcommand{\xmark}{\Large\textcolor{red}{\ding{55}}}
-- \definecolor{answercolor}{RGB}{35,155,86}
-- \newcommand{\answerblock}{\textcolor{answercolor}}
 
 fontsize: 11pt
 fontfamily: palatino
@@ -32,9 +23,15 @@ fontfamily: palatino
 
 
 
+ <!-- <link rel="stylesheet" type="text/css" href="file:://C:\Repositories\Statistics-Team-Fat-Tails\css\bootstrap.min.css"> -->
+
+
 **[Downloading from the Kaggle API](C:\Repositories\Statistics-Team-Fat-Tails\kaggle-download.md)**
+
 **[Using Code Blocks in Markdown](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/code-chunk.md)**
+
 **[Using SAS in Markdown Code Blocks](C:\Repositories\Statistics-Team-Fat-Tails\sasmd.Rmd)**
+
 
 
 
@@ -44,10 +41,10 @@ Find more markdown snippits
 # Introduction
 
 ```r {cmd = true}
-#setup, echo=FALSE, results="hide"}
-# read setup script
-#source("Setup.R")
-print("hello world!!!")
+  #setup, echo=FALSE, results="hide"}
+  # read setup script
+  source("Setup.R")
+  print("hello world!!!")
 ```
 
 ```python {cmd = true}
@@ -122,9 +119,27 @@ To build and fit a model, an analysis must be performed to identify features of 
 
 <!-- C:\Repositories\Statistics-Team-Fat-Tails\Figs\train_original_histogram.png -->
 
-<!-- todo: Finish porting aquations -->
+<!-- TODO: Finish porting aquations -->
 
 <!-- TODO: Make Plots! -->
+
+Code (will move to appendix later):
+
+```sashtml  {cmd="C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"}
+proc import datafile="/home/bfriedrich0/sasuser.v94/train.csv"
+     out=train_original
+     dbms=csv
+     replace;
+     getnames=yes;
+run;
+
+proc univariate data=train_original noprint;
+var SalePrice;
+histogram / nrows = 5 kernel normal(noprint);
+run;
+
+```
+
 
 Neighborhooods:
 $x_1 = BrkSide$
@@ -158,7 +173,9 @@ Are we attempting to predict the mean or a single value?
 
 
 --------------------------------------------------------------------------------------------------------------
+
 # Analysis Question 2
+
 <!-- 
 2)	ANALYSIS 2: Build the most predictive model for sales prices of homes in all of Ames Iowa.  This includes all neighborhoods. Your group is limited to only the techniques we have learned in 6371 (no random forests or other methods we have not yet covered).  Specifically, you should produce 4 models: one from forward selection, one from backwards elimination, one from stepwise selection, and one that you build custom.  The custom model could be one of the three preceding models or one that you build by adding or subtracting variables at your will.  Generate an adjusted R2, CV Press and Kaggle Score for each of these models and clearly describe which model you feel is the best in terms of being able to predict future sale prices of homes in Ames, Iowa.  In your paper, please include a table similar to the one below.  The group with the lowest public Kaggle score will receive an extra 3 bonus points on the final exam!   -->
 <!-- Quick note on Kaggle completion:  We only have one course under our belts so far (almost), but you can compete in this competition with the tools you have now (top 40th percentile or better!). After your next course (6372), you will really be able to do well (top 25th percentile or better!). With these skills as well as the skills you pick up in Data Mining and Quantifying the World, you will be able to compete with anyone!	 

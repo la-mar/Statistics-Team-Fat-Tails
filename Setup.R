@@ -6,8 +6,7 @@ require(knitr)
 require(summarytools)
 require(grid)
 require(gridExtra)
-library(AER)
-require(effects)
+require(SASmarkdown)
 
 # set knitr output options for consistent figures
 knitr::opts_chunk$set(fig.width=12, 
@@ -44,3 +43,5 @@ st_options('descr.transpose', TRUE)
 st_options('style', "rmarkdown")
 
 
+saspath <- "C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"
+sasopts <- "-nosplash -ls 75"

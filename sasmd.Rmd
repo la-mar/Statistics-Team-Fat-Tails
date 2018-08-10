@@ -15,8 +15,7 @@ require(SASmarkdown)
 
 ```{r}
 
-saspath <- "C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"
-sasopts <- "-nosplash -ls 75"
+
 # knitr::opts_chunk$set(engine="sashtml"
 #                       , engine.path=saspath
 #                       , engine.opts=sasopts

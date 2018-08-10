@@ -23,6 +23,16 @@ fontfamily: palatino
   
   
   
+  
+**[Downloading from the Kaggle API](C:/Repositories/Statistics-Team-Fat-Tails/kaggle-download.md )**
+**[Using Code Blocks in Markdown](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/code-chunk.md )**
+**[Using SAS in Markdown Code Blocks](C:/Repositories/Statistics-Team-Fat-Tails/sasmd.Rmd )**
+  
+  
+  
+Find more markdown snippits
+  
+  
 # Introduction
   
   
@@ -33,11 +43,9 @@ fontfamily: palatino
 print("hello world!!!")
 ```
   
-  
 ```python
-print('you can see this output message, but not this code')
+print("Verbose will be printed first")
 ```
-  
   
 --------------------------------------------------------------------------------------------------------------
   
@@ -77,18 +85,28 @@ To build and fit a model, an analysis must be performed to identify features of 
   
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
   
-\begin{itemize}
-\item{ Plot the data.}
-\item{ Develop a tentative model(s).}
-\item{ Using the question(s) of interest (QOI).}
-\item{ Accounting for confounders.}
-\item{ Accounting for relationships (<img src="https://latex.codecogs.com/gif.latex?X^2"/>,<img src="https://latex.codecogs.com/gif.latex?X^3"/>, <img src="https://latex.codecogs.com/gif.latex?etc"/>).}
-\item{ Fit the model(s).}
-\item{ Evaluate residual plots.}
-\item{ Constant SD.}
-\item{ Normality and zero mean.}
-\item{ Identify any influential observations.}
-\end{itemize}
+  
+- Plot the data.
+- Develop a tentative model(s).
+    - Using the question(s) of interest (QOI).
+    - Accounting for confounders.
+    - Accounting for relationships (<img src="https://latex.codecogs.com/gif.latex?X^2"/>,<img src="https://latex.codecogs.com/gif.latex?X^3"/>, <img src="https://latex.codecogs.com/gif.latex?etc"/>).
+- Fit the model(s).
+- Evaluate residual plots.
+    - Constant SD.
+    - Normality and zero me an.
+    - Identify any influential observations.
+  
+  
+#### Assumptions
+  
+  
+![train_original_histogram_salesprice](Figs/train_original_histogram_salesprice.png )
+  
+##### Homogeneity of Variances
+  
+  
+![train_original_histogram_salesprice](Figs/train_original_diagnostics.png )
   
   
   
@@ -99,11 +117,15 @@ To build and fit a model, an analysis must be performed to identify features of 
   
   
   
-  
-  
-  
+Neighborhooods:
+<img src="https://latex.codecogs.com/gif.latex?x_1%20=%20BrkSide"/>
+<img src="https://latex.codecogs.com/gif.latex?x_2%20=%20NAmes"/>
+<img src="https://latex.codecogs.com/gif.latex?x_3%20=%20Edwards"/>
   
 •	Ames^SalesPrice = B0 + B1*BrkSide + B2*Edwards + B3*NAmes + B4(LogLivingArea*BrkSide) + B5(LogLivingArea*Edwards)
+  
+<img src="https://latex.codecogs.com/gif.latex?&#x5C;hat&#x5C;mu%20&#x5C;{%20{SalesPrice}%20&#x5C;}%20&#x5C;,%20=%20&#x5C;,%20&#x5C;beta_0&#x5C;,%20+&#x5C;,%20&#x5C;beta_1%20&#x5C;,%20x%20&#x5C;,%20BrkSide&#x5C;,%20+&#x5C;,%20&#x5C;beta_2&#x5C;,Edwards&#x5C;,%20+&#x5C;,%20&#x5C;beta_3&#x5C;,%20*&#x5C;,%20NAmes&#x5C;,%20+&#x5C;,%20&#x5C;beta_4(LivingArea_{log}&#x5C;,%20x&#x5C;,%20BrkSide)%20+%20&#x5C;beta_{5}&#x5C;,%20x&#x5C;,%20(LivingArea_{log}%20&#x5C;,%20x&#x5C;,%20Edwards)"/>
+  
   
 <img src="https://latex.codecogs.com/gif.latex?&#x5C;mu&#x5C;{&#x5C;widehat{SalesPrice_{Ames}}&#x5C;}%20&#x5C;,%20=%20&#x5C;,%20&#x5C;beta_0&#x5C;,%20+&#x5C;,%20&#x5C;beta_1%20&#x5C;,%20x%20&#x5C;,%20BrkSide&#x5C;,%20+&#x5C;,%20&#x5C;beta_2&#x5C;,Edwards&#x5C;,%20+&#x5C;,%20&#x5C;beta_3&#x5C;,%20*&#x5C;,%20NAmes&#x5C;,%20+&#x5C;,%20&#x5C;beta_4(LivingArea_{log}&#x5C;,%20x&#x5C;,%20BrkSide)%20+%20&#x5C;beta_{5}&#x5C;,%20x&#x5C;,%20(LivingArea_{log}%20&#x5C;,%20x&#x5C;,%20Edwards)"/>
   
