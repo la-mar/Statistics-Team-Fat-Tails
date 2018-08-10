@@ -3,12 +3,15 @@ title: "Unit 12 - Homework"
 author: "| Grant Bourzikas
         | Quinton Nixon
         | Brock Friedrich"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: " ```r format(Sys.time(), '%B %d, %Y')```"
 output:
   pdf_document:
     df_print: kable
     toc: yes
   html_document:
+    df_print: kable
+    toc: yes
+  markdown:
     df_print: kable
     toc: yes
 geometry: margin=1in
@@ -28,23 +31,44 @@ fontfamily: palatino
 ---
 
 
-```{r setup, echo=FALSE, results="hide"}
+
+**[Downloading from the Kaggle API](C:\Repositories\Statistics-Team-Fat-Tails\kaggle-download.md)**
+**[Using Code Blocks in Markdown](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/code-chunk.md)**
+**[Using SAS in Markdown Code Blocks](C:\Repositories\Statistics-Team-Fat-Tails\sasmd.Rmd)**
+
+
+
+Find more markdown snippits
+
+
+# Introduction
+
+```r {cmd = true}
+#setup, echo=FALSE, results="hide"}
 # read setup script
-source("Setup.R")
+#source("Setup.R")
+print("hello world!!!")
 ```
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
-\section*{Introduction}
+```python {cmd = true}
+print("Verbose will be printed first")
+```
+
+--------------------------------------------------------------------------------------------------------------
+
 Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad.   However, it is essential to review the data because it proves that there are many other influences in price negotiations than the number of bedrooms or a white-picket fence.
 
 
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
-\section{Data Synopsis}
-The Ames House dataset was compiled by Dean De Cock and contains 79 explanatory variables describing almost every aspect of residual home in Ames Iowa from 2006 to 2010. The data set contains 2930 observations involved in assessing home values. 
+--------------------------------------------------------------------------------------------------------------
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
-\section{Analysis Question 1}
+# Data Synopsis
+
+The Ames House dataset was compiled by Dean De Cock and contains 79 explanatory variables describing almost every aspect of residual home in Ames Iowa from 2006 to 2010. The data set contains 2930 observations involved in assessing home values.
+
+--------------------------------------------------------------------------------------------------------------
+
+# Analysis Question 1
 
 
 <!-- 
@@ -55,51 +79,62 @@ field_name : full_name
 NAmes =	North Ames
 Edwards =	Edwards
 BrkSide =	Brookside
-
 -->
 
-\subsection(Restatement of Problem)
+## Restatement of Problem
+
 <!-- 
 a.	EstimateL SalePrice relation to Square Footage. Are they related? Does the strength of relationship vary by neighborhood??
   i.	Address assumptions
   ii.	Provide an estimate and confidence interval
   iii.	Address suspicious observations
   iv.	Conclusion reported in increments of 100 sq.ft.
-
 -->
 
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
 
-\subsection{Build and Fit the Model}
+## Build and Fit the Model
 
-\subsubsection{Interrogate the Data}
+### Interrogate the Data
+
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
 
-\begin{itemize}
-\item{ Plot the data.}
-\item{ Develop a tentative model(s).}
-\item{ Using the question(s) of interest (QOI).}
-\item{ Accounting for confounders.}
-\item{ Accounting for relationships ($X^2$,$X^3$, $etc$).}
-\item{ Fit the model(s).}
-\item{ Evaluate residual plots.}
-\item{ Constant SD.}
-\item{ Normality and zero mean.}
-\item{ Identify any influential observations.}
-\end{itemize}
+
+- Plot the data.
+- Develop a tentative model(s).
+    - Using the question(s) of interest (QOI).
+    - Accounting for confounders.
+    - Accounting for relationships ($X^2$,$X^3$, $etc$).
+- Fit the model(s).
+- Evaluate residual plots.
+    - Constant SD.
+    - Normality and zero me an.
+    - Identify any influential observations.
 
 
+#### Assumptions
 
+![train_original_histogram_salesprice](Figs/train_original_histogram_salesprice.png)
 
+##### Homogeneity of Variances
 
+![train_original_histogram_salesprice](Figs/train_original_diagnostics.png)
 
+<!-- C:\Repositories\Statistics-Team-Fat-Tails\Figs\train_original_histogram.png -->
 
-#TODO: Finish porting aquations
+<!-- todo: Finish porting aquations -->
 
-#TODO: Make Plots!
+<!-- TODO: Make Plots! -->
 
+Neighborhooods:
+$x_1 = BrkSide$
+$x_2 = NAmes$
+$x_3 = Edwards$
 
-% •	Ames^SalesPrice = B0 + B1*BrkSide + B2*Edwards + B3*NAmes + B4(LogLivingArea*BrkSide) + B5(LogLivingArea*Edwards)
+•	Ames^SalesPrice = B0 + B1*BrkSide + B2*Edwards + B3*NAmes + B4(LogLivingArea*BrkSide) + B5(LogLivingArea*Edwards)
+
+$\hat\mu \{ {SalesPrice} \} \, = \, \beta_0\, +\, \beta_1 \, x \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, *\, NAmes\, +\, \beta_4(LivingArea_{log}\, x\, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, x\, Edwards)$
+
 
 $\mu\{\widehat{SalesPrice_{Ames}}\} \, = \, \beta_0\, +\, \beta_1 \, x \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, *\, NAmes\, +\, \beta_4(LivingArea_{log}\, x\, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, x\, Edwards)$
 
@@ -122,8 +157,8 @@ Are we attempting to predict the mean or a single value?
 
 
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
-\section{Analysis Question 2}
+--------------------------------------------------------------------------------------------------------------
+# Analysis Question 2
 <!-- 
 2)	ANALYSIS 2: Build the most predictive model for sales prices of homes in all of Ames Iowa.  This includes all neighborhoods. Your group is limited to only the techniques we have learned in 6371 (no random forests or other methods we have not yet covered).  Specifically, you should produce 4 models: one from forward selection, one from backwards elimination, one from stepwise selection, and one that you build custom.  The custom model could be one of the three preceding models or one that you build by adding or subtracting variables at your will.  Generate an adjusted R2, CV Press and Kaggle Score for each of these models and clearly describe which model you feel is the best in terms of being able to predict future sale prices of homes in Ames, Iowa.  In your paper, please include a table similar to the one below.  The group with the lowest public Kaggle score will receive an extra 3 bonus points on the final exam!   -->
 <!-- Quick note on Kaggle completion:  We only have one course under our belts so far (almost), but you can compete in this competition with the tools you have now (top 40th percentile or better!). After your next course (6372), you will really be able to do well (top 25th percentile or better!). With these skills as well as the skills you pick up in Data Mining and Quantifying the World, you will be able to compete with anyone!	 
