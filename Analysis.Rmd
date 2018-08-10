@@ -1,0 +1,32 @@
+---
+title: "Unit 12 - Homework"
+author: "| Grant Bourzikas
+        | Quinton Nixon
+        | Brock Friedrich"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  pdf_document:
+    df_print: kable
+    toc: yes
+  html_document:
+    df_print: kable
+    toc: yes
+geometry: margin=1in
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{mathtools}
+- \usepackage{float}
+- \usepackage{xcolor,pifont}
+- \newcommand{\cmark}{\Large\textcolor{green}{\ding{52}}}
+- \newcommand{\xmark}{\Large\textcolor{red}{\ding{55}}}
+- \definecolor{answercolor}{RGB}{35,155,86}
+- \newcommand{\answerblock}{\textcolor{answercolor}}
+
+fontsize: 11pt
+fontfamily: palatino
+---
+
+
+
+\section*{Introduction}
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}

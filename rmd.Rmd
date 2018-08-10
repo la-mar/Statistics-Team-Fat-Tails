@@ -1,14 +1,67 @@
+---
+title: "Kaggle Projects"
+author:
+output: html_document
+
+date: "July 24, 2018"
+
+---
+
+```{r}
+require(SASmarkdown)
+```
+
+
+
+```{r}
+
+saspath <- "C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"
+sasopts <- "-nosplash -ls 75"
+# knitr::opts_chunk$set(engine="sashtml"
+#                       , engine.path=saspath
+#                       , engine.opts=sasopts
+#                       , comment=NA)
+
+knitr::opts_chunk$set(engine="sashtml", engine.path=saspath, 
+        engine.opts=sasopts, comment=NA)
+
+
+```
+
+
+
 
 https://www.kaggle.com/c/house-prices-advanced-regression-techniques
 
-```{r, engine="sas", engine.path="C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"}
+```{r, engine="sashtml", engine.path="C:/Program Files/SASHome/SASFoundation/9.4/sas.exe", engine.opts="-nosplash -linesize 75", comment=NA}
 
-proc import datafile="C:/Repositories/Statistics-Team-Fat-Tails/data/train.csv"
-     out=data
-     dbms=csv
-     replace;
-     getnames=yes;
-run;
+data Amounts_SMU;
+	infile datalines dlm=',';
+	input Scores_SMU;
+	label Scores_SMU="Money in Student's Pocket ($)";
+	datalines;
+	34, 
+	1200, 
+	23, 
+	50, 
+	60, 
+	50, 
+	0, 
+	0, 
+	30, 
+	89, 
+	0, 
+	300, 
+	400, 
+	20, 
+	10, 
+	0
+	;
+
+title "Money is Business Student's Pockets";
+proc univariate data=Amounts_SMU;
+	histogram Scores_SMU / endpoints=(0 to 1200 by 100);
+	
 
 ```
 
