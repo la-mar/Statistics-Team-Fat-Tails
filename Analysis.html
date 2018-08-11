@@ -1,247 +1,468 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <title>Kaggle Project - Team Fat Tails</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-      <link rel="stylesheet" href="file:///C:\Users\brock\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.3.5\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+<html>
+<head>
+<title>Analysis.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
-      <style> 
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+<link rel="stylesheet" href="file:///c%3A/Repositories/Lollapalooza/CSS/Bootswatch/darkly.css" type="text/css">
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
  */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
 
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
 }
 
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
 
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
 }
 
-.token.comment,
-.token.blockquote {
-  color: #969896;
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
 }
 
-.token.cdata {
-  color: #183691;
+.emoji {
+	height: 1.4em;
 }
 
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
 }
 
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
 }
 
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
+</style>
 
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
-/* Please visit the URL below for more information: */
-/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
- 
-      </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview   ">
-       <!-- <link rel="stylesheet" type="text/css" href="css/darkly.css"> -->
+</head>
+<body>
+<hr>
+<p>title: &quot;Kaggle Project - Team Fat Tails&quot;
+author: |
+| Grant Bourzikas
+| Quinton Nixon
+| Brock Friedrich
+date: &quot;&quot;
+output:
+pdf_document:
+df_print: kable
+toc: yes
+html_document:
+df_print: kable
+toc: true
+css: css/darkly.css
+notebook:
+css: css/darkly.css
+geometry: margin=1in</p>
+<h2 id="fontsize-11ptfontfamily-palatino">fontsize: 11pt
+fontfamily: palatino</h2>
+ <!-- <link rel="stylesheet" type="text/css" href="file:://C:\Repositories\Statistics-Team-Fat-Tails\css\bootstrap.min.css"> -->
 <p><strong><a href="C:%5CRepositories%5CStatistics-Team-Fat-Tails%5Ckaggle-download.md">Downloading from the Kaggle API</a></strong></p>
 <p><strong><a href="https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/code-chunk.md">Using Code Blocks in Markdown</a></strong></p>
 <p><strong><a href="C:%5CRepositories%5CStatistics-Team-Fat-Tails%5Csasmd.Rmd">Using SAS in Markdown Code Blocks</a></strong></p>
 <p>Find more markdown snippits</p>
-<h1 class="mume-header" id="introduction">Introduction</h1>
-
-<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="r"><div class="input-div"><pre data-role="codeBlock" data-info="r {code_chunk_offset=0, cmd = true}" class="language-r"><span class="token comment">#setup, echo=FALSE, results="hide"}</span>
-<span class="token comment"># read setup script</span>
-<span class="token comment">#source("Setup.R")</span>
-print<span class="token punctuation">(</span><span class="token string">"hello world!!!"</span><span class="token punctuation">)</span>
-</pre><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><div class="code-chunk" data-id="code-chunk-id-1" data-cmd="python"><div class="input-div"><pre data-role="codeBlock" data-info="python {code_chunk_offset=1, cmd = true}" class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Verbose will be printed first"</span><span class="token punctuation">)</span>
-</pre><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><hr>
+<h1 id="introduction">Introduction</h1>
+<pre class="hljs"><code><div>  <span class="hljs-comment">#setup, echo=FALSE, results="hide"}</span>
+  <span class="hljs-comment"># read setup script</span>
+  <span class="hljs-keyword">source</span>(<span class="hljs-string">"Setup.R"</span>)
+  print(<span class="hljs-string">"hello world!!!"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Verbose will be printed first"</span>)
+</div></code></pre>
+<hr>
 <p>Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad.   However, it is essential to review the data because it proves that there are many other influences in price negotiations than the number of bedrooms or a white-picket fence.</p>
 <hr>
-<h1 class="mume-header" id="data-synopsis">Data Synopsis</h1>
+<h1 id="data-synopsis">Data Synopsis</h1>
+<!-- 
+Where did the data come from?  How big is it? 
 
+
+
+How many observations?  Where can we find out more?  
+
+
+
+What are the specific variables that we need to know with respect to your analysis?
+
+
+
+ -->
 <p>The Ames House dataset was compiled by Dean De Cock and contains 79 explanatory variables describing almost every aspect of residual home in Ames Iowa from 2006 to 2010. The data set contains 2930 observations involved in assessing home values.</p>
 <hr>
-<h1 class="mume-header" id="analysis-question-1">Analysis Question 1</h1>
+<h1 id="analysis-question-1">Analysis Question 1</h1>
+<!-- 
+1)	ANALYSIS 1: Assume that Century 21 Ames (a real estate company) in Ames, Iowa has commissioned you to answer a very important question with respect to their business.  Century 21 Ames only sells houses in the NAmes, Edwards and BrkSide neighborhoods and would like to simply get an estimate of how the SalePrice of the house is related to the square footage of the living area of the house (GrLIvArea) and if the SalesPrice (and its relationship to square footage) depends on which neighborhood the house is located in. Build and fit a model that will answer this question, keeping in mind that realtors prefer to talk about living area in increments of 100 sq. ft. Provide your client with the estimate (or estimates if it varies by neighborhood) as well as confidence intervals for any estimate(s) you provide. It turns out that Century 21’s leadership team has a member that has some statistical background. Therefore, make sure and provide evidence that the model assumptions are met and that any suspicious observations (outliers / influential observations) have been identified and addressed. Finally, of course, provide your client with a well written conclusion that quantifies the relationship between living area and sale price with respect to these three neighborhoods. Remember that the company is only concerned with the three neighborhoods they sell in.  
 
-<h2 class="mume-header" id="restatement-of-problem">Restatement of Problem</h2>
 
+Variables:
+
+
+Neighborhoods:
+field_name : full_name
+NAmes =	North Ames
+Edwards =	Edwards
+BrkSide =	Brookside
+-->
+<h2 id="restatement-of-problem">Restatement of Problem</h2>
+<!-- 
+a.	EstimateL SalePrice relation to Square Footage. Are they related? Does the strength of relationship vary by neighborhood??
+  i.	Address assumptions
+  ii.	Provide an estimate and confidence interval
+  iii.	Address suspicious observations
+  iv.	Conclusion reported in increments of 100 sq.ft.
+-->
 <p>To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.</p>
-<h2 class="mume-header" id="build-and-fit-the-model">Build and Fit the Model</h2>
-
-<h3 class="mume-header" id="interrogate-the-data">Interrogate the Data</h3>
-
+<h2 id="build-the-model">Build the Model</h2>
+<h3 id="interrogate-the-data">Interrogate the Data</h3>
 <p>To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.</p>
 <ul>
 <li>Plot the data.</li>
@@ -249,7 +470,7 @@ print<span class="token punctuation">(</span><span class="token string">"hello w
 <ul>
 <li>Using the question(s) of interest (QOI).</li>
 <li>Accounting for confounders.</li>
-<li>Accounting for relationships (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">X^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">X^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>t</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">etc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.61508em;vertical-align:0em;"></span><span class="base"><span class="mord mathit">e</span><span class="mord mathit">t</span><span class="mord mathit">c</span></span></span></span>).</li>
+<li>Accounting for relationships ($X^2$,$X^3$, $etc$).</li>
 </ul>
 </li>
 <li>Fit the model(s).</li>
@@ -261,70 +482,76 @@ print<span class="token punctuation">(</span><span class="token string">"hello w
 </ul>
 </li>
 </ul>
-<h4 class="mume-header" id="assumptions">Assumptions</h4>
-
+<p><img src="Figs/train_cleansed_scatterplotmatrix.png" alt="train_original_histogram_salesprice"></p>
+<h2 id="fit-the-model">Fit the Model</h2>
+<h2 id="check-assumptions">Check Assumptions</h2>
 <p><img src="Figs/train_original_histogram_salesprice.png" alt="train_original_histogram_salesprice"></p>
-<h5 class="mume-header" id="homogeneity-of-variances">Homogeneity of Variances</h5>
-
+<h2 id="residual-diagnostics">Residual Diagnostics</h2>
+<h2 id="outlier-analysis">Outlier Analysis</h2>
+<!-- Influential point analysis (Cook’s D and Leverage) -->
+<h2 id="model-assumptions">Model Assumptions</h2>
+<h3 id="homogeneity-of-variances">Homogeneity of Variances</h3>
 <p><img src="Figs/train_original_diagnostics.png" alt="train_original_histogram_salesprice"></p>
-<p>Neighborhooods:<br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mi>B</mi><mi>r</mi><mi>k</mi><mi>S</mi><mi>i</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">x_1 = BrkSide</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span></span></span></span><br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mi>N</mi><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">x_2 = NAmes</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mord mathit">A</span><span class="mord mathit">m</span><span class="mord mathit">e</span><span class="mord mathit">s</span></span></span></span><br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>3</mn></msub><mo>=</mo><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">x_3 = Edwards</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span></span></span></span></p>
-<p>•	Ames^SalesPrice = B0 + B1<em>BrkSide + B2</em>Edwards + B3<em>NAmes + B4(LogLivingArea</em>BrkSide) + B5(LogLivingArea*Edwards)</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>μ</mi><mo>^</mo></mover><mo>{</mo><mrow><mi>S</mi><mi>a</mi><mi>l</mi><mi>e</mi><mi>s</mi><mi>P</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi></mrow><mo>}</mo><mspace width="0.16667em"></mspace><mo>=</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>0</mn></msub><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>1</mn></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>k</mi><mi>S</mi><mi>i</mi><mi>d</mi><mi>e</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>2</mn></msub><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>3</mn></msub><mspace width="0.16667em"></mspace><mo>∗</mo><mspace width="0.16667em"></mspace><mi>N</mi><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>4</mn></msub><mo>(</mo><mi>L</mi><mi>i</mi><mi>v</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>A</mi><mi>r</mi><mi>e</mi><msub><mi>a</mi><mrow><mi>l</mi><mi>o</mi><mi>g</mi></mrow></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>k</mi><mi>S</mi><mi>i</mi><mi>d</mi><mi>e</mi><mo>)</mo><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mo>(</mo><mi>L</mi><mi>i</mi><mi>v</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>A</mi><mi>r</mi><mi>e</mi><msub><mi>a</mi><mrow><mi>l</mi><mi>o</mi><mi>g</mi></mrow></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\hat\mu \{ {SalesPrice} \} \, = \, \beta_0\, +\, \beta_1 \, x \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, *\, NAmes\, +\, \beta_4(LivingArea_{log}\, x\, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, x\, Edwards)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="base"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathit">μ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"></span></span></span></span><span class="mopen">{</span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">c</span><span class="mord mathit">e</span></span><span class="mclose">}</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">∗</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mord mathit">A</span><span class="mord mathit">m</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">i</span><span class="mord mathit">n</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.01968em;">l</span><span class="mord mathit mtight">o</span><span class="mord mathit mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mclose">)</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">i</span><span class="mord mathit">n</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.01968em;">l</span><span class="mord mathit mtight">o</span><span class="mord mathit mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mclose">)</span></span></span></span></p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mo>{</mo><mover accent="true"><mrow><mi>S</mi><mi>a</mi><mi>l</mi><mi>e</mi><mi>s</mi><mi>P</mi><mi>r</mi><mi>i</mi><mi>c</mi><msub><mi>e</mi><mrow><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi></mrow></msub></mrow><mo stretchy="true">^</mo></mover><mo>}</mo><mspace width="0.16667em"></mspace><mo>=</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>0</mn></msub><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>1</mn></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>k</mi><mi>S</mi><mi>i</mi><mi>d</mi><mi>e</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>2</mn></msub><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>3</mn></msub><mspace width="0.16667em"></mspace><mo>∗</mo><mspace width="0.16667em"></mspace><mi>N</mi><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>4</mn></msub><mo>(</mo><mi>L</mi><mi>i</mi><mi>v</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>A</mi><mi>r</mi><mi>e</mi><msub><mi>a</mi><mrow><mi>l</mi><mi>o</mi><mi>g</mi></mrow></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>k</mi><mi>S</mi><mi>i</mi><mi>d</mi><mi>e</mi><mo>)</mo><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mo>(</mo><mi>L</mi><mi>i</mi><mi>v</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>A</mi><mi>r</mi><mi>e</mi><msub><mi>a</mi><mrow><mi>l</mi><mi>o</mi><mi>g</mi></mrow></msub><mspace width="0.16667em"></mspace><mi>x</mi><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mu\{\widehat{SalesPrice_{Ames}}\} \, = \, \beta_0\, +\, \beta_1 \, x \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, *\, NAmes\, +\, \beta_4(LivingArea_{log}\, x\, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, x\, Edwards)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.1144399999999999em;"></span><span class="strut bottom" style="height:1.400548em;vertical-align:-0.286108em;"></span><span class="base"><span class="mord mathit">μ</span><span class="mopen">{</span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1144399999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">c</span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">A</span><span class="mord mathit mtight">m</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span><span class="svg-align" style="top:-3.69444em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.42em;"><svg width="100%" height="0.42em" viewBox="0 0 2364 420" preserveAspectRatio="none"><path d="M1181 0h2l1171 296c6 0 10 5 10 11l-2 23c-1 6-5 10
--11 10h-1L1182 67 15 340h-1c-6 0-10-4-11-10l-2-23c-1-6 4-11 10-11z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span><span class="mclose">}</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">∗</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mord mathit">A</span><span class="mord mathit">m</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">i</span><span class="mord mathit">n</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.01968em;">l</span><span class="mord mathit mtight">o</span><span class="mord mathit mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mclose">)</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">i</span><span class="mord mathit">n</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.01968em;">l</span><span class="mord mathit mtight">o</span><span class="mord mathit mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">x</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mclose">)</span></span></span></span></p>
-<p>% •	Ames^SalesPrice = 8.49 + (-2.58<em>BrkSide) + (-0.49</em>Edwards)  + (0.0 * NAmes) + (B3<em>0.0) + B4(0.47</em>BrkSide) + B5(0.47*Edwards)</p>
+<!-- C:\Repositories\Statistics-Team-Fat-Tails\Figs\train_original_histogram.png -->
+<!-- TODO: Finish porting equations -->
+<!-- TODO: Make Plots! -->
+<p>Code (will move to appendix later):</p>
+<pre class="hljs"><code><div>proc import datafile=&quot;/home/bfriedrich0/sasuser.v94/train.csv&quot;
+     out=train_original
+     dbms=csv
+     replace;
+     getnames=yes;
+run;
+
+proc univariate data=train_original noprint;
+var SalePrice;
+histogram / nrows = 5 kernel normal(noprint);
+run;
+
+</div></code></pre>
+<p>Neighborhooods:
+$x_1 = BrkSide$
+$x_2 = NAmes$
+$x_3 = Edwards$</p>
+<!-- •	Ames^SalesPrice = B0 + B1*BrkSide + B2*Edwards + B3*NAmes + B4(LogLivingArea*BrkSide) + B5(LogLivingArea*Edwards) -->
+<p>$\hat\mu { {SalesPrice} } , = , \beta_0, +, \beta_1 , \cdot , BrkSide, +, \beta_2,Edwards, +, \beta_3, \cdot , NAmes, +, \beta_4(LivingArea_{log}, \cdot, BrkSide) + \beta_{5}, x, (LivingArea_{log} , x, Edwards)$</p>
+<p>$\mu{\widehat{SalesPrice_{Ames}}} , = , \beta_0, +, \beta_1 , x , BrkSide, +, \beta_2,Edwards, +, \beta_3, *, NAmes, +, \beta_4(LivingArea_{log}, x, BrkSide) + \beta_{5}, x, (LivingArea_{log} , x, Edwards)$</p>
+<!-- % •	Ames^SalesPrice = 8.49 + (-2.58*BrkSide) + (-0.49*Edwards)  + (0.0 * NAmes) + (B3*0.0) + B4(0.47*BrkSide) + B5(0.47*Edwards) -->
+<!--
+Potential Objectives:
+-  ~~Adjusting for a large set of explanatory variables.~~ - NO
+-  ~~Fishing for an explanation.~~ - NO
+-  Prediction - YES
+-->
+<!--
+Are we attempting to predict the mean or a single value?
+-  Mean - YES
+-  ~~Specific Value~~ - NO
+-->
 <hr>
-<h1 class="mume-header" id="analysis-question-2">Analysis Question 2</h1>
+<h1 id="analysis-question-2">Analysis Question 2</h1>
+<!-- 
+2)	ANALYSIS 2: Build the most predictive model for sales prices of homes in all of Ames Iowa.  This includes all neighborhoods. Your group is limited to only the techniques we have learned in 6371 (no random forests or other methods we have not yet covered).  Specifically, you should produce 4 models: one from forward selection, one from backwards elimination, one from stepwise selection, and one that you build custom.  The custom model could be one of the three preceding models or one that you build by adding or subtracting variables at your will.  Generate an adjusted R2, CV Press and Kaggle Score for each of these models and clearly describe which model you feel is the best in terms of being able to predict future sale prices of homes in Ames, Iowa.  In your paper, please include a table similar to the one below.  The group with the lowest public Kaggle score will receive an extra 3 bonus points on the final exam!   -->
+<!-- Quick note on Kaggle completion:  We only have one course under our belts so far (almost), but you can compete in this competition with the tools you have now (top 40th percentile or better!). After your next course (6372), you will really be able to do well (top 25th percentile or better!). With these skills as well as the skills you pick up in Data Mining and Quantifying the World, you will be able to compete with anyone!	 
 
+| Predictive Models | Adjusted R2 | CV PRESS | Kaggle Score |
+|-------------------|-------------|----------|--------------|
+| Forward           | .89         | 1272     | .721         |
+| Backward          | .78         | 1590     | .945         |
+| Stepwise          | .81         | 2001     | .888         |
+| CUSTOM            | .87         | 900      | .2345        |
+-->
+<!-- 
+NOTE 1: 
+ALL ANALYSES MUST BE DONE IN SAS and all code must be placed in the appendix.  Part of the grading process will be to run the code and verify the Kaggle score for each group.
 
-      </div>
-      <div class="md-sidebar-toc"><ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#data-synopsis">Data Synopsis</a></li>
-<li><a href="#analysis-question-1">Analysis Question 1</a>
-<ul>
-<li><a href="#restatement-of-problem">Restatement of Problem</a></li>
-<li><a href="#build-and-fit-the-model">Build and Fit the Model</a>
-<ul>
-<li><a href="#interrogate-the-data">Interrogate the Data</a>
-<ul>
-<li><a href="#assumptions">Assumptions</a>
-<ul>
-<li><a href="#homogeneity-of-variances">Homogeneity of Variances</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#analysis-question-2">Analysis Question 2</a></li>
-</ul>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
-    </body>
-    
-    
-    
-    
-    
-    
-    
-<script>
+Note 2: 
+An extra 3 points on the final exam will be awarded to the team with the model with the lowest (best) Kaggle Score.  In the unlikely event of a tie will split these points.  
 
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
-      
-  </html>
+Deliverables:
+Your group is to turn in a paper should be no more than 7 pages long (without the appendix). Please put your code in the appendix. If you are concerned with staying within the allotted 7 pages, put more screenshots and such in the appendix.
+ -->
+<h1 id="appendix">Appendix</h1>
+
+</body>
+</html>
