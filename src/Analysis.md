@@ -143,7 +143,7 @@ To build and fit a model, an analysis must be performed to identify features of 
 
 ---
 
-@import "../figs/analysis1_model1.html"
+<!-- ##@import "../figs/analysis1_model1.html" -->
 
 ---
 
