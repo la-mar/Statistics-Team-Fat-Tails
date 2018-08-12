@@ -18,9 +18,25 @@
 			* [Check Assumptions](#check-assumptions)
 				* [Homogeneity of Variances](#homogeneity-of-variances)
 				* [Normality](#normality)
-			* [Residual Diagnostics](#residual-diagnostics)
-			* [Outlier Analysis](#outlier-analysis)
+				* [Residual Diagnostics](#residual-diagnostics)
+				* [Outlier Analysis](#outlier-analysis)
+			* [Model Comparison](#model-comparison)
+				* [No Interactions](#no-interactions)
+				* [With Interactions](#with-interactions)
+				* [ANOVA Comparison](#anova-comparison)
+				* [Adj R2](#adj-r2)
+				* [Parameters & Equations](#parameters-equations)
+				* [Conclusion](#conclusion)
 	* [Analysis Question 2](#analysis-question-2)
+		* [Restatement of Problem](#restatement-of-problem-1)
+		* [Model Selection](#model-selection)
+		* [Checking Assumptions](#checking-assumptions)
+		* [Comparing Competing Models](#comparing-competing-models)
+			* [Check Assumptions](#check-assumptions-1)
+				* [Homogeneity of Variances](#homogeneity-of-variances-1)
+				* [Normality](#normality-1)
+				* [Residual Diagnostics](#residual-diagnostics-1)
+				* [Outlier Analysis](#outlier-analysis-1)
 	* [Appendix A](#appendix-a)
 			* [SAS Program](#sas-program)
 			* [main.sas](#mainsas)
@@ -28,7 +44,6 @@
 			* [procmeans.sas](#procmeanssas)
 			* [analysis1_model1.sas](#analysis1_model1sas)
 	* [Appendix B](#appendix-b)
-* [@import "../data/data_description.md"](#import-datadata_descriptionmd)
 	* [Appendix C](#appendix-c)
 
 <!-- /code_chunk_output -->
@@ -99,6 +114,18 @@ BrkSide =	Brookside
 
 -->
 
+<!-- * Plot the data.
+* Develop a tentative model(s).
+    * Using the question(s) of interest (QOI).
+    * Accounting for confounders.
+    * Accounting for relationships ($X^2$,$X^3$, $etc$).
+* Fit the model(s).
+* Evaluate residual plots.
+    * Constant SD.
+    * Normality and zero me an.
+    * Identify any influential observations. -->
+
+
 ### Restatement of Problem
 
 <!-- 
@@ -125,26 +152,23 @@ To build and fit a model, an analysis must be performed to identify features of 
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
 
 
-* Plot the data.
-* Develop a tentative model(s).
-    * Using the question(s) of interest (QOI).
-    * Accounting for confounders.
-    * Accounting for relationships ($X^2$,$X^3$, $etc$).
-* Fit the model(s).
-* Evaluate residual plots.
-    * Constant SD.
-    * Normality and zero me an.
-    * Identify any influential observations.
+<!-- ##TODO: Why did we filter down to only the neighborhoods of interest? -->
+  - QOI: this is where century targets.
 
 
 <!--## TODO:  split original and logged side by side-->
+  - We chose to log both variables because of the graphs below, and other words.
 
-![train_cleansed_scatterplotmatrix](../figs/train_cleansed_scatterplotmatrix.png)
+<!-- ![train_cleansed_scatterplotmatrix](../figs/train_cleansed_scatterplotmatrix.png) -->
+
+
+ <!-- TODO: Confounders? -->
 
 #### Fit the Model
 
+<!-- TODO: Regression Fit -->
 
-
+@import "../figs/analysis1_solution.html"
 
 #### Check Assumptions
 
@@ -162,43 +186,152 @@ Solarized dark             |  Solarized Ocean
 
 <!-- TODO: Add interpretation -->
 
-#### Residual Diagnostics
+##### Residual Diagnostics
 
-<!-- TODO: Add interpretation -->
+<!-- TODO: Add interpretation and plots -->
 
-#### Outlier Analysis
+##### Outlier Analysis
 
 <!-- Influential point analysis (Cook’s D and Leverage) -->
 
+<!-- TODO: Leverage Plot and Cooks D plot from outlier_analysis.sas -->
+
+<!-- TODO: Add interpretation -->
 
 
-<!-- C:\Repositories\Statistics-Team-Fat-Tails\Figs\train_original_histogram.png -->
+---
 
-<!-- TODO: Finish porting equations -->
+#### Model Comparison
 
-<!-- TODO: Make Plots! -->
 
-Code (will move to appendix later):
+##### No Interactions
+
+<!-- TODO: Equation -->
+
+<!-- TODO: Fit Plot -->
+
+##### With Interactions
+
+<!-- TODO: Equation -->
+
+<!-- TODO: Fit Plot -->
+
+##### ANOVA Comparison
+
+<!-- TODO: Low Priority -->
+
+##### Adj R2
+
+<!-- TODO: Compare Adj R^2-->
+
+
+##### Parameters & Equations
+      - Estimates
+      - Interpretation 
+      - Confidence Intervals 
 
 
 Neighborhooods:
-$x_1 = BrkSide$
-$x_2 = NAmes$
-$x_3 = Edwards$
+$x_1 = BrkSide = Brookside
+$x_2 = NAmes$ = Ames
+$x_3 = Edwards = Edwards
 
-<!-- •	Ames^SalesPrice = B0 + B1*BrkSide + B2*Edwards + B3*NAmes + B4(LogLivingArea*BrkSide) + B5(LogLivingArea*Edwards) -->
-
-
-
-
-
-$\hat\mu \{ {SalesPrice} \} \, = \, \beta_0\, +\, \beta_1 \, \cdot \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, \cdot \, NAmes\, +\, \beta_4(LivingArea_{log}\, \cdot\, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, x\, Edwards)$
+Variables:
+SalesPrice = SP
+LivingArea = LA
 
 
-$\mu\{\widehat{SalesPrice_{Ames}}\} \, = \, \beta_0\, +\, \beta_1 \, x \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, *\, NAmes\, +\, \beta_4(LivingArea_{log}\, x\, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, x\, Edwards)$
+<!-- $\hat\mu \{ {SP_{log}} \} \, = \, \beta_0\, +\, \beta_1 \, \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, \, Ames\, +\, \beta_4(LivingArea_{log}\, \, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, \, Edwards)$ -->
 
 
-<!-- % •	Ames^SalesPrice = 8.49 + (-2.58*BrkSide) + (-0.49*Edwards)  + (0.0 * NAmes) + (B3*0.0) + B4(0.47*BrkSide) + B5(0.47*Edwards) -->
+
+---
+
+**General Formula:**
+
+$$
+\hat\mu \{ {log(SP)} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$$
+
+---
+
+**Ames (North):**
+
+$$
+\hat\mu \{ {log(SP_{Ames})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$$
+
+---
+
+**Brookside:**
+
+$$
+\hat\mu \{ {log(SP_{Brookside})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$$
+
+---
+
+**Edwards:**
+
+$$
+\hat\mu \{ {log(SP_{Edwards})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$$
+
+---
+
+
+<!-- TODO: Add regression equations for NAmes neighborhood -->
+
+<!-- $$\hat\mu \{ {log(SP_{Ames})} \} \, = \, \beta_0\, +\, \beta_1 \, \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, \, NAmes\, +\, \beta_4(LivingArea_{log}\, \, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, \, Edwards)$$ -->
+
+
+<!-- TODO: Add regression equations for Brkside neighborhood -->
+<!-- 
+$$
+\hat\mu \{ {log(SP_{BrkSide})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$$ -->
+
+<!-- TODO: Add regression equations for Edwards neighborhood -->
+
+<!-- $$\hat\mu \{ {log(SP_{Edwards})} \} \, = \, \beta_0\, +\, \beta_1 \, \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, \, NAmes\, +\, \beta_4(LivingArea_{log}\, \, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, \, Edwards)$$ -->
+
+
+##### Conclusion
 
 <!--
 Potential Objectives:
@@ -212,7 +345,19 @@ Are we attempting to predict the mean or a single value?
 -  Mean - YES
 -  ~~Specific Value~~ - NO
 -->
+<!-- To interpret the model, a change in Living Room Square Feet Is a 10-fold increase.  For the neighborhood with approximately the same mass, it is estimate that a 10-fold increase in the Living Room Square feet is associated with a (2^-2.58 = 0.167) which is a 83.2% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of (2^-3.76, 2^-1.4) = (0.074, 0.38) which equates to an estimated increase between % and 860%.
 
+The predicted median of Names sales price with a living room space of 1 ft^2 = $4865. Doubling the living room space multiplies the predicted median Names sales price by 2^0.47 = 1.38510946811. In other words, it increases by 38%. For 100 ft^2 in Names, the sales price would be $42,379. -->
+
+<!-- TODO: Fit numbers from excel sheet into interpretation here. -->
+
+Prediction mean sales price by neighborhood.
+
+ To interpret the model, a change in Living Room Square Feet is a doubled increase.  For the neighborhood with approximately the same mass, it is estimate that a 10-fold increase in the Living Area Square feet is associated with a XX which is a 83.2% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of XX = CI which equates to an estimated increase between X% and X%.
+
+<!-- TODO: Add verbage -->
+
+<!-- TODO: Add regression plots -->
 
 ---
 
@@ -246,14 +391,86 @@ Your group is to turn in a paper should be no more than 7 pages long (without th
 
 
 
+### Restatement of Problem 
+
+
+
+
+### Model Selection
+		Type of Selection
+			Stepwise
+
+<!-- Data: All Neighborhoods
+     
+
+
+
+ -->
+
+
+
+Forward - Starts empty, incrementally adds variables
+Backward - Starts full, incrementally removes variables.
+Stepwise - ???, More random. Can add or remove until it finds the best score.
+Custom -  ???
 
 
 
 
 
 
+### Checking Assumptions 
+			Residual Plots
+			Influential point analysis (Cook’s D and Leverage)
+			Make sure to address each assumption
+      
+      <!-- TODO: Scatterplot matrix of all variables used in any of the models. Add these to the appendix. -->
 
 
+
+### Comparing Competing Models
+			Adj R2   
+			Internal CV Press   
+			Kaggle Score 
+
+
+		Conclusion: A short summary of the analysis.  
+
+
+
+#### Check Assumptions
+
+<!-- The model must have: 1) Linearity, 2) Residuals are normally distributed, 3) Independence, 4) Errors should have mean of 0 and have the same variance, 5) Equal SD: There is little evidence from the scatter plots of heteroscedasticity, 6) Normality of scatter plot, qq plot, and histogram of residuals -->
+
+
+
+##### Homogeneity of Variances
+
+<!-- TODO: Add plots -->
+
+<!-- TODO: Add interpretation -->
+
+##### Normality
+
+<!-- TODO: Add plots -->
+
+<!-- TODO: Add interpretation -->
+
+##### Residual Diagnostics
+
+<!-- TODO: Add plots -->
+
+<!-- TODO: Add interpretation and plots -->
+
+##### Outlier Analysis
+
+<!-- The rstudent values have the majority of the data within range of the limits, with the center value as 0 (4). There are some data points still causing leverage in the data. The cook’s D has some data points that would influence the linear regression of the data, but when doing further exploration, those data points are not caused by the 3 neighborhoods that we are trying to analyze. -->
+
+<!--  -->
+
+Kaggle Score for stepwise submission:  0.14880
+Kaggle Score for forward elimination:  0.14880
+Kaggle score for backward elimination:  0.21225
 
 
 ## Appendix A
@@ -278,9 +495,25 @@ Your group is to turn in a paper should be no more than 7 pages long (without th
 			* [Check Assumptions](#check-assumptions)
 				* [Homogeneity of Variances](#homogeneity-of-variances)
 				* [Normality](#normality)
-			* [Residual Diagnostics](#residual-diagnostics)
-			* [Outlier Analysis](#outlier-analysis)
+				* [Residual Diagnostics](#residual-diagnostics)
+				* [Outlier Analysis](#outlier-analysis)
+			* [Model Comparison](#model-comparison)
+				* [No Interactions](#no-interactions)
+				* [With Interactions](#with-interactions)
+				* [ANOVA Comparison](#anova-comparison)
+				* [Adj R2](#adj-r2)
+				* [Parameters & Equations](#parameters-equations)
+				* [Conclusion](#conclusion)
 	* [Analysis Question 2](#analysis-question-2)
+		* [Restatement of Problem](#restatement-of-problem-1)
+		* [Model Selection](#model-selection)
+		* [Checking Assumptions](#checking-assumptions)
+		* [Comparing Competing Models](#comparing-competing-models)
+			* [Check Assumptions](#check-assumptions-1)
+				* [Homogeneity of Variances](#homogeneity-of-variances-1)
+				* [Normality](#normality-1)
+				* [Residual Diagnostics](#residual-diagnostics-1)
+				* [Outlier Analysis](#outlier-analysis-1)
 	* [Appendix A](#appendix-a)
 			* [SAS Program](#sas-program)
 			* [main.sas](#mainsas)
@@ -288,11 +521,11 @@ Your group is to turn in a paper should be no more than 7 pages long (without th
 			* [procmeans.sas](#procmeanssas)
 			* [analysis1_model1.sas](#analysis1_model1sas)
 	* [Appendix B](#appendix-b)
-* [@import "../data/data_description.md"](#import-datadata_descriptionmd)
 	* [Appendix C](#appendix-c)
 
 <!-- /code_chunk_output -->
 
+<!-- TODO: Add comments to all code chunk -->
 
 #### main.sas
 
@@ -317,7 +550,7 @@ Your group is to turn in a paper should be no more than 7 pages long (without th
 
 <!-- TODO: re-add this import -->
 
-# @import "../data/data_description.md"
+@import "../data/data_description.md"
 
 
 ## Appendix C
