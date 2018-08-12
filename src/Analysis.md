@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Kaggle Project - Team Fat Tails"
 author: | 
         | Grant Bourzikas
@@ -7,23 +7,81 @@ author: |
 date: ""
 output:
   pdf_document:
-    df_print: kable
     toc: yes
   html_document:
-    df_print: kable
     toc: true
-    css: css/darkly.css
-  notebook:
-    css: css/darkly.css
+
+toc:
+  depth_from: 1
+  depth_to: 6
+  ordered: true    
+
 geometry: margin=1in
 
 fontsize: 11pt
 fontfamily: palatino
----
+--- -->
+
+
+# Kaggle Project - Team Fat Tails
+
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+* [Kaggle Project - Team Fat Tails](#kaggle-project-team-fat-tails)
+	* [Introduction](#introduction)
+	* [Data Synopsis](#data-synopsis)
+	* [Analysis Question 1](#analysis-question-1)
+			* [Restatement of Problem](#restatement-of-problem)
+			* [Build the Model](#build-the-model)
+					* [Interrogate the Data](#interrogate-the-data)
+			* [Fit the Model](#fit-the-model)
+			* [Check Assumptions](#check-assumptions)
+			* [Residual Diagnostics](#residual-diagnostics)
+			* [Outlier Analysis](#outlier-analysis)
+			* [Model Assumptions](#model-assumptions)
+					* [Homogeneity of Variances](#homogeneity-of-variances)
+	* [Analysis Question 2](#analysis-question-2)
+	* [Appendix A](#appendix-a)
+			* [SAS Program](#sas-program)
+			* [main.sas](#mainsas)
+			* [dataimport.sas](#dataimportsas)
+			* [procmeans.sas](#procmeanssas)
+	* [Appendix B](#appendix-b)
+
+<!-- /code_chunk_output -->
+
+
 
 
 
  <!-- <link rel="stylesheet" type="text/css" href="file:://C:\Repositories\Statistics-Team-Fat-Tails\css\bootstrap.min.css"> -->
+
+
+<!-- ## analogous palette
+COL.A.G = '##CDFFAC'
+COL.A.B = '##87E4E8'
+COL.A.P = '##9F6FFF'
+COL.A.R = '##E8A8A4'
+COL.A.O = '##FFDA81'
+
+## monochromatic greens
+COL.M.G1 = '##1A7F67'
+COL.M.G2 = '##81FFE0'
+COL.M.G3 = '##34FFCE'
+response_dark = '##407F70'
+response_light = '##2ACCA4'
+
+## complementary
+COL.CO.G1 = '##56B262'
+COL.CO.G2 = '##AEFFB8'
+COL.CO.G3 = '##94FFA2'
+COL.CO.I4 = '##adb5bd'
+COL.CO.P5 = '##adb5bd'
+-->
+
 
 
 **[Downloading from the Kaggle API](C:\Repositories\Statistics-Team-Fat-Tails\kaggle-download.md)**
@@ -33,23 +91,7 @@ fontfamily: palatino
 **[Using SAS in Markdown Code Blocks](C:\Repositories\Statistics-Team-Fat-Tails\sasmd.Rmd)**
 
 
-
-
-Find more markdown snippits
-
-
-# Introduction
-
-```r {cmd = true}
-  #setup, echo=FALSE, results="hide"}
-  # read setup script
-  source("Setup.R")
-  print("hello world!!!")
-```
-
-```python {cmd = true}
-print("Verbose will be printed first")
-```
+## Introduction
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +101,7 @@ Ask a home buyer to describe their dream house, and they probably won't begin wi
 
 --------------------------------------------------------------------------------------------------------------
 
-# Data Synopsis
+## Data Synopsis
 
 <!-- 
 Where did the data come from?  How big is it? 
@@ -78,28 +120,33 @@ What are the specific variables that we need to know with respect to your analys
 
 The Ames House dataset was compiled by Dean De Cock and contains 79 explanatory variables describing almost every aspect of residual home in Ames Iowa from 2006 to 2010. The data set contains 2930 observations involved in assessing home values.
 
-
+@import "figs\train_cleansed_procmeans.html"
 
 
 --------------------------------------------------------------------------------------------------------------
 
-# Analysis Question 1
+## Analysis Question 1
 
 <!-- 
 1)	ANALYSIS 1: Assume that Century 21 Ames (a real estate company) in Ames, Iowa has commissioned you to answer a very important question with respect to their business.  Century 21 Ames only sells houses in the NAmes, Edwards and BrkSide neighborhoods and would like to simply get an estimate of how the SalePrice of the house is related to the square footage of the living area of the house (GrLIvArea) and if the SalesPrice (and its relationship to square footage) depends on which neighborhood the house is located in. Build and fit a model that will answer this question, keeping in mind that realtors prefer to talk about living area in increments of 100 sq. ft. Provide your client with the estimate (or estimates if it varies by neighborhood) as well as confidence intervals for any estimate(s) you provide. It turns out that Century 21’s leadership team has a member that has some statistical background. Therefore, make sure and provide evidence that the model assumptions are met and that any suspicious observations (outliers / influential observations) have been identified and addressed. Finally, of course, provide your client with a well written conclusion that quantifies the relationship between living area and sale price with respect to these three neighborhoods. Remember that the company is only concerned with the three neighborhoods they sell in.  
 
 
 Variables:
+---------------
+Neighborhood: Physical locations within Ames city limits
+GrLivArea: Above grade (ground) living area square feet
 
 
 Neighborhoods:
+---------------
 field_name : full_name
 NAmes =	North Ames
 Edwards =	Edwards
 BrkSide =	Brookside
+
 -->
 
-## Restatement of Problem
+#### Restatement of Problem
 
 <!-- 
 a.	EstimateL SalePrice relation to Square Footage. Are they related? Does the strength of relationship vary by neighborhood??
@@ -111,9 +158,9 @@ a.	EstimateL SalePrice relation to Square Footage. Are they related? Does the st
 
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
 
-## Build the Model
+#### Build the Model
 
-### Interrogate the Data
+###### Interrogate the Data
 
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
 
@@ -130,36 +177,35 @@ To build and fit a model, an analysis must be performed to identify features of 
     - Identify any influential observations.
 
 
+<!--## TODO:  split original and logged side by side-->
+![train_cleansed_scatterplotmatrix](figs/train_cleansed_scatterplotmatrix.png)
 
 
-
-![train_original_histogram_salesprice](Figs/train_cleansed_scatterplotmatrix.png)
-
-
-
-## Fit the Model
-
+#### Fit the Model
 
 
 
 
-## Check Assumptions
+#### Check Assumptions
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![train_original_histogram_salesprice](figs/train_original_histogram_salesprice.png)  |  ![train_original_histogram_salesprice](figs/train_original_histogram_salesprice.png)
 
-![train_original_histogram_salesprice](Figs/train_original_histogram_salesprice.png)
 
-## Residual Diagnostics
+#### Residual Diagnostics
 
 
-## Outlier Analysis
+#### Outlier Analysis
 
 <!-- Influential point analysis (Cook’s D and Leverage) -->
 
 
-## Model Assumptions
+#### Model Assumptions
 
-### Homogeneity of Variances
+###### Homogeneity of Variances
 
-![train_original_histogram_salesprice](Figs/train_original_diagnostics.png)
+
+![train_original_histogram_salesprice](figs/train_original_diagnostics.png)
 
 <!-- C:\Repositories\Statistics-Team-Fat-Tails\Figs\train_original_histogram.png -->
 
@@ -168,21 +214,6 @@ To build and fit a model, an analysis must be performed to identify features of 
 <!-- TODO: Make Plots! -->
 
 Code (will move to appendix later):
-
-```sashtml  {cmd="C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"}
-proc import datafile="/home/bfriedrich0/sasuser.v94/train.csv"
-     out=train_original
-     dbms=csv
-     replace;
-     getnames=yes;
-run;
-
-proc univariate data=train_original noprint;
-var SalePrice;
-histogram / nrows = 5 kernel normal(noprint);
-run;
-
-```
 
 
 Neighborhooods:
@@ -216,7 +247,7 @@ Are we attempting to predict the mean or a single value?
 
 ---
 
-# Analysis Question 2
+## Analysis Question 2
 
 <!-- 
 2)	ANALYSIS 2: Build the most predictive model for sales prices of homes in all of Ames Iowa.  This includes all neighborhoods. Your group is limited to only the techniques we have learned in 6371 (no random forests or other methods we have not yet covered).  Specifically, you should produce 4 models: one from forward selection, one from backwards elimination, one from stepwise selection, and one that you build custom.  The custom model could be one of the three preceding models or one that you build by adding or subtracting variables at your will.  Generate an adjusted R2, CV Press and Kaggle Score for each of these models and clearly describe which model you feel is the best in terms of being able to predict future sale prices of homes in Ames, Iowa.  In your paper, please include a table similar to the one below.  The group with the lowest public Kaggle score will receive an extra 3 bonus points on the final exam!   -->
@@ -256,14 +287,30 @@ Your group is to turn in a paper should be no more than 7 pages long (without th
 
 
 
+## Appendix A
+
+<!--TODO: Add links from graphics in document to code segments -->
+
+#### SAS Program 
+
+1. [main.sas](##main.sas)
+2. [Example2](##dataimport.sas)
+3. [Third Example](##procmeans.sas)
+
+#### main.sas
+
+@import "main.sas"
+
+#### dataimport.sas
+
+@import "dataimport.sas"
+
+#### procmeans.sas
+
+@import "procmeans.sas"
 
 
-# Appendix
-
-
-
-
-
+## Appendix B
 
 
 

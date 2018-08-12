@@ -10,3 +10,5 @@ browseURL('Analysis.pdf', browser = getOption("browser"))
 rmarkdown::render('Analysis.Rmd', 'html_document')
 browseURL('Analysis.html', browser = getOption("browser"))
 
+rmarkdown::render('sasmd.Rmd', 'html_document')
+browseURL('sasmd.html', browser = getOption("browser"))
