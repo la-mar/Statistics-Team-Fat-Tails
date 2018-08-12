@@ -1,0 +1,50 @@
+
+ <!-- <link rel="stylesheet" type="text/css" href="file:://C:\Repositories\Statistics-Team-Fat-Tails\css\bootstrap.min.css"> -->
+
+
+<!-- ## analogous palette
+COL.A.G = '##CDFFAC'
+COL.A.B = '##87E4E8'
+COL.A.P = '##9F6FFF'
+COL.A.R = '##E8A8A4'
+COL.A.O = '##FFDA81'
+
+## monochromatic greens
+COL.M.G1 = '##1A7F67'
+COL.M.G2 = '##81FFE0'
+COL.M.G3 = '##34FFCE'
+response_dark = '##407F70'
+response_light = '##2ACCA4'
+
+## complementary
+COL.CO.G1 = '##56B262'
+COL.CO.G2 = '##AEFFB8'
+COL.CO.G3 = '##94FFA2'
+COL.CO.I4 = '##adb5bd'
+COL.CO.P5 = '##adb5bd'
+-->
+
+
+<!-- ---
+title: "Kaggle Project - Team Fat Tails"
+author: | 
+        | Grant Bourzikas
+        | Quinton Nixon
+        | Brock Friedrich
+date: ""
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: true
+
+toc:
+  depth_from: 1
+  depth_to: 6
+  ordered: true    
+
+geometry: margin=1in
+
+fontsize: 11pt
+fontfamily: palatino
+--- -->

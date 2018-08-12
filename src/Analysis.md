@@ -1,26 +1,3 @@
-<!-- ---
-title: "Kaggle Project - Team Fat Tails"
-author: | 
-        | Grant Bourzikas
-        | Quinton Nixon
-        | Brock Friedrich
-date: ""
-output:
-  pdf_document:
-    toc: yes
-  html_document:
-    toc: true
-
-toc:
-  depth_from: 1
-  depth_to: 6
-  ordered: true    
-
-geometry: margin=1in
-
-fontsize: 11pt
-fontfamily: palatino
---- -->
 
 
 # Kaggle Project - Team Fat Tails
@@ -34,22 +11,25 @@ fontfamily: palatino
 	* [Introduction](#introduction)
 	* [Data Synopsis](#data-synopsis)
 	* [Analysis Question 1](#analysis-question-1)
-			* [Restatement of Problem](#restatement-of-problem)
-			* [Build the Model](#build-the-model)
-					* [Interrogate the Data](#interrogate-the-data)
+		* [Restatement of Problem](#restatement-of-problem)
+		* [Build the Model](#build-the-model)
+			* [Interrogate the Data](#interrogate-the-data)
 			* [Fit the Model](#fit-the-model)
 			* [Check Assumptions](#check-assumptions)
+				* [Homogeneity of Variances](#homogeneity-of-variances)
+				* [Normality](#normality)
 			* [Residual Diagnostics](#residual-diagnostics)
 			* [Outlier Analysis](#outlier-analysis)
-			* [Model Assumptions](#model-assumptions)
-					* [Homogeneity of Variances](#homogeneity-of-variances)
 	* [Analysis Question 2](#analysis-question-2)
 	* [Appendix A](#appendix-a)
 			* [SAS Program](#sas-program)
 			* [main.sas](#mainsas)
 			* [dataimport.sas](#dataimportsas)
 			* [procmeans.sas](#procmeanssas)
+			* [analysis1_model1.sas](#analysis1_model1sas)
 	* [Appendix B](#appendix-b)
+* [@import "../data/data_description.md"](#import-datadata_descriptionmd)
+	* [Appendix C](#appendix-c)
 
 <!-- /code_chunk_output -->
 
@@ -57,49 +37,19 @@ fontfamily: palatino
 
 
 
- <!-- <link rel="stylesheet" type="text/css" href="file:://C:\Repositories\Statistics-Team-Fat-Tails\css\bootstrap.min.css"> -->
 
 
-<!-- ## analogous palette
-COL.A.G = '##CDFFAC'
-COL.A.B = '##87E4E8'
-COL.A.P = '##9F6FFF'
-COL.A.R = '##E8A8A4'
-COL.A.O = '##FFDA81'
-
-## monochromatic greens
-COL.M.G1 = '##1A7F67'
-COL.M.G2 = '##81FFE0'
-COL.M.G3 = '##34FFCE'
-response_dark = '##407F70'
-response_light = '##2ACCA4'
-
-## complementary
-COL.CO.G1 = '##56B262'
-COL.CO.G2 = '##AEFFB8'
-COL.CO.G3 = '##94FFA2'
-COL.CO.I4 = '##adb5bd'
-COL.CO.P5 = '##adb5bd'
--->
-
-
-
-**[Downloading from the Kaggle API](C:\Repositories\Statistics-Team-Fat-Tails\kaggle-download.md)**
-
-**[Using Code Blocks in Markdown](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/code-chunk.md)**
-
-**[Using SAS in Markdown Code Blocks](C:\Repositories\Statistics-Team-Fat-Tails\sasmd.Rmd)**
 
 
 ## Introduction
 
---------------------------------------------------------------------------------------------------------------
+---
 
 Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad.   However, it is essential to review the data because it proves that there are many other influences in price negotiations than the number of bedrooms or a white-picket fence.
 
 
 
---------------------------------------------------------------------------------------------------------------
+---
 
 ## Data Synopsis
 
@@ -120,14 +70,17 @@ What are the specific variables that we need to know with respect to your analys
 
 The Ames House dataset was compiled by Dean De Cock and contains 79 explanatory variables describing almost every aspect of residual home in Ames Iowa from 2006 to 2010. The data set contains 2930 observations involved in assessing home values.
 
-@import "figs\train_cleansed_procmeans.html"
+<!-- TODO: Fix html import -> titles are hidden, not removed, in SAS html output -->
 
+@import "../figs/procmeans.html"
 
---------------------------------------------------------------------------------------------------------------
+* [More data definitions](#appendix-b)
+
+---
 
 ## Analysis Question 1
 
-<!-- 
+<!--
 1)	ANALYSIS 1: Assume that Century 21 Ames (a real estate company) in Ames, Iowa has commissioned you to answer a very important question with respect to their business.  Century 21 Ames only sells houses in the NAmes, Edwards and BrkSide neighborhoods and would like to simply get an estimate of how the SalePrice of the house is related to the square footage of the living area of the house (GrLIvArea) and if the SalesPrice (and its relationship to square footage) depends on which neighborhood the house is located in. Build and fit a model that will answer this question, keeping in mind that realtors prefer to talk about living area in increments of 100 sq. ft. Provide your client with the estimate (or estimates if it varies by neighborhood) as well as confidence intervals for any estimate(s) you provide. It turns out that Century 21’s leadership team has a member that has some statistical background. Therefore, make sure and provide evidence that the model assumptions are met and that any suspicious observations (outliers / influential observations) have been identified and addressed. Finally, of course, provide your client with a well written conclusion that quantifies the relationship between living area and sale price with respect to these three neighborhoods. Remember that the company is only concerned with the three neighborhoods they sell in.  
 
 
@@ -146,7 +99,7 @@ BrkSide =	Brookside
 
 -->
 
-#### Restatement of Problem
+### Restatement of Problem
 
 <!-- 
 a.	EstimateL SalePrice relation to Square Footage. Are they related? Does the strength of relationship vary by neighborhood??
@@ -158,28 +111,35 @@ a.	EstimateL SalePrice relation to Square Footage. Are they related? Does the st
 
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
 
-#### Build the Model
+### Build the Model
 
-###### Interrogate the Data
+
+---
+
+@import "../figs/analysis1_model1.html"
+
+---
+
+#### Interrogate the Data
 
 To build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.
 
 
-- Plot the data.
-- Develop a tentative model(s).
-    - Using the question(s) of interest (QOI).
-    - Accounting for confounders.
-    - Accounting for relationships ($X^2$,$X^3$, $etc$).
-- Fit the model(s).
-- Evaluate residual plots.
-    - Constant SD.
-    - Normality and zero me an.
-    - Identify any influential observations.
+* Plot the data.
+* Develop a tentative model(s).
+    * Using the question(s) of interest (QOI).
+    * Accounting for confounders.
+    * Accounting for relationships ($X^2$,$X^3$, $etc$).
+* Fit the model(s).
+* Evaluate residual plots.
+    * Constant SD.
+    * Normality and zero me an.
+    * Identify any influential observations.
 
 
 <!--## TODO:  split original and logged side by side-->
-![train_cleansed_scatterplotmatrix](figs/train_cleansed_scatterplotmatrix.png)
 
+![train_cleansed_scatterplotmatrix](../figs/train_cleansed_scatterplotmatrix.png)
 
 #### Fit the Model
 
@@ -187,25 +147,30 @@ To build and fit a model, an analysis must be performed to identify features of 
 
 
 #### Check Assumptions
+
+##### Homogeneity of Variances
+
+![train_original_histogram_salesprice](../figs/train_original_diagnostics.png)
+
+<!-- TODO: Add interpretation -->
+
+##### Normality
+
 Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
-![train_original_histogram_salesprice](figs/train_original_histogram_salesprice.png)  |  ![train_original_histogram_salesprice](figs/train_original_histogram_salesprice.png)
+![train_original_histogram_salesprice](../figs/train_original_histogram_salesprice.png)  |  ![train_original_histogram_salesprice](../figs/train_original_histogram_salesprice.png)
 
+<!-- TODO: Add interpretation -->
 
 #### Residual Diagnostics
 
+<!-- TODO: Add interpretation -->
 
 #### Outlier Analysis
 
 <!-- Influential point analysis (Cook’s D and Leverage) -->
 
 
-#### Model Assumptions
-
-###### Homogeneity of Variances
-
-
-![train_original_histogram_salesprice](figs/train_original_diagnostics.png)
 
 <!-- C:\Repositories\Statistics-Team-Fat-Tails\Figs\train_original_histogram.png -->
 
@@ -222,6 +187,10 @@ $x_2 = NAmes$
 $x_3 = Edwards$
 
 <!-- •	Ames^SalesPrice = B0 + B1*BrkSide + B2*Edwards + B3*NAmes + B4(LogLivingArea*BrkSide) + B5(LogLivingArea*Edwards) -->
+
+
+
+
 
 $\hat\mu \{ {SalesPrice} \} \, = \, \beta_0\, +\, \beta_1 \, \cdot \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, \cdot \, NAmes\, +\, \beta_4(LivingArea_{log}\, \cdot\, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, x\, Edwards)$
 
@@ -293,9 +262,37 @@ Your group is to turn in a paper should be no more than 7 pages long (without th
 
 #### SAS Program 
 
-1. [main.sas](##main.sas)
-2. [Example2](##dataimport.sas)
-3. [Third Example](##procmeans.sas)
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+* [Kaggle Project - Team Fat Tails](#kaggle-project-team-fat-tails)
+	* [Introduction](#introduction)
+	* [Data Synopsis](#data-synopsis)
+	* [Analysis Question 1](#analysis-question-1)
+		* [Restatement of Problem](#restatement-of-problem)
+		* [Build the Model](#build-the-model)
+			* [Interrogate the Data](#interrogate-the-data)
+			* [Fit the Model](#fit-the-model)
+			* [Check Assumptions](#check-assumptions)
+				* [Homogeneity of Variances](#homogeneity-of-variances)
+				* [Normality](#normality)
+			* [Residual Diagnostics](#residual-diagnostics)
+			* [Outlier Analysis](#outlier-analysis)
+	* [Analysis Question 2](#analysis-question-2)
+	* [Appendix A](#appendix-a)
+			* [SAS Program](#sas-program)
+			* [main.sas](#mainsas)
+			* [dataimport.sas](#dataimportsas)
+			* [procmeans.sas](#procmeanssas)
+			* [analysis1_model1.sas](#analysis1_model1sas)
+	* [Appendix B](#appendix-b)
+* [@import "../data/data_description.md"](#import-datadata_descriptionmd)
+	* [Appendix C](#appendix-c)
+
+<!-- /code_chunk_output -->
+
 
 #### main.sas
 
@@ -309,9 +306,27 @@ Your group is to turn in a paper should be no more than 7 pages long (without th
 
 @import "procmeans.sas"
 
+#### analysis1_model1.sas
+
+@import "analysis1_model1.sas"
+
 
 ## Appendix B
 
+<!-- TODO: Link here from data description section -->
+
+<!-- TODO: re-add this import -->
+
+# @import "../data/data_description.md"
+
+
+## Appendix C
+
+**[Downloading from the Kaggle API](dev/kaggle-download.md)**
+
+**[Using Code Blocks in Markdown](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/code-chunk.md)**
+
+**[Using SAS in Markdown Code Blocks](dev/sasmarkdown.Rmd)**
 
 
 
