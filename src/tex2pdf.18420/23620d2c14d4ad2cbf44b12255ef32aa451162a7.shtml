@@ -1,76 +1,76 @@
 <!DOCTYPE html>
-<html class="ods_8c1521aa-7b15-451f-8d3d-3b2157679aba" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html class="ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/>
 <meta content="SAS 9.4" name="generator"/>
-<title>Results: procmeans.sas</title>
+<title>Results: analysis1_procmeans.sas</title>
 <style>
 /*<![CDATA[*/
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c section > table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c section > pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c div > table,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c div > pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c article > table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c article > pre,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j section > table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j section > pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j div > table,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j div > pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j article > table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j article > pre,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c p.note, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c p.warning, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c p.error, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c p.fatal,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j p.note, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j p.warning, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j p.error, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j p.fatal,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.c > table.layoutcontainer, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body.j > table.layoutcontainer { margin-left: auto; margin-right: auto }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.l table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.l pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.l p.note,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.l p.warning, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.l p.error, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.l p.fatal { margin-left: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.c table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.c pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.c p.note,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.c p.warning, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.c p.error, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.c p.fatal { margin-left: auto; margin-right: auto }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r p.note,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r table, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r pre, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r p.note,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r p.warning, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r p.error, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion.r p.fatal { margin-right: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba article, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba aside, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba details, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba figcaption, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba figure, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba footer, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba header, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba hgroup, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba nav, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba section { display: block }
-html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body { margin: 1em; font-size: 13px; line-height: 1.231 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba sup { position: relative; vertical-align: baseline; bottom: 0.25em; font-size: 0.8em }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba sub { position: relative; vertical-align: baseline; top: 0.25em; font-size: 0.8em }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba ul, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba ol { margin: 1em 0; padding: 0 0 0 40px }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba dd { margin: 0 0 0 40px }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba nav ul, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba img { border: 0; vertical-align: middle }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba svg:not(:root) { overflow: hidden }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba figure { margin: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba table { border-collapse: collapse; border-spacing: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutcontainer { border-collapse: separate; border-spacing: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba p { margin-top: 0; text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba h1.heading1 { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba h2.heading2 { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba h3.heading3 { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba h4.heading4 { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba h5.heading5 { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba h6.heading6 { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba span { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba table { margin-bottom: 1em }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba td, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba th { text-align: left; padding: 3px 6px; vertical-align: top }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba td[class$="fixed"], .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba th[class$="fixed"] { white-space: pre }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba section, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba article { padding-top: 1px; padding-bottom: 8px }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba hr.pagebreak { height: 0px; border: 0; border-bottom: 1px solid #c0c0c0; margin: 1em 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .stacked-value { text-align: left; display: block }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .stacked-cell > .stacked-value, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba td.data > td.data, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba th.data > td.data, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba th.data > th.data, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba td.data > th.data, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba th.header > th.header { border: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .stacked-cell > div.data { border-width: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer { white-space: nowrap; margin-bottom: 1em }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > p { margin: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > p > span { display: inline-block; width: 100%; white-space: normal }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .batch { display: table }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .toc { display: none }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .proc_note_group, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .proc_title_group { margin-bottom: 1em }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba p.proctitle { margin: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba p.note, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba p.warning, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba p.error, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba p.fatal { display: table }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .notebanner, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .warnbanner, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .errorbanner, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .fatalbanner,
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .notecontent, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .warncontent, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .errorcontent, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .fatalcontent { display: table-cell; padding: 0.5em }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .notebanner, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .warnbanner, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .errorbanner, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .fatalbanner { padding-right: 0 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body > div > ol li { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .c { text-align: center }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .r { text-align: right }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .l { text-align: left }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .j { text-align: justify }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .d { text-align: right }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .b { vertical-align: bottom }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .m { vertical-align: middle }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .t { vertical-align: top }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba a:active { color: #800080 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .aftercaption {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c section > table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c section > pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c div > table,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c div > pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c article > table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c article > pre,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j section > table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j section > pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j div > table,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j div > pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j article > table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j article > pre,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c p.note, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c p.warning, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c p.error, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c p.fatal,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j p.note, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j p.warning, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j p.error, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j p.fatal,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.c > table.layoutcontainer, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body.j > table.layoutcontainer { margin-left: auto; margin-right: auto }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.l table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.l pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.l p.note,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.l p.warning, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.l p.error, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.l p.fatal { margin-left: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.c table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.c pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.c p.note,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.c p.warning, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.c p.error, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.c p.fatal { margin-left: auto; margin-right: auto }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r p.note,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r table, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r pre, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r p.note,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r p.warning, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r p.error, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion.r p.fatal { margin-right: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 article, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 aside, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 details, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 figcaption, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 figure, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 footer, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 header, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 hgroup, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 nav, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 section { display: block }
+html.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 { font-size: 100% }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body { margin: 1em; font-size: 13px; line-height: 1.231 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 sup { position: relative; vertical-align: baseline; bottom: 0.25em; font-size: 0.8em }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 sub { position: relative; vertical-align: baseline; top: 0.25em; font-size: 0.8em }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 ul, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 ol { margin: 1em 0; padding: 0 0 0 40px }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 dd { margin: 0 0 0 40px }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 nav ul, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 img { border: 0; vertical-align: middle }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 svg:not(:root) { overflow: hidden }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 figure { margin: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 table { border-collapse: collapse; border-spacing: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutcontainer { border-collapse: separate; border-spacing: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 p { margin-top: 0; text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 h1.heading1 { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 h2.heading2 { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 h3.heading3 { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 h4.heading4 { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 h5.heading5 { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 h6.heading6 { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 span { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 table { margin-bottom: 1em }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 td, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 th { text-align: left; padding: 3px 6px; vertical-align: top }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 td[class$="fixed"], .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 th[class$="fixed"] { white-space: pre }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 section, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 article { padding-top: 1px; padding-bottom: 8px }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 hr.pagebreak { height: 0px; border: 0; border-bottom: 1px solid #c0c0c0; margin: 1em 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .stacked-value { text-align: left; display: block }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .stacked-cell > .stacked-value, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 td.data > td.data, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 th.data > td.data, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 th.data > th.data, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 td.data > th.data, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 th.header > th.header { border: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .stacked-cell > div.data { border-width: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer { white-space: nowrap; margin-bottom: 1em }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > p { margin: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > p > span { display: inline-block; width: 100%; white-space: normal }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .batch { display: table }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .toc { display: none }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .proc_note_group, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .proc_title_group { margin-bottom: 1em }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 p.proctitle { margin: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 p.note, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 p.warning, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 p.error, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 p.fatal { display: table }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .notebanner, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .warnbanner, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .errorbanner, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .fatalbanner,
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .notecontent, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .warncontent, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .errorcontent, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .fatalcontent { display: table-cell; padding: 0.5em }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .notebanner, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .warnbanner, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .errorbanner, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .fatalbanner { padding-right: 0 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body > div > ol li { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .c { text-align: center }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .r { text-align: right }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .l { text-align: left }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .j { text-align: justify }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .d { text-align: right }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .b { vertical-align: bottom }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .m { vertical-align: middle }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .t { vertical-align: top }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 a:active { color: #800080 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .aftercaption {
     background-color: #fafbfe;
     border-spacing: 0;
     color: #112277;
@@ -80,16 +80,16 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: bold;
     padding-top: 4pt;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .batch > colgroup {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .batch > colgroup {
     border-left: 1px solid #c1c1c1;
     border-right: 1px solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .batch > tbody, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .batch > thead, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .batch > tfoot {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .batch > tbody, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .batch > thead, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .batch > tfoot {
     border-top: 1px solid #c1c1c1;
     border-bottom: 1px solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .batch { border: hidden; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .batch {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .batch { border: hidden; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .batch {
     background-color: #fafbfe;
     border: 1px solid #c1c1c1;
     border-collapse: separate;
@@ -101,7 +101,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     padding: 7px;
     }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .beforecaption {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .beforecaption {
     background-color: #fafbfe;
     border-spacing: 0;
     color: #112277;
@@ -110,7 +110,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .body {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .body {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -120,7 +120,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     margin-left: 8px;
     margin-right: 8px;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bodydate {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bodydate {
     background-color: #fafbfe;
     border-spacing: 0;
     color: #000000;
@@ -132,7 +132,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     vertical-align: top;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bycontentfolder {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bycontentfolder {
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
     font-size: x-small;
@@ -141,7 +141,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     list-style-type: none;
     margin-left: 6pt;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .byline {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .byline {
     background-color: #fafbfe;
     border-spacing: 0;
     color: #112277;
@@ -150,8 +150,8 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > colgroup > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > colgroup, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > * > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > thead, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > tbody, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer > tfoot { border: none; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .bylinecontainer {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > colgroup > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > colgroup, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > * > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > thead, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > tbody, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer > tfoot { border: none; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .bylinecontainer {
     background-color: #fafbfe;
     border: none;
     border-spacing: 1px;
@@ -162,7 +162,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .caption {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .caption {
     background-color: #fafbfe;
     border-spacing: 0;
     color: #112277;
@@ -171,7 +171,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .cell, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .container {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .cell, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .container {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -179,7 +179,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .contentfolder, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .contentitem {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .contentfolder, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .contentitem {
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
     font-size: x-small;
@@ -188,7 +188,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     list-style-type: none;
     margin-left: 6pt;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .contentproclabel, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .contentprocname {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .contentproclabel, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .contentprocname {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -196,7 +196,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .contents {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .contents {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -207,7 +207,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     margin-left: 8px;
     margin-right: 8px;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .contentsdate {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .contentsdate {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -216,7 +216,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .contenttitle {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .contenttitle {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -224,7 +224,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .continued {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .continued {
     background-color: #fafbfe;
     border-spacing: 0;
     color: #112277;
@@ -234,7 +234,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: bold;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .data, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .dataemphasis {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .data, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .dataemphasis {
     background-color: #ffffff;
     border-color: #c1c1c1;
     border-style: solid;
@@ -244,7 +244,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .dataemphasisfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .dataemphasisfixed {
     background-color: #ffffff;
     border-color: #c1c1c1;
     border-style: solid;
@@ -254,7 +254,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .dataempty {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .dataempty {
     background-color: #ffffff;
     border-color: #c1c1c1;
     border-style: solid;
@@ -264,7 +264,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .datafixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .datafixed {
     background-color: #ffffff;
     border-color: #c1c1c1;
     border-style: solid;
@@ -274,7 +274,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .datastrong {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .datastrong {
     background-color: #ffffff;
     border-color: #c1c1c1;
     border-style: solid;
@@ -285,7 +285,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .datastrongfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .datastrongfixed {
     background-color: #ffffff;
     border-color: #c1c1c1;
     border-style: solid;
@@ -296,7 +296,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .date {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .date {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -305,7 +305,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .document {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .document {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -313,7 +313,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .errorbanner {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .errorbanner {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -321,7 +321,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .errorcontent {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .errorcontent {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -329,7 +329,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .errorcontentfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .errorcontentfixed {
     background-color: #fafbfe;
     color: #112277;
     font-family: 'Courier New', Courier;
@@ -337,7 +337,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .extendedpage {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .extendedpage {
     background-color: #fafbfe;
     border-style: solid;
     border-width: 1pt;
@@ -348,7 +348,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     text-align: center;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .fatalbanner {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .fatalbanner {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -356,7 +356,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .fatalcontent {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .fatalcontent {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -364,7 +364,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .fatalcontentfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .fatalcontentfixed {
     background-color: #fafbfe;
     color: #112277;
     font-family: 'Courier New', Courier;
@@ -372,7 +372,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .folderaction {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .folderaction {
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
     font-size: x-small;
@@ -381,7 +381,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     list-style-type: none;
     margin-left: 6pt;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .footer {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .footer {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -392,7 +392,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .footeremphasis {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .footeremphasis {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -403,7 +403,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .footeremphasisfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .footeremphasisfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -414,7 +414,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .footerempty {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .footerempty {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -425,7 +425,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .footerfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .footerfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -436,7 +436,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .footerstrong {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .footerstrong {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -447,7 +447,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .footerstrongfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .footerstrongfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -458,7 +458,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .frame {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .frame {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -466,16 +466,16 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .graph > colgroup {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .graph > colgroup {
     border-left: 1px solid #c1c1c1;
     border-right: 1px solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .graph > tbody, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .graph > thead, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .graph > tfoot {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .graph > tbody, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .graph > thead, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .graph > tfoot {
     border-top: 1px solid #c1c1c1;
     border-bottom: 1px solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .graph { border: hidden; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .graph {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .graph { border: hidden; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .graph {
     background-color: #fafbfe;
     border: 1px solid #c1c1c1;
     border-collapse: separate;
@@ -486,7 +486,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
     }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .header {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .header {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -497,7 +497,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .headeremphasis {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .headeremphasis {
     background-color: #d8dbd3;
     border-color: #b0b7bb;
     border-style: solid;
@@ -508,7 +508,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .headeremphasisfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .headeremphasisfixed {
     background-color: #d8dbd3;
     border-color: #b0b7bb;
     border-style: solid;
@@ -519,7 +519,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .headerempty {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .headerempty {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -530,7 +530,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .headerfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .headerfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -541,7 +541,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .headersandfooters {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .headersandfooters {
     background-color: #edf2f9;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -549,7 +549,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .headerstrong {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .headerstrong {
     background-color: #d8dbd3;
     border-color: #b0b7bb;
     border-style: solid;
@@ -560,7 +560,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .headerstrongfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .headerstrongfixed {
     background-color: #d8dbd3;
     border-color: #b0b7bb;
     border-style: solid;
@@ -571,8 +571,8 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .heading1, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .heading2, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .heading3, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .heading4, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .heading5, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .heading6 { font-family: Arial, Helvetica, sans-serif }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .index {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .heading1, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .heading2, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .heading3, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .heading4, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .heading5, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .heading6 { font-family: Arial, Helvetica, sans-serif }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .index {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -580,7 +580,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .indexaction, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .indexitem {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .indexaction, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .indexitem {
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
     font-size: x-small;
@@ -589,7 +589,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     list-style-type: none;
     margin-left: 6pt;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .indexprocname {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .indexprocname {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -597,7 +597,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .indextitle {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .indextitle {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -605,11 +605,11 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutcontainer, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .layoutregion {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutcontainer, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .layoutregion {
     border-width: 0;
     border-spacing: 30px;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .linecontent {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .linecontent {
     background-color: #fafbfe;
     border-color: #c1c1c1;
     border-style: solid;
@@ -620,8 +620,8 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba a:link { color: #0000ff }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 a:link { color: #0000ff }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -630,7 +630,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: disc;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list10 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list10 {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -639,7 +639,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: square;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list2 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list2 {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -648,7 +648,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: circle;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list3, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list4, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list5, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list6, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list7, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list8, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .list9 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list3, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list4, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list5, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list6, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list7, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list8, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .list9 {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -657,7 +657,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: square;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -666,7 +666,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: disc;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem10 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem10 {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -675,7 +675,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: square;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem2 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem2 {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -684,7 +684,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: circle;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem3, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem4, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem5, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem6, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem7, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem8, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .listitem9 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem3, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem4, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem5, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem6, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem7, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem8, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .listitem9 {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -693,7 +693,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     list-style-type: square;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .note {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .note {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -701,7 +701,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .notebanner {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .notebanner {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -709,7 +709,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .notecontent {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .notecontent {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -717,7 +717,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .notecontentfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .notecontentfixed {
     background-color: #fafbfe;
     color: #112277;
     font-family: 'Courier New', Courier;
@@ -725,16 +725,16 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .output > colgroup {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .output > colgroup {
     border-left: 1px solid #c1c1c1;
     border-right: 1px solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .output > tbody, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .output > thead, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .output > tfoot {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .output > tbody, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .output > thead, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .output > tfoot {
     border-top: 1px solid #c1c1c1;
     border-bottom: 1px solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .output { border: hidden; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .output {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .output { border: hidden; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .output {
     background-color: #fafbfe;
     border: 1px solid #c1c1c1;
     border-collapse: separate;
@@ -745,7 +745,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
     }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .pageno {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .pageno {
     background-color: #fafbfe;
     border-spacing: 0;
     color: #112277;
@@ -756,7 +756,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     text-align: right;
     vertical-align: top;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .pages {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .pages {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -767,7 +767,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     margin-left: 8px;
     margin-right: 8px;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .pagesdate {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .pagesdate {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -776,7 +776,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .pagesitem {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .pagesitem {
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
     font-size: x-small;
@@ -785,7 +785,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     list-style-type: none;
     margin-left: 6pt;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .pagesproclabel, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .pagesprocname {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .pagesproclabel, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .pagesprocname {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -793,7 +793,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .pagestitle {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .pagestitle {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -801,7 +801,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .paragraph {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .paragraph {
     background-color: #fafbfe;
     color: #000000;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -809,8 +809,8 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > colgroup > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > colgroup, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > * > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > thead, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > tbody, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip > tfoot { border: none; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .parskip {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > colgroup > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > colgroup, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > * > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > thead, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > tbody, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip > tfoot { border: none; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .parskip {
     border: none;
     border-spacing: 0;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -818,7 +818,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
     }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .prepage {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .prepage {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -827,7 +827,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     text-align: left;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .proctitle {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .proctitle {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -835,7 +835,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .proctitlefixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .proctitlefixed {
     background-color: #fafbfe;
     color: #112277;
     font-family: 'Courier New', Courier, monospace;
@@ -843,7 +843,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowfooter {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowfooter {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -854,7 +854,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowfooteremphasis {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowfooteremphasis {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -865,7 +865,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowfooteremphasisfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowfooteremphasisfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -876,7 +876,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowfooterempty {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowfooterempty {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -887,7 +887,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowfooterfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowfooterfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -898,7 +898,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowfooterstrong {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowfooterstrong {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -909,7 +909,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowfooterstrongfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowfooterstrongfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -920,7 +920,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowheader {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowheader {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -931,7 +931,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowheaderemphasis {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowheaderemphasis {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -942,7 +942,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowheaderemphasisfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowheaderemphasisfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -953,7 +953,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: italic;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowheaderempty {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowheaderempty {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -964,7 +964,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowheaderfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowheaderfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -975,7 +975,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowheaderstrong {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowheaderstrong {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -986,7 +986,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .rowheaderstrongfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .rowheaderstrongfixed {
     background-color: #edf2f9;
     border-color: #b0b7bb;
     border-style: solid;
@@ -997,7 +997,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter10, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter2, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter3, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter4, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter5, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter6, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter7, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter8, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemfooter9 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter10, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter2, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter3, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter4, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter5, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter6, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter7, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter8, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemfooter9 {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -1005,7 +1005,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle10, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle2, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle3, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle4, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle5, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle6, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle7, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle8, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systemtitle9 {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle10, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle2, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle3, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle4, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle5, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle6, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle7, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle8, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systemtitle9 {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -1013,8 +1013,8 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > colgroup > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > colgroup, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > * > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > thead, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > tbody, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer > tfoot { border: none; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .systitleandfootercontainer {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > colgroup > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > colgroup, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > * > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > thead, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > tbody, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer > tfoot { border: none; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .systitleandfootercontainer {
     background-color: #fafbfe;
     border: none;
     border-spacing: 1px;
@@ -1025,24 +1025,24 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .table > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .table > colgroup > col {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .table > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .table > colgroup > col {
     border-left: 1px solid #c1c1c1;
     border-right: 0 solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .table > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .table > * > tr {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .table > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .table > * > tr {
     border-top: 1px solid #c1c1c1;
     border-bottom: 0 solid #c1c1c1;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .table { border: hidden; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .table {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .table { border: hidden; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .table {
     border-color: #c1c1c1;
     border-style: solid;
     border-width: 1px 0 0 1px;
     border-collapse: collapse;
     border-spacing: 0;
     }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > colgroup > col, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > colgroup, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > * > tr, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > thead, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > tbody, .ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer > tfoot { border: none; }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titleandnotecontainer {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > colgroup > col, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > colgroup, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > * > tr, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > thead, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > tbody, .ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer > tfoot { border: none; }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titleandnotecontainer {
     background-color: #fafbfe;
     border: none;
     border-spacing: 1px;
@@ -1053,7 +1053,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-weight: normal;
     width: 100%;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .titlesandfooters {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .titlesandfooters {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -1061,7 +1061,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .usertext {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .usertext {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -1069,8 +1069,8 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba a:visited { color: #800080 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .warnbanner {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 a:visited { color: #800080 }
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .warnbanner {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -1078,7 +1078,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: bold;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .warncontent {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .warncontent {
     background-color: #fafbfe;
     color: #112277;
     font-family: Arial, 'Albany AMT', Helvetica, Helv;
@@ -1086,7 +1086,7 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
     font-style: normal;
     font-weight: normal;
 }
-.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba .warncontentfixed {
+.ods_d38a1a5c-c9f9-4b84-81e2-7aa371319150 .warncontentfixed {
     background-color: #fafbfe;
     color: #112277;
     font-family: 'Courier New', Courier;
@@ -1098,11 +1098,14 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 </style>
 </head>
 <body class="body">
-<div id="div_8c1521aa-7b15-451f-8d3d-3b2157679aba" class="c body">
-<h1 class="body toc">Results: procmeans.sas</h1>
+<div id="div_d38a1a5c-c9f9-4b84-81e2-7aa371319150" class="c body">
+<h1 class="body toc">Results: analysis1_procmeans.sas</h1>
 <section data-name="Means" data-sec-type="proc">
+<div id="IDX" class="proc_title_group">
+<p class="c proctitle">The MEANS Procedure</p>
+</div>
 <h1 class="contentprocname toc">The Means Procedure</h1>
-<article id="IDX" aria-label="Summary statistics">
+<article aria-label="Summary statistics">
 <h1 class="contentitem toc">Summary statistics</h1>
 <table class="table" style="border-spacing: 0" aria-label="Summary statistics">
 <caption aria-label="Summary statistics"></caption>
@@ -1130,9 +1133,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div>Id</div>
 <div>MSSubClass</div>
 <div>GrLivArea</div>
-<div>MoSold</div>
-<div>YrSold</div>
 <div>SalePrice</div>
+<div>logSalePrice</div>
+<div>logGrLivArea</div>
 </div>
 </th>
 <td class="r data">
@@ -1160,9 +1163,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">10</div>
 <div class="r">20</div>
 <div class="r">334</div>
-<div class="r">1</div>
-<div class="r">2006</div>
 <div class="r">39300</div>
+<div class="r">11</div>
+<div class="r">6</div>
 </div>
 </td>
 <td class="r data">
@@ -1170,9 +1173,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">1444</div>
 <div class="r">190</div>
 <div class="r">2134</div>
-<div class="r">12</div>
-<div class="r">2010</div>
 <div class="r">223500</div>
+<div class="r">12</div>
+<div class="r">8</div>
 </div>
 </td>
 <td class="r data">
@@ -1180,9 +1183,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">735</div>
 <div class="r">50</div>
 <div class="r">1203</div>
-<div class="r">6</div>
-<div class="r">2008</div>
 <div class="r">124834</div>
+<div class="r">12</div>
+<div class="r">7</div>
 </div>
 </td>
 <td class="r data">
@@ -1190,9 +1193,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">696</div>
 <div class="r">50</div>
 <div class="r">1211</div>
-<div class="r">6</div>
-<div class="r">2008</div>
 <div class="r">124300</div>
+<div class="r">12</div>
+<div class="r">7</div>
 </div>
 </td>
 <td class="r data">
@@ -1200,9 +1203,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">746</div>
 <div class="r">20</div>
 <div class="r">638</div>
-<div class="r">2</div>
-<div class="r">3</div>
 <div class="r">41500</div>
+<div class="r">0</div>
+<div class="r">1</div>
 </div>
 </td>
 </tr>
@@ -1214,9 +1217,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div>Id</div>
 <div>MSSubClass</div>
 <div>GrLivArea</div>
-<div>MoSold</div>
-<div>YrSold</div>
 <div>SalePrice</div>
+<div>logSalePrice</div>
+<div>logGrLivArea</div>
 </div>
 </th>
 <td class="r data">
@@ -1244,9 +1247,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">40</div>
 <div class="r">20</div>
 <div class="r">605</div>
-<div class="r">1</div>
-<div class="r">2006</div>
 <div class="r">58500</div>
+<div class="r">11</div>
+<div class="r">6</div>
 </div>
 </td>
 <td class="r data">
@@ -1254,9 +1257,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">1460</div>
 <div class="r">190</div>
 <div class="r">5642</div>
-<div class="r">11</div>
-<div class="r">2010</div>
 <div class="r">320000</div>
+<div class="r">13</div>
+<div class="r">9</div>
 </div>
 </td>
 <td class="r data">
@@ -1264,9 +1267,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">763</div>
 <div class="r">57</div>
 <div class="r">1340</div>
-<div class="r">6</div>
-<div class="r">2008</div>
 <div class="r">128220</div>
+<div class="r">12</div>
+<div class="r">7</div>
 </div>
 </td>
 <td class="r data">
@@ -1274,9 +1277,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">732</div>
 <div class="r">50</div>
 <div class="r">1200</div>
-<div class="r">5</div>
-<div class="r">2008</div>
 <div class="r">121750</div>
+<div class="r">12</div>
+<div class="r">7</div>
 </div>
 </td>
 <td class="r data">
@@ -1284,9 +1287,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">720</div>
 <div class="r">55</div>
 <div class="r">499</div>
-<div class="r">3</div>
-<div class="r">2</div>
 <div class="r">44450</div>
+<div class="r">0</div>
+<div class="r">0</div>
 </div>
 </td>
 </tr>
@@ -1298,9 +1301,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div>Id</div>
 <div>MSSubClass</div>
 <div>GrLivArea</div>
-<div>MoSold</div>
-<div>YrSold</div>
 <div>SalePrice</div>
+<div>logSalePrice</div>
+<div>logGrLivArea</div>
 </div>
 </th>
 <td class="r data">
@@ -1328,9 +1331,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">15</div>
 <div class="r">20</div>
 <div class="r">767</div>
-<div class="r">1</div>
-<div class="r">2006</div>
 <div class="r">87500</div>
+<div class="r">11</div>
+<div class="r">7</div>
 </div>
 </td>
 <td class="r data">
@@ -1338,9 +1341,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">1459</div>
 <div class="r">190</div>
 <div class="r">3112</div>
-<div class="r">12</div>
-<div class="r">2010</div>
 <div class="r">345000</div>
+<div class="r">13</div>
+<div class="r">8</div>
 </div>
 </td>
 <td class="r data">
@@ -1348,9 +1351,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">738</div>
 <div class="r">39</div>
 <div class="r">1310</div>
-<div class="r">6</div>
-<div class="r">2008</div>
 <div class="r">145847</div>
+<div class="r">12</div>
+<div class="r">7</div>
 </div>
 </td>
 <td class="r data">
@@ -1358,9 +1361,9 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">761</div>
 <div class="r">20</div>
 <div class="r">1200</div>
-<div class="r">6</div>
-<div class="r">2008</div>
 <div class="r">140000</div>
+<div class="r">12</div>
+<div class="r">7</div>
 </div>
 </td>
 <td class="r data">
@@ -1368,9 +1371,291 @@ html.ods_8c1521aa-7b15-451f-8d3d-3b2157679aba { font-size: 100% }
 <div class="r">737</div>
 <div class="r">40</div>
 <div class="r">439</div>
-<div class="r">3</div>
-<div class="r">2</div>
 <div class="r">30500</div>
+<div class="r">0</div>
+<div class="r">0</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</article>
+</section>
+<section data-name="Means" data-sec-type="proc">
+<hr class="pagebreak"/>
+<div id="IDX1" class="proc_title_group">
+<p class="c proctitle">The MEANS Procedure</p>
+</div>
+<h1 class="contentprocname toc">The Means Procedure</h1>
+<article aria-label="Summary statistics">
+<h1 class="contentitem toc">Summary statistics</h1>
+<table class="table" style="border-spacing: 0" aria-label="Summary statistics">
+<caption aria-label="Summary statistics"></caption>
+<colgroup><col/><col/><col/></colgroup><colgroup><col/><col/><col/><col/><col/><col/><col/></colgroup>
+<thead>
+<tr>
+<th class="b header" scope="col">Neighborhood</th>
+<th class="r b header" scope="col">N Obs</th>
+<th class="b header" scope="col">Variable</th>
+<th class="r b header" scope="col">N</th>
+<th class="r b header" scope="col">N Miss</th>
+<th class="r b header" scope="col">Minimum</th>
+<th class="r b header" scope="col">Maximum</th>
+<th class="r b header" scope="col">Mean</th>
+<th class="r b header" scope="col">Median</th>
+<th class="r b header" scope="col">Quartile Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="t data">BrkSide</th>
+<th class="r t data">58</th>
+<th class="data">
+<div class="stacked-cell">
+<div>Id</div>
+<div>MSSubClass</div>
+<div>GrLivArea</div>
+<div>SalePrice</div>
+<div>logSalePrice</div>
+<div>logGrLivArea</div>
+</div>
+</th>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">58</div>
+<div class="r">58</div>
+<div class="r">58</div>
+<div class="r">58</div>
+<div class="r">58</div>
+<div class="r">58</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">10</div>
+<div class="r">20</div>
+<div class="r">334</div>
+<div class="r">39300</div>
+<div class="r">11</div>
+<div class="r">6</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">1444</div>
+<div class="r">190</div>
+<div class="r">2134</div>
+<div class="r">223500</div>
+<div class="r">12</div>
+<div class="r">8</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">735</div>
+<div class="r">50</div>
+<div class="r">1203</div>
+<div class="r">124834</div>
+<div class="r">12</div>
+<div class="r">7</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">696</div>
+<div class="r">50</div>
+<div class="r">1211</div>
+<div class="r">124300</div>
+<div class="r">12</div>
+<div class="r">7</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">746</div>
+<div class="r">20</div>
+<div class="r">638</div>
+<div class="r">41500</div>
+<div class="r">0</div>
+<div class="r">1</div>
+</div>
+</td>
+</tr>
+<tr>
+<th class="t data">Edwards</th>
+<th class="r t data">100</th>
+<th class="data">
+<div class="stacked-cell">
+<div>Id</div>
+<div>MSSubClass</div>
+<div>GrLivArea</div>
+<div>SalePrice</div>
+<div>logSalePrice</div>
+<div>logGrLivArea</div>
+</div>
+</th>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">100</div>
+<div class="r">100</div>
+<div class="r">100</div>
+<div class="r">100</div>
+<div class="r">100</div>
+<div class="r">100</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">40</div>
+<div class="r">20</div>
+<div class="r">605</div>
+<div class="r">58500</div>
+<div class="r">11</div>
+<div class="r">6</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">1460</div>
+<div class="r">190</div>
+<div class="r">5642</div>
+<div class="r">320000</div>
+<div class="r">13</div>
+<div class="r">9</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">763</div>
+<div class="r">57</div>
+<div class="r">1340</div>
+<div class="r">128220</div>
+<div class="r">12</div>
+<div class="r">7</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">732</div>
+<div class="r">50</div>
+<div class="r">1200</div>
+<div class="r">121750</div>
+<div class="r">12</div>
+<div class="r">7</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">720</div>
+<div class="r">55</div>
+<div class="r">499</div>
+<div class="r">44450</div>
+<div class="r">0</div>
+<div class="r">0</div>
+</div>
+</td>
+</tr>
+<tr>
+<th class="t data">NAmes</th>
+<th class="r t data">225</th>
+<th class="data">
+<div class="stacked-cell">
+<div>Id</div>
+<div>MSSubClass</div>
+<div>GrLivArea</div>
+<div>SalePrice</div>
+<div>logSalePrice</div>
+<div>logGrLivArea</div>
+</div>
+</th>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">225</div>
+<div class="r">225</div>
+<div class="r">225</div>
+<div class="r">225</div>
+<div class="r">225</div>
+<div class="r">225</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+<div class="r">0</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">15</div>
+<div class="r">20</div>
+<div class="r">767</div>
+<div class="r">87500</div>
+<div class="r">11</div>
+<div class="r">7</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">1459</div>
+<div class="r">190</div>
+<div class="r">3112</div>
+<div class="r">345000</div>
+<div class="r">13</div>
+<div class="r">8</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">738</div>
+<div class="r">39</div>
+<div class="r">1310</div>
+<div class="r">145847</div>
+<div class="r">12</div>
+<div class="r">7</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">761</div>
+<div class="r">20</div>
+<div class="r">1200</div>
+<div class="r">140000</div>
+<div class="r">12</div>
+<div class="r">7</div>
+</div>
+</td>
+<td class="r data">
+<div class="stacked-cell">
+<div class="r">737</div>
+<div class="r">40</div>
+<div class="r">439</div>
+<div class="r">30500</div>
+<div class="r">0</div>
+<div class="r">0</div>
 </div>
 </td>
 </tr>
