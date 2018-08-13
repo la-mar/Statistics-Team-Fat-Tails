@@ -1,83 +1,44 @@
+# Ameing for the Stars: Predicting Home Value in Ames, Iowa
   
   
-# Kaggle Project - Team Fat Tails
+**A Kaggle Project by Team Fat Tails**
   
+---
   
+Authors: Quinton Nixon, Grant Bourzikas, Brock Friedrich
+Date: Aug. 12, 2018
   
-  
-  
-  
-  
-* [Kaggle Project - Team Fat Tails](#kaggle-project-team-fat-tails )
-	* [Introduction](#introduction )
-	* [Data Synopsis](#data-synopsis )
-	* [Analysis Question 1](#analysis-question-1 )
-		* [Restatement of Problem](#restatement-of-problem )
-		* [Build and Fit the Model](#build-and-fit-the-model )
-			* [Interrogate the Data](#interrogate-the-data )
-				* [Collinearity](#collinearity )
-				* [R2](#r2 )
-			* [Check Assumptions](#check-assumptions )
-				* [Homogeneity of Variances](#homogeneity-of-variances )
-				* [Normality](#normality )
-				* [Residual Diagnostics](#residual-diagnostics )
-				* [Outlier Analysis](#outlier-analysis )
-			* [Model Comparison](#model-comparison )
-				* [No Interactions](#no-interactions )
-				* [With Interactions](#with-interactions )
-				* [Adj R2](#adj-r2 )
-				* [Parameters & Equations](#parameters-equations )
-				* [Conclusion](#conclusion )
-	* [Analysis Question 2](#analysis-question-2 )
-		* [Restate Problem](#restate-problem )
-		* [Model Selection](#model-selection )
-		* [Check Assumptions](#check-assumptions-1 )
-			* [Linearity](#linearity )
-			* [Heteroscedacity](#heteroscedacity )
-			* [Check Normality](#check-normality )
-			* [Independence](#independence )
-			* [Residual Diagnostics](#residual-diagnostics-1 )
-			* [Outlier Analysis](#outlier-analysis-1 )
-		* [Comparing Competing Models](#comparing-competing-models )
-		* [Conclusion](#conclusion-1 )
-	* [Appendix A](#appendix-a )
-			* [SAS Program](#sas-program )
-			* [main.sas](#mainsas )
-			* [dataimport.sas](#dataimportsas )
-			* [procmeans.sas](#procmeanssas )
-			* [analysis1_model_interactions.sas](#analysis1_model_interactionssas )
-			* [analysis1_model1_nointeractions.sas](#analysis1_model1_nointeractionssas )
-	* [Appendix B](#appendix-b )
-		* [train_cleansed_vtarget_ntarget by Neighborhood](#train_cleansed_vtarget_ntarget-by-neighborhood )
-		* [combined_cleansed_vall_ntarget](#combined_cleansed_vall_ntarget )
-		* [combined_cleansed_vall_ntarget by Neighborhood](#combined_cleansed_vall_ntarget-by-neighborhood )
-	* [Appendix X](#appendix-x )
-	* [Appendix XX](#appendix-xx )
+* [Introduction](#introduction )
+* [Data Synopsis](#data-synopsis )
+* [Analysis Question 1](#analysis-question-1 )
+	* [Restatement of Problem](#restatement-of-problem )
+	* [Build and Fit the Model](#build-and-fit-the-model )
+	* [Model Comparison](#model-comparison )
+	* [Conclusion](#conclusion )
+* [Analysis Question 2](#analysis-question-2 )
+	* [Restate Problem](#restate-problem )
+	* [Model Selection](#model-selection )
+	* [Check Assumptions](#check-assumptions )
+	* [Comparing Competing Models](#comparing-competing-models )
+	* [Conclusion](#conclusion-1 )
+* [Appendix](#appendix-a )
   
   
   
   
   
-  
-  
-  
-  
-  
-  
-  
+---
   
 ## Introduction
   
   
----
-  
 Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad.   However, it is essential to review the data because it proves that there are many other influences in price negotiations than the number of bedrooms or a white-picket fence.
-  
-  
   
 ---
   
 ## Data Synopsis
+  
+  
   
   
   
@@ -138,19 +99,19 @@ When one of the predictor variables impacts how another predictor variable is re
   
 In Assessing the Fit, the coefficient is interpreted by the following models utilizing the base formula:
 •	Ames^SalesPrice = β0 + β1*BrkSide + β1*Edwards + β3:*NAmes + β4 (LogLivingArea*BrkSide) + β5(LogLivingArea*Edwards)
-o	β0: The intercept in this model provides an estimate 8.49 of the logGrLivArwea (reference NAmes) with a logGrLivArwea of zero. Of course, this is extrapolation and does not have a clear, practical meaning. 
+o	β0: The intercept in this model provides an estimate 8.49 of the logGrLivArwea (reference NAmes) with a logGrLivArwea of zero. Of course, this is extrapolation and does not have a clear, practical meaning.
 o	β1: This is the adjustment of the intercept for a Neighborhood BrkSide with respect to a NAmes Neighborhood. For a Living room of zero, the Neighborhood BrkSide has an estimated Sale Price Increases of -5. 16 (2^-2.58 back transformation) dollars per square foot less than the NAmes Livingroom. 
 o	β1 This is the adjustment of the intercept for a Neighborhood Edwards with respect to a NAmes Neighborhood. For a Living room of zero, the Neighborhood Edwards has an estimated Sale Price Increases of -1.40 (2^-0.49 back transformation) dollars per square foot less than the NAmes Livingroom.
 o	β3: For each 1 unit increase in the Living Room of a NAmes, the estimated Sale Price increases 2^0.47 units
-o	β4: For each 1 unit increase in the Living Room Size of BrkSide, the estimated Sale Price increases 8.16 (2^0.35 Back transformed) dollars per square foot from the change with the NAmes. 
-o	β5: For each 1 unit increase in the Living Room Size of Edwards, the estimated Sale Price increases 1.04 (2^0.05 Back transformed) dollars per square foot from the change with the NAmes. 
+o	β4: For each 1 unit increase in the Living Room Size of BrkSide, the estimated Sale Price increases 8.16 (2^0.35 Back transformed) dollars per square foot from the change with the NAmes.
+o	β5: For each 1 unit increase in the Living Room Size of Edwards, the estimated Sale Price increases 1.04 (2^0.05 Back transformed) dollars per square foot from the change with the NAmes.
   
   
   
   
 ---
   
-#### Interrogate the Data
+#### Assumptions
   
   
 In reviewing the data, an analysis was performed using QQ Plots and Histograms, the linearity of the data is not in question due to the sample size, the data is right skewed and is not normally distributed as depicted, the data does not have equal standard deviations, and the data is independent of each other.
@@ -169,54 +130,14 @@ Additionally, there is no collinearity in the data because Neighborhood and Gran
 ##### R2
   
   
-With only an R^2 .421 and an adjusted R^2 of .418, the fit of of the model of predicting sales price by Nieghborhood and Grand Living Room square foot, is not a good model.  It is recommended that additianla variables should be used to calculate a more accute Sales Price.
-  
-#### Check Assumptions
-  
-  
-##### Homogeneity of Variances
-  
-  
-  
-  
-  
-  
-  
-  
-##### Normality
-  
-  
-  
-  
-  
-  
-  
-  
-##### Residual Diagnostics
-  
-  
-  
-  
-  
-##### Outlier Analysis
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+With only an <img src="https://latex.codecogs.com/gif.latex?R^2"/> .421 and an adjusted <img src="https://latex.codecogs.com/gif.latex?R^2"/> of .418, the fit of of the model of predicting sales price by Nieghborhood and Grand Living Room square foot, is not a good model.  It is recommended that additianla variables should be used to calculate a more accute Sales Price.
   
 ---
   
 #### Model Comparison
   
   
-After reviewing the models after and before the transformation, the R-Square is (0.51, 0.45, respectively) with a RMSE of (0.19, 28552.30, respectively)  and a Coefficient Variance of (1.63, 20.68, respectively) ensuring the better fit is with the transformed data.
+After reviewing the models after and before the transformation, the R-Squared is (0.51, 0.45, respectively) with a RMSE of (0.19, 28552.30, respectively)  and a Coefficient Variance of (1.63, 20.68, respectively) ensuring the better fit is with the transformed data.
   
   
 ##### No Interactions
@@ -266,22 +187,11 @@ After reviewing the models after and before the transformation, the R-Square is 
   
 ![analysis1_noint_cov](../figs/analysis1_model_int_cov.png )
   
-##### Adj R2
-  
-  
-  
-  
-  
-  
 ##### Parameters & Equations
   
-      - Estimates
-      - Interpretation 
-      - Confidence Intervals 
   
-Variables:
-SalesPrice = SP
-LivingArea = LA
+  
+  
   
   
   
@@ -291,30 +201,8 @@ LivingArea = LA
   
 ---
   
-**General Formula:**
+**General Formula:** <img src="https://latex.codecogs.com/gif.latex?&#x5C;,&#x5C;,&#x5C;hat&#x5C;mu%20&#x5C;{%20{log(SP)}%20&#x5C;}&#x5C;,=&#x5C;,&#x5C;beta_0&#x5C;,+&#x5C;,&#x5C;beta_1&#x5C;,Brookside&#x5C;,+&#x5C;,&#x5C;beta_2&#x5C;,Edwards&#x5C;,+&#x5C;,&#x5C;beta_3&#x5C;,Ames&#x5C;,+&#x5C;,&#x5C;beta_4(log(LA)&#x5C;,Brookside)+&#x5C;beta_{5}&#x5C;,(log(LA)&#x5C;,Edwards)"/>
   
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;hat&#x5C;mu%20&#x5C;{%20{log(SP)}%20&#x5C;}&#x5C;,=&#x5C;,&#x5C;beta_0&#x5C;,+&#x5C;,&#x5C;beta_1&#x5C;,Brookside&#x5C;,+&#x5C;,&#x5C;beta_2&#x5C;,Edwards&#x5C;,+&#x5C;,&#x5C;beta_3&#x5C;,Ames&#x5C;,+&#x5C;,&#x5C;beta_4(log(LA)&#x5C;,Brookside)+&#x5C;beta_{5}&#x5C;,(log(LA)&#x5C;,Edwards)"/></p>  
-  
-  
----
-  
-**Ames (North):**
-  
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;hat&#x5C;mu%20&#x5C;{%20{log(SP_{Ames})}%20&#x5C;}&#x5C;,=&#x5C;,&#x5C;beta_0&#x5C;,+&#x5C;,&#x5C;beta_1&#x5C;,Brookside&#x5C;,+&#x5C;,&#x5C;beta_2&#x5C;,Edwards&#x5C;,+&#x5C;,&#x5C;beta_3&#x5C;,Ames&#x5C;,+&#x5C;,&#x5C;beta_4(log(LA)&#x5C;,Brookside)+&#x5C;beta_{5}&#x5C;,(log(LA)&#x5C;,Edwards)"/></p>  
-  
-  
----
-  
-**Brookside:**
-  
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;hat&#x5C;mu%20&#x5C;{%20{log(SP_{Brookside})}%20&#x5C;}&#x5C;,=&#x5C;,&#x5C;beta_0&#x5C;,+&#x5C;,&#x5C;beta_1&#x5C;,Brookside&#x5C;,+&#x5C;,&#x5C;beta_2&#x5C;,Edwards&#x5C;,+&#x5C;,&#x5C;beta_3&#x5C;,Ames&#x5C;,+&#x5C;,&#x5C;beta_4(log(LA)&#x5C;,Brookside)+&#x5C;beta_{5}&#x5C;,(log(LA)&#x5C;,Edwards)"/></p>  
-  
-  
----
-  
-**Edwards:**
-  
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;hat&#x5C;mu%20&#x5C;{%20{log(SP_{Edwards})}%20&#x5C;}&#x5C;,=&#x5C;,&#x5C;beta_0&#x5C;,+&#x5C;,&#x5C;beta_1&#x5C;,Brookside&#x5C;,+&#x5C;,&#x5C;beta_2&#x5C;,Edwards&#x5C;,+&#x5C;,&#x5C;beta_3&#x5C;,Ames&#x5C;,+&#x5C;,&#x5C;beta_4(log(LA)&#x5C;,Brookside)+&#x5C;beta_{5}&#x5C;,(log(LA)&#x5C;,Edwards)"/></p>  
   
   
 ---
@@ -339,7 +227,7 @@ LivingArea = LA
   
   
   
-##### Conclusion
+#### Conclusion
   
   
   
@@ -347,14 +235,17 @@ LivingArea = LA
   
   
   
+To interpret the model, a change in Living Room Square Feet Is a 2x increase.  For the neighborhood with approximately the same mass, it is estimate that a 2-fold increase in the Living Area Square feet is associated with a (<img src="https://latex.codecogs.com/gif.latex?e^{0.47}%20=%201.39"/>) which is a 38.8% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of (e^{0.38}, e^{0.56}) = (1.3, 1.48) which equates to an estimated increase between **30.5%** and **47.7%**.
+  
+ Doubling the living area space multiplies the predicted median sales price of North Ames homes by <img src="https://latex.codecogs.com/gif.latex?e^{0.47}%20=%201.39"/>. In other words, the sales price increases by **38%** for every doubling of square footage in the general living space.
+  
+| LivingArea 	|  	|  	|  	|
+|------------	|-------	|-------	|-------	|
+| estimate 	| 0.47 	| 0.38 	| 0.56 	|
+| change 	| 1.39 	| 1.30 	| 1.48 	|
+| % change 	| 38.80 	| 30.47 	| 47.67 	|
   
   
-  
-  
-  
-  
-  
- To interpret the model, a change in Living Room Square Feet is a doubled increase.  For the neighborhood with approximately the same mass, it is estimate that a 10-fold increase in the Living Area Square feet is associated with a XX which is a 83.2% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of XX = CI which equates to an estimated increase between X% and X%.
   
   
   
@@ -391,10 +282,6 @@ Our objective is to build the most predictive model for sale prices of homes in 
   
 Backward elimination, forward selection, stepwise selection, and custom models were built for this question.  All models were built using log-log transformed data (log of SalePrice and log of GrLivArea).  Forward selection and stepwise selection had comparable Kaggle scores.  Based on interpretability, the Forward Selection Model was chosen.
   
-  
-  
-  
-  
 ### Check Assumptions
   
   
@@ -402,26 +289,19 @@ Backward elimination, forward selection, stepwise selection, and custom models w
   
 Based on the lack of overwhelming evidence to support the assumptions, a number of transformations were considered and a decision was made to use a log-log transformation as the basis of the most predictive model.
   
-#### Linearity
+* **Linearity**
+	We know from the previous question that SalePrice is linearly correlated with some of the explanatory variables (size, for example), but it is unlikely to be correlated with all of them.  
   
+* **Heteroscedacity**
+	There is some visual evidence against constant variance.  With the large number of observations, visual inspection becomes more challenging.
   
-We know from the previous question that SalePrice is linearly correlated with some of the explanatory variables (size, for example), but it is unlikely to be correlated with all of them.  
+* **Normality**
+	A histogram of saleprice across all neighborhoods shows evidence of right skewness.
   
+* **Independence**
+	Although, homeowners are free to price their homes as they wish and buyers can make whatever offer they choose, there is no way to say with much certainty that home prices are truly independent.
   
-  
-  
-#### Heteroscedacity
-  
-  
-There is some visual evidence against constant variance.  With the large number of observations, visual inspection becomes more challenging.
-  
-  
-  
-  
-#### Check Normality
-  
-  
-A histogram of saleprice across all neighborhoods shows evidence of right skewness.
+* **Residual Diagnostics**
   
   
   
@@ -429,23 +309,7 @@ A histogram of saleprice across all neighborhoods shows evidence of right skewne
   
   
   
-#### Independence
-  
-  
-Although, homeowners are free to price their homes as they wish and buyers can make whatever offer they choose, there is no way to say with much certainty that home prices are truly independent. 
-  
-  
-#### Residual Diagnostics
-  
-  
-  
-  
-  
-  
-  
-  
-#### Outlier Analysis
-  
+* **Outlier Analysis**
   
   
   
@@ -462,10 +326,11 @@ And no observations appeared to be particularly high leverage so we can proceed 
   
 | Predictive Models 	| Adjusted R2 	| CV PRESS 	| Kaggle Score 	|
 |-------------------	|-------------	|----------	|--------------	|
-| Forward 	| .8501 	| 31.18449 	| .14880 	|
-| Backward 	| .9350 	| 31.67571 	| .21225 	|
-| Stepwise 	| .9206 	| 19.14915 	| .14880 	|
-| CUSTOM 	|  	|  	|  	|
+| Forward 	| .8501 	| 31.18449 		| .14880 			|
+| Backward 	| .9350 	| 31.67571 		| .21225 		|
+| Stepwise 	| .9206 	| 19.14915 		| .14880 		|
+| CUSTOM 	| .9351 	| 31.84610 		| .21261 		|
+  
   
 **Best model:  Forward selection**
   
@@ -484,6 +349,9 @@ The equation for this model is the following:
   
   
   
+### Conclusion
+  
+  
 What this means in real world terms is that a 10% increase in the above ground living area should result in an ~4.4% increase in price (<img src="https://latex.codecogs.com/gif.latex?1.1^{&#x5C;beta_4}%20=%201.1^{0.455}%20=%201.044"/>) due to log transforming the SalePrice and the GrLivArea variable.
   
 The selection of Neighborhood impacts the mean selling price by the relative percentage of <img src="https://latex.codecogs.com/gif.latex?e^{&#x5C;beta_5}"/>.  The mean price for Neighborhoods with negative coefficients goes down relative to the Veenker reference neighborhood.
@@ -496,42 +364,31 @@ For each unit increase in BsmtFinSF1, the mean selling price will increase by ap
   
 Visually we can see that <img src="https://latex.codecogs.com/gif.latex?&#x5C;log"/>(GrLivArea) is the strongest predictor of price followed by OverallQual.  This makes sense conceptually.  It’s reasonable to assume people will pay more for a big, nice home.
   
-  
-  
-  
-![analysis1_noint_cov](../figs/analysis2_modelcomp_scm1.png )
-  
-![analysis1_noint_cov](../figs/analysis2_glmselect.png )
-  
-![analysis1_noint_cov](../figs/analysis2_param_estimates.png )
+![analysis2_glmselect](../figs/analysis2_forward_summary.png )
   
   
   
   
-### Conclusion
-  
-  
-  
-  
-  
-  
+---
   
 ## Appendix A
   
   
-  
-  
-  
-#### SAS Program
-  
+---
   
   
   
   
-#### main.sas
+### SAS Program
+  
+  
+  
+### main.sas
   
   
 ```sas
+  
+  
 %INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/dataimport.sas';
   
 %INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/procmeans.sas';
@@ -541,9 +398,17 @@ Visually we can see that <img src="https://latex.codecogs.com/gif.latex?&#x5C;lo
 %INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis1_model_interactions.sas';
   
 %INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis1_model_nointeractions.sas';
+  
+%INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_backward.sas';
+  
+%INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_forward.sas';
+  
+%INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_stepwise.sas';
+  
+%INCLUDE '/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_custom.sas';
 ```  
   
-#### dataimport.sas
+### dataimport.sas
   
   
 ```sas
@@ -577,8 +442,10 @@ data train_cleansed_calcs;
 set train_original;                                                                                                          
 logSalePrice = log(SalePrice); /* natural log of SalePrice */                                                                                                             
 logGrLivArea = log(GrLivArea); /* natural log of GrLivArea */
+logliv = log(GrLivArea);
+logprice = log(SalePrice);
 total_area = GrLivArea + GarageArea + TotalBsmtSF;
-remodel_age = 2018 - YearRemodAdd;                                                                                             
+remodel_age = 2018 - YearRemodAd;                                                                                           
 run;
   
 /* train dataset with ALL variables and ALL neighborhoods */  
@@ -615,37 +482,39 @@ run;
 /* Create derivatives of the combined dataset for use in various models */
   
 /* Combined dataset unfiltered with added calculation columns */
-data combined_cleansed_calcs;                                                                                                                       
+data combined_cl_calcs;                                                                                                                       
 set combined_original; /* train_reduced */                                                                                                             
 logSalePrice = log(SalePrice); /* natural log of SalePrice */                                                                                                             
 logGrLivArea = log(GrLivArea); /* natural log of GrLivArea */
+logliv = log(GrLivArea);
+logprice = log(SalePrice);
 total_area = GrLivArea + GarageArea + TotalBsmtSF;
-remodel_age = 2018 - YearRemodAdd;                                                                                                
+remodel_age = 2018 - YearRemodAd;                                                                                               
 run;
   
 /* Combined dataset with ALL variables and ALL neighborhoods */ 
-data combined_cleansed_vall_nall;                                                                                                                      
-set combined_cleansed_calcs;                                                                                                                                                                                                    
+data combined_cl_vall_nall;                                                                                                                      
+set combined_cl_calcs;                                                                                                                                                                                                    
 run;
   
 /* Combined dataset with ALL variables and TARGET neighborhoods */
-data combined_cleansed_vall_ntarget;                                                                                                                      
-set combined_cleansed_calcs;
+data combined_cl_vall_ntarget;                                                                                                                      
+set combined_cl_calcs;
 where Neighborhood = 'NAmes'    /* North Ames */
    or Neighborhood = 'Edwards'  /* Edwards */
    or Neighborhood = 'BrkSide'; /* Brookside */                                                                                                                                                                                                                  
 run;
   
 /* Combined dataset with TARGET variables and ALL neighborhoods */ 
-data combined_cleansed_vtarget_nall;                                                                                                                      
-set combined_cleansed_calcs(keep= Id MSSubClass SalePrice 
+data combined_cl_vtarget_nall;                                                                                                                      
+set combined_cl_calcs(keep= Id MSSubClass SalePrice 
 								  GrLivArea logSalePrice 
 						  		  logGrLivArea Neighborhood);                                                                                                                                                                                                      
 run;
   
 /* Combined dataset with TARGET variables and TARGET neighborhoods */    
-data combined_cleansed_vtarget_ntarget;                                                                                                                   
-set combined_cleansed_calcs(keep= Id MSSubClass SalePrice 
+data combined_cl_vtarget_ntarget;                                                                                                                   
+set combined_cl_calcs(keep= Id MSSubClass SalePrice 
 								  GrLivArea logSalePrice 
 						  		  logGrLivArea Neighborhood); 
 where Neighborhood = 'NAmes'    /* North Ames */
@@ -666,7 +535,7 @@ run;
   
 ```  
   
-#### procmeans.sas
+### procmeans.sas
   
   
 ```sas
@@ -780,7 +649,7 @@ TITLE 'combined_cleansed_vall_ntarget by Neighborhood';
 run;
 ```  
   
-#### analysis1_model_interactions.sas
+### analysis1_model_interactions.sas
   
   
 ```sas
@@ -801,7 +670,7 @@ run;
   
 ```  
   
-#### analysis1_model1_nointeractions.sas
+### analysis1_model1_nointeractions.sas
   
   
 ```sas
@@ -822,10 +691,166 @@ run;
   
 ```  
   
+### analysis2_backward.sas
   
   
-## Appendix B
+```sas
+** backward elimination with log log;         
+proc glmselect data = combined_cl_vall_nall
+seed=1 plots(stepAxis=number)=(criterionPanel ASEPlot CRITERIONPANEL); 
+class MSZoning LotFrontage Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition;
+model logprice = MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType MasVnrArea ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+/selection = Backward(stop=cv) cvmethod=random(5) stats=adjrsq cvdetails=cvpress;
+output out = results p = Predict;
+run;
   
+data for_kaggle3;
+set work.results (keep = id Predict);
+run;
+  
+proc print data = for_kaggle3;
+run;
+  
+```  
+  
+### analysis2_forward.sas
+  
+  
+```sas
+** forward selection with log log ;          
+proc glmselect data = combined_cl_vall_nall
+seed=1 plots(stepAxis=number)=(criterionPanel ASEPlot CRITERIONPANEL); 
+class MSZoning LotFrontage Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition;
+model logprice = MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType MasVnrArea ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+/selection = Forward(stop=cv) cvmethod=split(10) stats=adjrsq cvdetails=cvpress;
+output out = results p = Predict;
+run;
+  
+proc print data = work.results;
+run;
+  
+data for_kaggle;
+set work.results (keep = id Predict);
+run;
+  
+proc print data = for_kaggle;
+run;
+  
+```  
+  
+### analysis2_stepwise.sas
+  
+  
+```sas
+** stepwise with log log;
+proc glmselect data = combined_cl_vall_nall
+seed=1 plots(stepAxis=number)=(criterionPanel ASEPlot CRITERIONPANEL); 
+class MSZoning LotFrontage Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition;
+model logprice = MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType MasVnrArea ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+/selection=stepwise(select=CV drop=competitive)
+                    cvMethod=split(10);
+                    output out = results p = Predict;
+run;
+  
+data for_kaggle2;
+set work.results (keep = id Predict);
+run;
+  
+proc print data = for_kaggle2;
+run;
+  
+```  
+  
+### analysis2_custom.sas
+  
+  
+```sas
+proc glmselect data = combined_cl_vall_nall
+seed=1 plots(stepAxis=number)=(criterionPanel ASEPlot CRITERIONPANEL); 
+class MSZoning LotFrontage Street Alley  
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition;
+model logSalePrice = MSSubClass MSZoning LotFrontage LotArea Street Alley  
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl Exterior1st Exterior2nd MasVnrType MasVnrArea ExterQual ExterCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+/selection = backward(stop=cv) cvmethod=split(10) stats=adjrsq cvdetails=cvpress;
+output out = backward5 p = Predict;
+run;
+  
+```  
+  
+  
+  
+---
+  
+## Appendix B - Datasets
+  
+  
+---
   
 ### train_cleansed_vtarget_ntarget by Neighborhood
   
@@ -1027,9 +1052,12 @@ run;
 |              |       | total_area    | 443 | 0      | 1176    | 5267    | 2747   | 2662   | 789            |
 |              |       | remodel_age   | 443 | 0      | 9       | 68      | 47     | 54     | 26             |
   
+---
   
-## Appendix X
+## Appendix C - Data Descriptions
   
+  
+---
   
   
   
@@ -1531,38 +1559,56 @@ MiscFeature: Miscellaneous feature not covered in other categories
        TenC	Tennis Court
        NA	None
   
-MiscVal: $Value of miscellaneous feature
+MiscVal: <img src="https://latex.codecogs.com/gif.latex?Value%20of%20miscellaneous%20featureMoSold:%20Month%20Sold%20(MM)YrSold:%20Year%20Sold%20(YYYY)SaleType:%20Type%20of%20sale		%20%20%20%20%20%20%20WD%20	Warranty%20Deed%20-%20Conventional%20%20%20%20%20%20%20CWD	Warranty%20Deed%20-%20Cash%20%20%20%20%20%20%20VWD	Warranty%20Deed%20-%20VA%20Loan%20%20%20%20%20%20%20New	Home%20just%20constructed%20and%20sold%20%20%20%20%20%20%20COD	Court%20Officer%20Deed&#x2F;Estate%20%20%20%20%20%20%20Con	Contract%2015%%20Down%20payment%20regular%20terms%20%20%20%20%20%20%20ConLw	Contract%20Low%20Down%20payment%20and%20low%20interest%20%20%20%20%20%20%20ConLI	Contract%20Low%20Interest%20%20%20%20%20%20%20ConLD	Contract%20Low%20Down%20%20%20%20%20%20%20Oth	Other		SaleCondition:%20Condition%20of%20sale%20%20%20%20%20%20%20Normal	Normal%20Sale%20%20%20%20%20%20%20Abnorml	Abnormal%20Sale%20-%20%20trade,%20foreclosure,%20short%20sale%20%20%20%20%20%20%20AdjLand	Adjoining%20Land%20Purchase%20%20%20%20%20%20%20Alloca	Allocation%20-%20two%20linked%20properties%20with%20separate%20deeds,%20typically%20condo%20with%20a%20garage%20unit	%20%20%20%20%20%20%20Family	Sale%20between%20family%20members%20%20%20%20%20%20%20Partial	Home%20was%20not%20completed%20when%20last%20assessed%20(associated%20with%20New%20Homes)%20%20##%20Appendix%20F%20-%20Additional%20Plots%20and%20Tables---###%20Analysis%202%20Supplemental%20Formulas**Ames%20(North):**"/>\,\,
+\hat\mu \{ {log(SP_{Ames})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+<img src="https://latex.codecogs.com/gif.latex?**Brookside:**"/>\,\,
+\hat\mu \{ {log(SP_{Brookside})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+<img src="https://latex.codecogs.com/gif.latex?**Edwards:**"/>\,\,
+\hat\mu \{ {log(SP_{Edwards})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$
   
-MoSold: Month Sold (MM)
-  
-YrSold: Year Sold (YYYY)
-  
-SaleType: Type of sale
-  
-       WD 	Warranty Deed - Conventional
-       CWD	Warranty Deed - Cash
-       VWD	Warranty Deed - VA Loan
-       New	Home just constructed and sold
-       COD	Court Officer Deed/Estate
-       Con	Contract 15% Down payment regular terms
-       ConLw	Contract Low Down payment and low interest
-       ConLI	Contract Low Interest
-       ConLD	Contract Low Down
-       Oth	Other
-  
-SaleCondition: Condition of sale
-  
-       Normal	Normal Sale
-       Abnorml	Abnormal Sale -  trade, foreclosure, short sale
-       AdjLand	Adjoining Land Purchase
-       Alloca	Allocation - two linked properties with separate deeds, typically condo with a garage unit	
-       Family	Sale between family members
-       Partial	Home was not completed when last assessed (associated with New Homes)
   
   
   
-## Appendix XX
   
+### Analysis 2 Parameter Estimates & ScatterMatrix
+  
+  
+|           |  |
+:-------------------------:|:-------------------------:
+![analysis2_param_estimates](../figs/analysis2_param_estimates.png )  |  ![analysis2_modelcomp_scm1](../figs/analysis2_modelcomp_scm1.png )
+  
+  
+  
+  
+  
+## Appendix E - Additional Information
+  
+  
+**[Github Repository](https://github.com/la-mar/Statistics-Team-Fat-Tails )**
+  
+**[Kaggle Competition Info](https://www.kaggle.com/c/house-prices-advanced-regression-techniques )**
   
 **[Downloading from the Kaggle API](dev/kaggle-download.md )**
   

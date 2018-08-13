@@ -1,0 +1,3926 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Analysis</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\brock\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.3.5\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="ameing-for-the-stars-predicing-home-value-in-ames-iowa">Ameing for the Stars: Predicing Home Value in Ames, Iowa</h1>
+
+<p><strong>A Kaggle Project by Team Fat Tails</strong></p>
+<hr>
+<p>Authors: Quinton Nixon, Grant Bourzikas, Brock Friedrich<br>
+Date: Aug. 12, 2018</p>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#data-synopsis">Data Synopsis</a></li>
+<li><a href="#analysis-question-1">Analysis Question 1</a>
+<ul>
+<li><a href="#restatement-of-problem">Restatement of Problem</a></li>
+<li><a href="#build-and-fit-the-model">Build and Fit the Model</a></li>
+<li><a href="#model-comparison">Model Comparison</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#analysis-question-2">Analysis Question 2</a>
+<ul>
+<li><a href="#restate-problem">Restate Problem</a></li>
+<li><a href="#model-selection">Model Selection</a></li>
+<li><a href="#check-assumptions">Check Assumptions</a></li>
+<li><a href="#comparing-competing-models">Comparing Competing Models</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#appendix-a">Appendix</a></li>
+</ul>
+<hr>
+<h2 class="mume-header" id="introduction">Introduction</h2>
+
+<p>Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad.   However, it is essential to review the data because it proves that there are many other influences in price negotiations than the number of bedrooms or a white-picket fence.</p>
+<hr>
+<h2 class="mume-header" id="data-synopsis">Data Synopsis</h2>
+
+<p>The Ames House dataset was compiled by Dean De Cock and contains 79 explanatory variables describing almost every aspect of residual home in Ames Iowa from 2006 to 2010. The data set contains 2930 observations involved in assessing home values.</p>
+<p>Data summary for North Ames, Edwards, and Brookside neighborhoods:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>N</th>
+<th>N Miss</th>
+<th>Minimum</th>
+<th>Maximum</th>
+<th>Mean</th>
+<th>Median</th>
+<th>Quartile Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>383</td>
+<td>0</td>
+<td>10</td>
+<td>1460</td>
+<td>744</td>
+<td>729</td>
+<td>744</td>
+</tr>
+<tr>
+<td>MSSubClass</td>
+<td>383</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>45</td>
+<td>30</td>
+<td>40</td>
+</tr>
+<tr>
+<td>GrLivArea</td>
+<td>383</td>
+<td>0</td>
+<td>334</td>
+<td>5642</td>
+<td>1302</td>
+<td>1200</td>
+<td>503</td>
+</tr>
+<tr>
+<td>SalePrice</td>
+<td>383</td>
+<td>0</td>
+<td>39300</td>
+<td>345000</td>
+<td>138063</td>
+<td>135500</td>
+<td>39000</td>
+</tr>
+<tr>
+<td>logSalePrice</td>
+<td>383</td>
+<td>0</td>
+<td>11</td>
+<td>13</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td>logGrLivArea</td>
+<td>383</td>
+<td>0</td>
+<td>6</td>
+<td>9</td>
+<td>7</td>
+<td>7</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">No Transformation</th>
+<th style="text-align:center">Log Transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="../figs/analysis1_scm_normal.png" alt="train_original_histogram_salesprice"></td>
+<td style="text-align:center"><img src="../figs/analysis1_scm_log.png" alt="train_original_histogram_salesprice"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="#appendix-b">More data definitions</a></li>
+</ul>
+<hr>
+<h2 class="mume-header" id="analysis-question-1">Analysis Question 1</h2>
+
+<h3 class="mume-header" id="restatement-of-problem">Restatement of Problem</h3>
+
+<p>Century 21 has commissioned Nixon, Friedrich, and Bourzikas to perform a study to derive insights regarding homes prices in Ames.  Century focuses on three neighborhoods in Ames: “North Ames”, “Edwards”, and “Brookside”. They would like to get an estimate of how the Sales Price of the house is related to the square footage of the living area of the house.  Additionally, they would like to understand the relationship between sales price and the living area square footage, as well as investigating any relationship between sales price and that home’s neighborhood.</p>
+<h3 class="mume-header" id="build-and-fit-the-model">Build and Fit the Model</h3>
+
+<p>In order to build and fit a model, an analysis must be performed to identify features of the dataset that are statistically significant in their relation to, and prediction of, the sales price.</p>
+<p>When one of the predictor variables impacts how another predictor variable is related to the dependent variable.  A multiple linear regression model in which the mean of the LogLivingArea depends linearly on the important of the LogSalesPrice and all three Neighborhoods, allowing for different slopes and intercepts, is as follow:</p>
+<p>In Assessing the Fit, the coefficient is interpreted by the following models utilizing the base formula:<br>
+•	Ames^SalesPrice = β0 + β1<em>BrkSide + β1</em>Edwards + β3:<em>NAmes + β4 (LogLivingArea</em>BrkSide) + β5(LogLivingArea*Edwards)<br>
+o	β0: The intercept in this model provides an estimate 8.49 of the logGrLivArwea (reference NAmes) with a logGrLivArwea of zero. Of course, this is extrapolation and does not have a clear, practical meaning.<br>
+o	β1: This is the adjustment of the intercept for a Neighborhood BrkSide with respect to a NAmes Neighborhood. For a Living room of zero, the Neighborhood BrkSide has an estimated Sale Price Increases of -5. 16 (2^-2.58 back transformation) dollars per square foot less than the NAmes Livingroom.<br>
+o	β1 This is the adjustment of the intercept for a Neighborhood Edwards with respect to a NAmes Neighborhood. For a Living room of zero, the Neighborhood Edwards has an estimated Sale Price Increases of -1.40 (2^-0.49 back transformation) dollars per square foot less than the NAmes Livingroom.<br>
+o	β3: For each 1 unit increase in the Living Room of a NAmes, the estimated Sale Price increases 2^0.47 units<br>
+o	β4: For each 1 unit increase in the Living Room Size of BrkSide, the estimated Sale Price increases 8.16 (2^0.35 Back transformed) dollars per square foot from the change with the NAmes.<br>
+o	β5: For each 1 unit increase in the Living Room Size of Edwards, the estimated Sale Price increases 1.04 (2^0.05 Back transformed) dollars per square foot from the change with the NAmes.</p>
+<hr>
+<h4 class="mume-header" id="assumptions">Assumptions</h4>
+
+<p>In reviewing the data, an analysis was performed using QQ Plots and Histograms, the linearity of the data is not in question due to the sample size, the data is right skewed and is not normally distributed as depicted, the data does not have equal standard deviations, and the data is independent of each other.</p>
+<p>Because the assumptions in the data do not support evidence that will allow the study to continue due to data, transformation of the data was perfromed using the Log of the Sales Price and Log of the Grang Living Area.  Upon this transforamtion, the linearity of the data is not in question, that is not strong evidence against normalizty of residuals looking at the histogram and QQ plot, the standard deviasion appear to be equel, and the data is indpependent.   Addtionaly, there is a constant variance after the trasnformation occurred.</p>
+<p>Additionaly, the it is assumped that the data is independent due to each house being unique to each neighnborhood.</p>
+<p>After the transformation, the data was interrogated and a review of the studentized residuals and Cooks D was performed by running a fit diagnostic through our Proc Reg code.    The review of Studentized residual identified one outliers that was related to a very large grand living room square footage and two outliers were related homes that have Sales price over 700,000 representing less than 0.13%.   While these data points are low leverage with big residuals, Cooks D only show a mile problem.  Due to the sample size, the Homes remained in the data set because these do not appear to affect the data.</p>
+<h5 class="mume-header" id="collinearity">Collinearity</h5>
+
+<p>Additionally, there is no collinearity in the data because Neighborhood and Grand Living are correlated with the Sales Price, if using differently each neighborhood variable as independent data.  Since these variables are correlated with each other and the response variables, it is not difficult to parse out how each will impact the response variable independently.</p>
+<h5 class="mume-header" id="r2">R2</h5>
+
+<p>With only an <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">R^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> .421 and an adjusted <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">R^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> of .418, the fit of of the model of predicting sales price by Nieghborhood and Grand Living Room square foot, is not a good model.  It is recommended that additianla variables should be used to calculate a more accute Sales Price.</p>
+<hr>
+<h4 class="mume-header" id="model-comparison">Model Comparison</h4>
+
+<p>After reviewing the models after and before the transformation, the R-Squared is (0.51, 0.45, respectively) with a RMSE of (0.19, 28552.30, respectively)  and a Coefficient Variance of (1.63, 20.68, respectively) ensuring the better fit is with the transformed data.</p>
+<h5 class="mume-header" id="no-interactions">No Interactions</h5>
+
+<table>
+<thead>
+<tr>
+<th>Number of Observations Used</th>
+<th>383</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>R-Square</th>
+<th>Coeff Var</th>
+<th>Root MSE</th>
+<th>logSalePrice Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.489705</td>
+<td>1.66218</td>
+<td>0.196118</td>
+<td>11.79887</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Estimate</th>
+<th>Standard Error</th>
+<th>t Value</th>
+<th>Pr &gt; t</th>
+<th>LCL</th>
+<th>UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intercept</td>
+<td>7.90214954</td>
+<td>0.23133976</td>
+<td>34.16</td>
+<td>&lt;.0001</td>
+<td>7.447279361</td>
+<td>8.357019719</td>
+</tr>
+<tr>
+<td>logGrLivArea</td>
+<td>0.555788385</td>
+<td>0.03236859</td>
+<td>17.17</td>
+<td>&lt;.0001</td>
+<td>0.492143867</td>
+<td>0.619432902</td>
+</tr>
+<tr>
+<td>Neighborhood BrkSide</td>
+<td>-0.132788629</td>
+<td>0.02906111</td>
+<td>-4.57</td>
+<td>&lt;.0001</td>
+<td>-0.189929827</td>
+<td>-0.075647431</td>
+</tr>
+<tr>
+<td>Neighborhood Edwards</td>
+<td>-0.153226231</td>
+<td>0.02357095</td>
+<td>-6.5</td>
+<td>&lt;.0001</td>
+<td>-0.199572446</td>
+<td>-0.106880015</td>
+</tr>
+<tr>
+<td>Neighborhood NAmes</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../figs/analysis1_model_noint_cov.png" alt="analysis1_noint_cov"></p>
+<h5 class="mume-header" id="with-interactions">With Interactions</h5>
+
+<table>
+<thead>
+<tr>
+<th>Number of Observations Used</th>
+<th>383</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>R-Square</th>
+<th>Coeff Var</th>
+<th>Root MSE</th>
+<th>logSalePrice Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.512092</td>
+<td>1.629617</td>
+<td>0.192276</td>
+<td>11.79887</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Estimate</th>
+<th>Standard Error</th>
+<th>t Value</th>
+<th>Pr &gt; t</th>
+<th>LCL</th>
+<th>UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intercept</td>
+<td>8.492727641</td>
+<td>0.32441709</td>
+<td>26.18</td>
+<td>&lt;.0001</td>
+<td>7.854833978</td>
+<td>9.130621305</td>
+</tr>
+<tr>
+<td>logGrLivArea</td>
+<td>0.473023602</td>
+<td>0.04542895</td>
+<td>10.41</td>
+<td>&lt;.0001</td>
+<td>0.383697733</td>
+<td>0.562349471</td>
+</tr>
+<tr>
+<td>Neighborhood BrkSide</td>
+<td>-2.579806905</td>
+<td>0.59988132</td>
+<td>-4.3</td>
+<td>&lt;.0001</td>
+<td>-3.759339383</td>
+<td>-1.400274428</td>
+</tr>
+<tr>
+<td>Neighborhood Edwards</td>
+<td>-0.486220461</td>
+<td>0.51750833</td>
+<td>-0.94</td>
+<td>0.3481</td>
+<td>-1.503784863</td>
+<td>0.531343941</td>
+</tr>
+<tr>
+<td>Neighborhood NAmes</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>logGrLivA*Neighborho BrkSide</td>
+<td>0.346624454</td>
+<td>0.08482008</td>
+<td>4.09</td>
+<td>&lt;.0001</td>
+<td>0.179844737</td>
+<td>0.513404171</td>
+</tr>
+<tr>
+<td>logGrLivA*Neighborho Edwards</td>
+<td>0.046643642</td>
+<td>0.07248011</td>
+<td>0.64</td>
+<td>0.5203</td>
+<td>-0.09587228</td>
+<td>0.189159563</td>
+</tr>
+<tr>
+<td>logGrLivA*Neighborho NAmes</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../figs/analysis1_model_int_cov.png" alt="analysis1_noint_cov"></p>
+<h5 class="mume-header" id="parameters-equations">Parameters &amp; Equations</h5>
+
+<hr>
+<p><strong>General Formula:</strong> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="0.16667em"></mspace><mspace width="0.16667em"></mspace><mover accent="true"><mi>μ</mi><mo>^</mo></mover><mo>{</mo><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>S</mi><mi>P</mi><mo>)</mo></mrow><mo>}</mo><mspace width="0.16667em"></mspace><mo>=</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>0</mn></msub><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>1</mn></msub><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>2</mn></msub><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>3</mn></msub><mspace width="0.16667em"></mspace><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>4</mn></msub><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mo>)</mo><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mspace width="0.16667em"></mspace><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\,\,
+\hat\mu \{ {log(SP)} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mspace thinspace"></span><span class="mspace thinspace"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathit">μ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"></span></span></span></span><span class="mopen">{</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mclose">)</span></span><span class="mclose">}</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">A</span><span class="mord mathit">m</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mclose">)</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mclose">)</span></span></span></span></p>
+<hr>
+<h4 class="mume-header" id="conclusion">Conclusion</h4>
+
+<p>To interpret the model, a change in Living Room Square Feet Is a 2x increase.  For the neighborhood with approximately the same mass, it is estimate that a 2-fold increase in the Living Area Square feet is associated with a (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>e</mi><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>4</mn><mn>7</mn></mrow></msup><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><mn>3</mn><mn>9</mn></mrow><annotation encoding="application/x-tex">e^{0.47} = 1.39</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">4</span><span class="mord mtight">7</span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">3</span><span class="mord">9</span></span></span></span>) which is a 38.8% increase in the median Sales Price of the neighborhood. (P value &lt; 0.001).  At a 95% confidence intervals for the increase in sales price of (e^{0.38}, e^{0.56}) = (1.3, 1.48) which equates to an estimated increase between <strong>30.5%</strong> and <strong>47.7%</strong>.</p>
+<p>Doubling the living area space multiplies the predicted median sales price of North Ames homes by <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>e</mi><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>4</mn><mn>7</mn></mrow></msup><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><mn>3</mn><mn>9</mn></mrow><annotation encoding="application/x-tex">e^{0.47} = 1.39</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">4</span><span class="mord mtight">7</span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">3</span><span class="mord">9</span></span></span></span>. In other words, the sales price increases by <strong>38%</strong> for every doubling of square footage in the general living space.</p>
+ <!-- For 100 ft^2 in the North Ames neighborhood, the sales price would be $42,379. -->
+<table>
+<thead>
+<tr>
+<th>LivingArea</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>estimate</td>
+<td>0.47</td>
+<td>0.38</td>
+<td>0.56</td>
+</tr>
+<tr>
+<td>change</td>
+<td>1.39</td>
+<td>1.30</td>
+<td>1.48</td>
+</tr>
+<tr>
+<td>% change</td>
+<td>38.80</td>
+<td>30.47</td>
+<td>47.67</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="analysis-question-2">Analysis Question 2</h2>
+
+<h3 class="mume-header" id="restate-problem">Restate Problem</h3>
+
+<p>Our objective is to build the most predictive model for sale prices of homes in Ames, Iowa using only the tools learned through week 14 of MSDS 6371.  We are to produce and compare four models:  forward selection, backward elimination, stepwise selection, and a custom model.  Models are to be evaluated on adjusted R^2, CV PRESS, and Kaggle score.  We want the model that does the best job predicting future prices (that is, best Kaggle score wins).</p>
+<h3 class="mume-header" id="model-selection">Model Selection</h3>
+
+<p>Backward elimination, forward selection, stepwise selection, and custom models were built for this question.  All models were built using log-log transformed data (log of SalePrice and log of GrLivArea).  Forward selection and stepwise selection had comparable Kaggle scores.  Based on interpretability, the Forward Selection Model was chosen.</p>
+<h3 class="mume-header" id="check-assumptions">Check Assumptions</h3>
+
+<p>Based on the lack of overwhelming evidence to support the assumptions, a number of transformations were considered and a decision was made to use a log-log transformation as the basis of the most predictive model.</p>
+<ul>
+<li>
+<p><strong>Linearity</strong><br>
+We know from the previous question that SalePrice is linearly correlated with some of the explanatory variables (size, for example), but it is unlikely to be correlated with all of them.</p>
+</li>
+<li>
+<p><strong>Heteroscedacity</strong><br>
+There is some visual evidence against constant variance.  With the large number of observations, visual inspection becomes more challenging.</p>
+</li>
+<li>
+<p><strong>Normality</strong><br>
+A histogram of saleprice across all neighborhoods shows evidence of right skewness.</p>
+</li>
+<li>
+<p><strong>Independence</strong><br>
+Although, homeowners are free to price their homes as they wish and buyers can make whatever offer they choose, there is no way to say with much certainty that home prices are truly independent.</p>
+</li>
+<li>
+<p><strong>Residual Diagnostics</strong></p>
+</li>
+<li>
+<p><strong>Outlier Analysis</strong></p>
+</li>
+</ul>
+<p>Two observations had CooksD values significantly higher than other observations.</p>
+<p>And no observations appeared to be particularly high leverage so we can proceed without the need to removing any observations prior to modelling.</p>
+<h3 class="mume-header" id="comparing-competing-models">Comparing Competing Models</h3>
+
+<table>
+<thead>
+<tr>
+<th>Predictive Models</th>
+<th>Adjusted R2</th>
+<th>CV PRESS</th>
+<th>Kaggle Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Forward</td>
+<td>.8501</td>
+<td>31.18449</td>
+<td>.14880</td>
+</tr>
+<tr>
+<td>Backward</td>
+<td>.9350</td>
+<td>31.67571</td>
+<td>.21225</td>
+</tr>
+<tr>
+<td>Stepwise</td>
+<td>.9206</td>
+<td>19.14915</td>
+<td>.14880</td>
+</tr>
+<tr>
+<td>CUSTOM</td>
+<td>.9351</td>
+<td>31.84610</td>
+<td>.21261</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best model:  Forward selection</strong></p>
+<p>The “best” model in this situation is one that has a high degree of predictable power and is easy to interpret.  That model is the forward selection model.</p>
+<p>At five explanatory variables, the forward selection model is relatively small.  It includes coefficients for OverallCond, OverallQual, BsmtFinSF1, Neighborhood and logliv.  In other words, it predicts that the price of a home is a function of its location, size, and overall condition.</p>
+<p>Each neighborhood has a coefficient that acts as a multiplier for a % increase or decrease in the mean SalePrice relative to the Veenker Neighborhood (reference level selected by SAS).</p>
+<p>The equation for this model is the following:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>μ</mi><mo>^</mo></mover><mo>{</mo><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>S</mi><mi>a</mi><mi>l</mi><mi>e</mi><mi>P</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi><mo>)</mo></mrow><mo>}</mo><mspace width="0.16667em"></mspace><mo>=</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>0</mn></msub><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>1</mn></msub><mspace width="0.16667em"></mspace><mi>O</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>Q</mi><mi>u</mi><mi>a</mi><mi>l</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>2</mn></msub><mspace width="0.16667em"></mspace><mi>O</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>C</mi><mi>o</mi><mi>n</mi><mi>d</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>3</mn></msub><mspace width="0.16667em"></mspace><mi>B</mi><mi>s</mi><mi>m</mi><mi>t</mi><mi>F</mi><mi>i</mi><mi>n</mi><mi>S</mi><mi>F</mi><mn>1</mn><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>4</mn></msub><mspace width="0.16667em"></mspace><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>G</mi><mi>r</mi><mi>L</mi><mi>i</mi><mi>v</mi><mi>A</mi><mi>r</mi><mi>e</mi><mi>a</mi><mo>)</mo><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mspace width="0.16667em"></mspace><mi>N</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>b</mi><mi>o</mi><mi>r</mi><mi>h</mi><mi>o</mi><mi>o</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">\hat\mu \{ {log(SalePrice)} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,OverallQual\,
++\,\beta_2\,OverallCond\,
++\,\beta_3\,BsmtFinSF1\,
++\,\beta_4\,log(GrLivArea)
++\beta_{5}\,Neighborhood</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathit">μ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"></span></span></span></span><span class="mopen">{</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">c</span><span class="mord mathit">e</span><span class="mclose">)</span></span><span class="mclose">}</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">Q</span><span class="mord mathit">u</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mord mathit">o</span><span class="mord mathit">n</span><span class="mord mathit">d</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit">s</span><span class="mord mathit">m</span><span class="mord mathit">t</span><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mord mathit">i</span><span class="mord mathit">n</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mord">1</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">G</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">L</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">e</span><span class="mord mathit">a</span><span class="mclose">)</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mord mathit">e</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">h</span><span class="mord mathit">b</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">h</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit">d</span></span></span></span></span></p>
+<h3 class="mume-header" id="conclusion-1">Conclusion</h3>
+
+<p>What this means in real world terms is that a 10% increase in the above ground living area should result in an ~4.4% increase in price (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi mathvariant="normal">.</mi><msup><mn>1</mn><msub><mi>β</mi><mn>4</mn></msub></msup><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><msup><mn>1</mn><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>4</mn><mn>5</mn><mn>5</mn></mrow></msup><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><mn>0</mn><mn>4</mn><mn>4</mn></mrow><annotation encoding="application/x-tex">1.1^{\beta_4} = 1.1^{0.455} = 1.044</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8491079999999999em;"></span><span class="strut bottom" style="height:0.8491079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord">1</span><span class="mord">.</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">4</span><span class="mord mtight">5</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">4</span><span class="mord">4</span></span></span></span>) due to log transforming the SalePrice and the GrLivArea variable.</p>
+<p>The selection of Neighborhood impacts the mean selling price by the relative percentage of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>e</mi><msub><mi>β</mi><mn>5</mn></msub></msup></mrow><annotation encoding="application/x-tex">e^{\beta_5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8491079999999999em;"></span><span class="strut bottom" style="height:0.8491079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>.  The mean price for Neighborhoods with negative coefficients goes down relative to the Veenker reference neighborhood.</p>
+<p>For each unit increase in the OverallQual score, the mean selling price will increase by approx. 10% (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>e</mi><msub><mi>β</mi><mn>1</mn></msub></msup><mo>=</mo><msup><mi>e</mi><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>0</mn><mn>9</mn><mn>5</mn><mn>6</mn></mrow></msup><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><mn>1</mn><mn>0</mn></mrow><annotation encoding="application/x-tex">e^{\beta_1} = e^{0.0956} = 1.10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8491079999999999em;"></span><span class="strut bottom" style="height:0.8491079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">0</span><span class="mord mtight">9</span><span class="mord mtight">5</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">1</span><span class="mord">0</span></span></span></span>).</p>
+<p>For each unit increase in OverallCond score, the mean selling price will increase by approx. 4.9% (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>e</mi><msub><mi>β</mi><mn>2</mn></msub></msup><mo>=</mo><msup><mi>e</mi><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>0</mn><mn>4</mn><mn>7</mn><mn>7</mn></mrow></msup><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><mn>0</mn><mn>4</mn><mn>8</mn><mn>8</mn></mrow><annotation encoding="application/x-tex">e^{\beta_2} = e^{0.0477} = 1.0488</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8491079999999999em;"></span><span class="strut bottom" style="height:0.8491079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">0</span><span class="mord mtight">4</span><span class="mord mtight">7</span><span class="mord mtight">7</span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">4</span><span class="mord">8</span><span class="mord">8</span></span></span></span>).</p>
+<p>For each unit increase in BsmtFinSF1, the mean selling price will increase by approx. 0.0012% (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>e</mi><msub><mi>β</mi><mn>3</mn></msub></msup><mo>=</mo><msup><mi>e</mi><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>8</mn></mrow></msup><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>8</mn><mn>0</mn><mn>0</mn><mn>7</mn></mrow><annotation encoding="application/x-tex">e^{\beta_3} = e^{0.000118} = 1.000118007</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8491079999999999em;"></span><span class="strut bottom" style="height:0.8491079999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">1</span><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">1</span><span class="mord">1</span><span class="mord">8</span><span class="mord">0</span><span class="mord">0</span><span class="mord">7</span></span></span></span>).</p>
+<p>Visually we can see that <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span>(GrLivArea) is the strongest predictor of price followed by OverallQual.  This makes sense conceptually.  It’s reasonable to assume people will pay more for a big, nice home.</p>
+<p><img src="../figs/analysis2_forward_summary.png" alt="analysis2_glmselect"></p>
+<hr>
+<h2 class="mume-header" id="appendix-a">Appendix A</h2>
+
+<hr>
+<h3 class="mume-header" id="sas-program">SAS Program</h3>
+
+<h3 class="mume-header" id="mainsas">main.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas">
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/dataimport.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/procmeans.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis1_matrixscatterplots.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis1_model_interactions.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis1_model_nointeractions.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_backward.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_forward.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_stepwise.sas'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">%</span>INCLUDE <span class="token string">'/home/bfriedrich0/sasuser.v94/kaggle/prod/analysis2_custom.sas'</span><span class="token punctuation">;</span>
+</pre><h3 class="mume-header" id="dataimportsas">dataimport.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token comment">/* Import training dataset from kaggle */</span>
+<span class="token keyword">proc import</span> datafile<span class="token operator">=</span><span class="token string">"/home/bfriedrich0/sasuser.v94/kaggle/data/train.csv"</span>
+     out<span class="token operator">=</span>train_original
+     dbms<span class="token operator">=</span>csv
+     replace<span class="token punctuation">;</span>
+     getnames<span class="token operator">=</span>yes<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Import testing dataset from kaggle */</span>
+<span class="token keyword">proc import</span> datafile<span class="token operator">=</span><span class="token string">"/home/bfriedrich0/sasuser.v94/kaggle/data/test.csv"</span>
+     out<span class="token operator">=</span>test_original
+     dbms<span class="token operator">=</span>csv
+     replace<span class="token punctuation">;</span>
+     getnames<span class="token operator">=</span>yes<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Combine test and train datasets and fix column names */</span>
+<span class="token keyword">data</span> combined_original<span class="token punctuation">;</span>
+   set train_original test_original<span class="token punctuation">;</span>
+   rename 
+   <span class="token string">'1stFlrSF'</span>n <span class="token operator">=</span> FirstFlrSF 
+   <span class="token string">'2ndFlrSF'</span>n <span class="token operator">=</span> SecondFlrSF
+   <span class="token string">'3SsnPorch'</span>n <span class="token operator">=</span> ThreeSsnPorch<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* train dataset unfiltered with added calculation columns */</span> 
+<span class="token keyword">data</span> train_cleansed_calcs<span class="token punctuation">;</span>                                                                                                                      
+set train_original<span class="token punctuation">;</span>                                                                                                          
+logSalePrice <span class="token operator">=</span> log<span class="token punctuation">(</span>SalePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* natural log of SalePrice */</span>                                                                                                             
+logGrLivArea <span class="token operator">=</span> log<span class="token punctuation">(</span>GrLivArea<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* natural log of GrLivArea */</span>
+logliv <span class="token operator">=</span> log<span class="token punctuation">(</span>GrLivArea<span class="token punctuation">)</span><span class="token punctuation">;</span>
+logprice <span class="token operator">=</span> log<span class="token punctuation">(</span>SalePrice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+total_area <span class="token operator">=</span> GrLivArea <span class="token operator">+</span> GarageArea <span class="token operator">+</span> TotalBsmtSF<span class="token punctuation">;</span>
+remodel_age <span class="token operator">=</span> <span class="token number">2018</span> <span class="token operator">-</span> YearRemodAd<span class="token punctuation">;</span>                                                                                           
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* train dataset with ALL variables and ALL neighborhoods */</span>  
+<span class="token keyword">data</span> train_cleansed_vall_nall<span class="token punctuation">;</span>                                                                                                                     
+set train_cleansed_calcs<span class="token punctuation">;</span>                                                                                                                                                                                                    
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* train dataset with ALL variables and TARGET neighborhoods */</span>
+<span class="token keyword">data</span> train_cleansed_vall_ntarget<span class="token punctuation">;</span>                                                                                                                      
+set train_cleansed_calcs<span class="token punctuation">;</span>
+where Neighborhood <span class="token operator">=</span> <span class="token string">'NAmes'</span>    <span class="token comment">/* North Ames */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'Edwards'</span>  <span class="token comment">/* Edwards */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'BrkSide'</span><span class="token punctuation">;</span> <span class="token comment">/* Brookside */</span>                                                                                                                                                                                                                  
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* train dataset with TARGET variables and ALL neighborhoods */</span>
+<span class="token keyword">data</span> train_cleansed_vtarget_nall<span class="token punctuation">;</span>                                                                                                                       
+set train_cleansed_calcs<span class="token punctuation">(</span>keep<span class="token operator">=</span> Id MSSubClass SalePrice 
+								  GrLivArea logSalePrice 
+						  		  logGrLivArea Neighborhood<span class="token punctuation">)</span><span class="token punctuation">;</span>                                                                                                                                                                                                      
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* train dataset with TARGET variables and TARGET neighborhoods */</span>
+<span class="token keyword">data</span> train_cleansed_vtarget_ntarget<span class="token punctuation">;</span>                                                                                                                       
+set train_cleansed_calcs<span class="token punctuation">(</span>keep<span class="token operator">=</span> Id MSSubClass SalePrice 
+								  GrLivArea logSalePrice 
+						  		  logGrLivArea Neighborhood<span class="token punctuation">)</span><span class="token punctuation">;</span>
+where Neighborhood <span class="token operator">=</span> <span class="token string">'NAmes'</span>    <span class="token comment">/* North Ames */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'Edwards'</span>  <span class="token comment">/* Edwards */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'BrkSide'</span><span class="token punctuation">;</span> <span class="token comment">/* Brookside */</span>                                                                                                                                                                                                              
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">/* Create derivatives of the combined dataset for use in various models */</span>
+
+<span class="token comment">/* Combined dataset unfiltered with added calculation columns */</span>
+<span class="token keyword">data</span> combined_cl_calcs<span class="token punctuation">;</span>                                                                                                                       
+set combined_original<span class="token punctuation">;</span> <span class="token comment">/* train_reduced */</span>                                                                                                             
+logSalePrice <span class="token operator">=</span> log<span class="token punctuation">(</span>SalePrice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* natural log of SalePrice */</span>                                                                                                             
+logGrLivArea <span class="token operator">=</span> log<span class="token punctuation">(</span>GrLivArea<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* natural log of GrLivArea */</span>
+logliv <span class="token operator">=</span> log<span class="token punctuation">(</span>GrLivArea<span class="token punctuation">)</span><span class="token punctuation">;</span>
+logprice <span class="token operator">=</span> log<span class="token punctuation">(</span>SalePrice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+total_area <span class="token operator">=</span> GrLivArea <span class="token operator">+</span> GarageArea <span class="token operator">+</span> TotalBsmtSF<span class="token punctuation">;</span>
+remodel_age <span class="token operator">=</span> <span class="token number">2018</span> <span class="token operator">-</span> YearRemodAd<span class="token punctuation">;</span>                                                                                               
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Combined dataset with ALL variables and ALL neighborhoods */</span> 
+<span class="token keyword">data</span> combined_cl_vall_nall<span class="token punctuation">;</span>                                                                                                                      
+set combined_cl_calcs<span class="token punctuation">;</span>                                                                                                                                                                                                    
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Combined dataset with ALL variables and TARGET neighborhoods */</span>
+<span class="token keyword">data</span> combined_cl_vall_ntarget<span class="token punctuation">;</span>                                                                                                                      
+set combined_cl_calcs<span class="token punctuation">;</span>
+where Neighborhood <span class="token operator">=</span> <span class="token string">'NAmes'</span>    <span class="token comment">/* North Ames */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'Edwards'</span>  <span class="token comment">/* Edwards */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'BrkSide'</span><span class="token punctuation">;</span> <span class="token comment">/* Brookside */</span>                                                                                                                                                                                                                  
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Combined dataset with TARGET variables and ALL neighborhoods */</span> 
+<span class="token keyword">data</span> combined_cl_vtarget_nall<span class="token punctuation">;</span>                                                                                                                      
+set combined_cl_calcs<span class="token punctuation">(</span>keep<span class="token operator">=</span> Id MSSubClass SalePrice 
+								  GrLivArea logSalePrice 
+						  		  logGrLivArea Neighborhood<span class="token punctuation">)</span><span class="token punctuation">;</span>                                                                                                                                                                                                      
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Combined dataset with TARGET variables and TARGET neighborhoods */</span>    
+<span class="token keyword">data</span> combined_cl_vtarget_ntarget<span class="token punctuation">;</span>                                                                                                                   
+set combined_cl_calcs<span class="token punctuation">(</span>keep<span class="token operator">=</span> Id MSSubClass SalePrice 
+								  GrLivArea logSalePrice 
+						  		  logGrLivArea Neighborhood<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+where Neighborhood <span class="token operator">=</span> <span class="token string">'NAmes'</span>    <span class="token comment">/* North Ames */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'Edwards'</span>  <span class="token comment">/* Edwards */</span>
+   or Neighborhood <span class="token operator">=</span> <span class="token string">'BrkSide'</span><span class="token punctuation">;</span> <span class="token comment">/* Brookside */</span>                                                                                                                                                                                                            
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+
+
+
+
+
+
+
+
+
+
+</pre><h3 class="mume-header" id="procmeanssas">procmeans.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token comment">/* Generate descriptive statistics of a dataset. */</span>
+ods proctitle<span class="token punctuation">;</span>
+
+
+<span class="token keyword">PROC MEANS</span>
+<span class="token keyword">DATA</span><span class="token operator">=</span>train_cleansed_vtarget_ntarget
+ 		MAXDEC <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment">/* Set number of decimal places in output  */</span>
+ 		MISSING		<span class="token comment">/*   */</span>
+		N	 		<span class="token comment">/*   */</span>
+		NMISS 		<span class="token comment">/*   */</span>
+		MIN 		<span class="token comment">/*   */</span>
+		MAX 		<span class="token comment">/*   */</span>
+		MEAN 		<span class="token comment">/*   */</span>
+		MEDIAN 		<span class="token comment">/*   */</span>
+		QRANGE		<span class="token comment">/* IQR  */</span>
+		<span class="token punctuation">;</span>
+OUTPUT 
+OUT<span class="token operator">=</span>train_reduced_means 
+NMISS<span class="token operator">=</span> 
+N<span class="token operator">=</span> 
+MEAN<span class="token operator">=</span> 
+SUM<span class="token operator">=</span> 
+MEDIAN<span class="token operator">=</span> 
+QRANGE<span class="token operator">=</span>
+<span class="token operator">/</span>AUTONAME <span class="token comment">/* Prefix output columns with variable name */</span>
+<span class="token punctuation">;</span> 
+TITLE <span class="token string">'train_cleansed_vtarget_ntarget'</span><span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">PROC MEANS</span>
+<span class="token keyword">DATA</span><span class="token operator">=</span>train_cleansed_vtarget_ntarget
+ 		MAXDEC <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment">/* Set number of decimal places in output  */</span>
+ 		MISSING		<span class="token comment">/*   */</span>
+		N	 		<span class="token comment">/*   */</span>
+		NMISS 		<span class="token comment">/*   */</span>
+		MIN 		<span class="token comment">/*   */</span>
+		MAX 		<span class="token comment">/*   */</span>
+		MEAN 		<span class="token comment">/*   */</span>
+		MEDIAN 		<span class="token comment">/*   */</span>
+		QRANGE		<span class="token comment">/* IQR  */</span>
+		<span class="token punctuation">;</span>
+CLASS Neighborhood<span class="token punctuation">;</span> <span class="token comment">/* YrSold; */</span>
+OUTPUT 
+OUT<span class="token operator">=</span>train_reduced_means 
+NMISS<span class="token operator">=</span> 
+N<span class="token operator">=</span> 
+MEAN<span class="token operator">=</span> 
+SUM<span class="token operator">=</span> 
+MEDIAN<span class="token operator">=</span> 
+QRANGE<span class="token operator">=</span>
+<span class="token operator">/</span>AUTONAME <span class="token comment">/* Prefix output columns with variable name */</span>
+<span class="token punctuation">;</span> 
+TITLE <span class="token string">'train_cleansed_vtarget_ntarget by Neighborhood'</span><span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">PROC MEANS</span>
+<span class="token keyword">DATA</span><span class="token operator">=</span>combined_cleansed_vall_ntarget
+ 		MAXDEC <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment">/* Set number of decimal places in output  */</span>
+ 		MISSING		<span class="token comment">/*   */</span>
+		N	 		<span class="token comment">/*   */</span>
+		NMISS 		<span class="token comment">/*   */</span>
+		MIN 		<span class="token comment">/*   */</span>
+		MAX 		<span class="token comment">/*   */</span>
+		MEAN 		<span class="token comment">/*   */</span>
+		MEDIAN 		<span class="token comment">/*   */</span>
+		QRANGE		<span class="token comment">/* IQR  */</span>
+		<span class="token punctuation">;</span>
+OUTPUT 
+OUT<span class="token operator">=</span>train_reduced_means 
+NMISS<span class="token operator">=</span> 
+N<span class="token operator">=</span> 
+MEAN<span class="token operator">=</span> 
+SUM<span class="token operator">=</span> 
+MEDIAN<span class="token operator">=</span> 
+QRANGE<span class="token operator">=</span>
+<span class="token operator">/</span>AUTONAME <span class="token comment">/* Prefix output columns with variable name */</span>
+<span class="token punctuation">;</span> 
+TITLE <span class="token string">'combined_cleansed_vall_ntarget'</span><span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">PROC MEANS</span>
+<span class="token keyword">DATA</span><span class="token operator">=</span>combined_cleansed_vall_ntarget
+ 		MAXDEC <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment">/* Set number of decimal places in output  */</span>
+ 		MISSING		<span class="token comment">/*   */</span>
+		N	 		<span class="token comment">/*   */</span>
+		NMISS 		<span class="token comment">/*   */</span>
+		MIN 		<span class="token comment">/*   */</span>
+		MAX 		<span class="token comment">/*   */</span>
+		MEAN 		<span class="token comment">/*   */</span>
+		MEDIAN 		<span class="token comment">/*   */</span>
+		QRANGE		<span class="token comment">/* IQR  */</span>
+		<span class="token punctuation">;</span>
+CLASS Neighborhood<span class="token punctuation">;</span> <span class="token comment">/* YrSold; */</span>
+OUTPUT 
+OUT<span class="token operator">=</span>train_reduced_means 
+NMISS<span class="token operator">=</span> 
+N<span class="token operator">=</span> 
+MEAN<span class="token operator">=</span> 
+SUM<span class="token operator">=</span> 
+MEDIAN<span class="token operator">=</span> 
+QRANGE<span class="token operator">=</span>
+<span class="token operator">/</span>AUTONAME <span class="token comment">/* Prefix output columns with variable name */</span>
+<span class="token punctuation">;</span> 
+TITLE <span class="token string">'combined_cleansed_vall_ntarget by Neighborhood'</span><span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+</pre><h3 class="mume-header" id="analysis1_model_interactionssas">analysis1_model_interactions.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token keyword">proc glm</span> <span class="token keyword">data</span> <span class="token operator">=</span> train_cleansed_vtarget_ntarget plots <span class="token operator">=</span> all<span class="token punctuation">;</span>
+class Neighborhood<span class="token punctuation">(</span>ref<span class="token operator">=</span><span class="token string">'NAmes'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+model logSalePrice <span class="token operator">=</span> logGrLIvArea <span class="token operator">|</span> Neighborhood <span class="token operator">/</span> CLPARM solution<span class="token punctuation">;</span>
+output out <span class="token operator">=</span> t student<span class="token operator">=</span>res cookd <span class="token operator">=</span> cookd h <span class="token operator">=</span> lev p <span class="token operator">=</span> yhat<span class="token punctuation">;</span>
+ods select all<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">proc reg</span> <span class="token keyword">data</span><span class="token operator">=</span>train_cleansed_vtarget_ntarget
+      plots<span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">(</span>CooksD RStudentByLeverage DFFITS DFBETAS<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+   id id<span class="token punctuation">;</span>
+   model logSalePrice <span class="token operator">=</span> logGrLIvArea<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+</pre><h3 class="mume-header" id="analysis1_model1_nointeractionssas">analysis1_model1_nointeractions.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token keyword">proc glm</span> <span class="token keyword">data</span> <span class="token operator">=</span> train_cleansed_vtarget_ntarget plots <span class="token operator">=</span> all<span class="token punctuation">;</span>
+class Neighborhood<span class="token punctuation">(</span>ref<span class="token operator">=</span><span class="token string">'NAmes'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+model logSalePrice <span class="token operator">=</span> logGrLIvArea <span class="token operator">|</span> Neighborhood <span class="token operator">/</span> CLPARM solution<span class="token punctuation">;</span>
+output out <span class="token operator">=</span> t student<span class="token operator">=</span>res cookd <span class="token operator">=</span> cookd h <span class="token operator">=</span> lev p <span class="token operator">=</span> yhat<span class="token punctuation">;</span>
+ods select all<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">proc reg</span> <span class="token keyword">data</span><span class="token operator">=</span>train_cleansed_vtarget_ntarget
+      plots<span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">(</span>CooksD RStudentByLeverage DFFITS DFBETAS<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+   id id<span class="token punctuation">;</span>
+   model logSalePrice <span class="token operator">=</span> logGrLIvArea<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+
+</pre><h3 class="mume-header" id="analysis2_backwardsas">analysis2_backward.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token comment">** backward elimination with log log;</span>         
+<span class="token keyword">proc glmselect</span> <span class="token keyword">data</span> <span class="token operator">=</span> combined_cl_vall_nall
+seed<span class="token operator">=</span><span class="token number">1</span> plots<span class="token punctuation">(</span>stepAxis<span class="token operator">=</span>number<span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">(</span>criterionPanel ASEPlot CRITERIONPANEL<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+class MSZoning LotFrontage Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition<span class="token punctuation">;</span>
+model logprice <span class="token operator">=</span> MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType MasVnrArea <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+<span class="token operator">/</span>selection <span class="token operator">=</span> Backward<span class="token punctuation">(</span>stop<span class="token operator">=</span>cv<span class="token punctuation">)</span> cvmethod<span class="token operator">=</span>random<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> stats<span class="token operator">=</span>adjrsq cvdetails<span class="token operator">=</span>cvpress<span class="token punctuation">;</span>
+output out <span class="token operator">=</span> results p <span class="token operator">=</span> Predict<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token keyword">data</span> for_kaggle3<span class="token punctuation">;</span>
+set work<span class="token punctuation">.</span>results <span class="token punctuation">(</span>keep <span class="token operator">=</span> id Predict<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token keyword">proc print</span> <span class="token keyword">data</span> <span class="token operator">=</span> for_kaggle3<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+</pre><h3 class="mume-header" id="analysis2_forwardsas">analysis2_forward.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token comment">** forward selection with log log ;</span>          
+<span class="token keyword">proc glmselect</span> <span class="token keyword">data</span> <span class="token operator">=</span> combined_cl_vall_nall
+seed<span class="token operator">=</span><span class="token number">1</span> plots<span class="token punctuation">(</span>stepAxis<span class="token operator">=</span>number<span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">(</span>criterionPanel ASEPlot CRITERIONPANEL<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+class MSZoning LotFrontage Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition<span class="token punctuation">;</span>
+model logprice <span class="token operator">=</span> MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType MasVnrArea <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+<span class="token operator">/</span>selection <span class="token operator">=</span> Forward<span class="token punctuation">(</span>stop<span class="token operator">=</span>cv<span class="token punctuation">)</span> cvmethod<span class="token operator">=</span>split<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> stats<span class="token operator">=</span>adjrsq cvdetails<span class="token operator">=</span>cvpress<span class="token punctuation">;</span>
+output out <span class="token operator">=</span> results p <span class="token operator">=</span> Predict<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token keyword">proc print</span> <span class="token keyword">data</span> <span class="token operator">=</span> work<span class="token punctuation">.</span>results<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token keyword">data</span> for_kaggle<span class="token punctuation">;</span>
+set work<span class="token punctuation">.</span>results <span class="token punctuation">(</span>keep <span class="token operator">=</span> id Predict<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token keyword">proc print</span> <span class="token keyword">data</span> <span class="token operator">=</span> for_kaggle<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+</pre><h3 class="mume-header" id="analysis2_stepwisesas">analysis2_stepwise.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token comment">** stepwise with log log;</span>
+<span class="token keyword">proc glmselect</span> <span class="token keyword">data</span> <span class="token operator">=</span> combined_cl_vall_nall
+seed<span class="token operator">=</span><span class="token number">1</span> plots<span class="token punctuation">(</span>stepAxis<span class="token operator">=</span>number<span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">(</span>criterionPanel ASEPlot CRITERIONPANEL<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+class MSZoning LotFrontage Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition<span class="token punctuation">;</span>
+model logprice <span class="token operator">=</span> MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape 
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType MasVnrArea <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+<span class="token operator">/</span>selection<span class="token operator">=</span>stepwise<span class="token punctuation">(</span>select<span class="token operator">=</span>CV drop<span class="token operator">=</span>competitive<span class="token punctuation">)</span>
+                    cvMethod<span class="token operator">=</span>split<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    output out <span class="token operator">=</span> results p <span class="token operator">=</span> Predict<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token keyword">data</span> for_kaggle2<span class="token punctuation">;</span>
+set work<span class="token punctuation">.</span>results <span class="token punctuation">(</span>keep <span class="token operator">=</span> id Predict<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+<span class="token keyword">proc print</span> <span class="token keyword">data</span> <span class="token operator">=</span> for_kaggle2<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+</pre><h3 class="mume-header" id="analysis2_customsas">analysis2_custom.sas</h3>
+
+<pre data-role="codeBlock" data-info="sas" class="language-sas"><span class="token keyword">proc glmselect</span> <span class="token keyword">data</span> <span class="token operator">=</span> combined_cl_vall_nall
+seed<span class="token operator">=</span><span class="token number">1</span> plots<span class="token punctuation">(</span>stepAxis<span class="token operator">=</span>number<span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">(</span>criterionPanel ASEPlot CRITERIONPANEL<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+class MSZoning LotFrontage Street Alley  
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinType2 
+Heating HeatingQC CentralAir Electrical KitchenQual Functional
+FireplaceQu GarageType GarageFinish GarageQual GarageCond PavedDrive
+PoolQC Fence MiscFeature SaleType SaleCondition<span class="token punctuation">;</span>
+model logSalePrice <span class="token operator">=</span> MSSubClass MSZoning LotFrontage LotArea Street Alley  
+LandContour Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 
+BldgType HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle 
+RoofMatl <span class="token number">Ex</span>terior1st <span class="token number">Ex</span>terior2nd MasVnrType MasVnrArea <span class="token number">Ex</span>terQual <span class="token number">Ex</span>terCond 
+Foundation BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2 
+BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical FirstFlrSF 
+SecondFlrSF LowQualFinSF logliv BsmtFullBath BsmtHalfBath FullBath HalfBath 
+BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional Fireplaces 
+FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars GarageArea GarageQual 
+GarageCond PavedDrive WoodDeckSF OpenPorchSF EnclosedPorch ThreeSsnPorch ScreenPorch 
+PoolArea PoolQC Fence MiscFeature MiscVal MoSold YrSold SaleType SaleCondition
+<span class="token operator">/</span>selection <span class="token operator">=</span> backward<span class="token punctuation">(</span>stop<span class="token operator">=</span>cv<span class="token punctuation">)</span> cvmethod<span class="token operator">=</span>split<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> stats<span class="token operator">=</span>adjrsq cvdetails<span class="token operator">=</span>cvpress<span class="token punctuation">;</span>
+output out <span class="token operator">=</span> backward5 p <span class="token operator">=</span> Predict<span class="token punctuation">;</span>
+<span class="token keyword">run</span><span class="token punctuation">;</span>
+
+</pre><hr>
+<h2 class="mume-header" id="appendix-b-datasets">Appendix B - Datasets</h2>
+
+<hr>
+<h3 class="mume-header" id="train_cleansed_vtarget_ntarget-by-neighborhood">train_cleansed_vtarget_ntarget by Neighborhood</h3>
+
+<table>
+<thead>
+<tr>
+<th>Neighborhood</th>
+<th>N Obs</th>
+<th>Variable</th>
+<th>N</th>
+<th>N Miss</th>
+<th>Minimum</th>
+<th>Maximum</th>
+<th>Mean</th>
+<th>Median</th>
+<th>Quartile Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BrkSide</td>
+<td>58</td>
+<td>Id</td>
+<td>58</td>
+<td>0</td>
+<td>10</td>
+<td>1444</td>
+<td>735</td>
+<td>696</td>
+<td>746</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MSSubClass</td>
+<td>58</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>50</td>
+<td>50</td>
+<td>20</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GrLivArea</td>
+<td>58</td>
+<td>0</td>
+<td>334</td>
+<td>2134</td>
+<td>1203</td>
+<td>1211</td>
+<td>638</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SalePrice</td>
+<td>58</td>
+<td>0</td>
+<td>39300</td>
+<td>223500</td>
+<td>124834</td>
+<td>124300</td>
+<td>41500</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logSalePrice</td>
+<td>58</td>
+<td>0</td>
+<td>11</td>
+<td>12</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logGrLivArea</td>
+<td>58</td>
+<td>0</td>
+<td>6</td>
+<td>8</td>
+<td>7</td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Edwards</td>
+<td>100</td>
+<td>Id</td>
+<td>100</td>
+<td>0</td>
+<td>40</td>
+<td>1460</td>
+<td>763</td>
+<td>732</td>
+<td>720</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MSSubClass</td>
+<td>100</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>57</td>
+<td>50</td>
+<td>55</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GrLivArea</td>
+<td>100</td>
+<td>0</td>
+<td>605</td>
+<td>5642</td>
+<td>1340</td>
+<td>1200</td>
+<td>499</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SalePrice</td>
+<td>100</td>
+<td>0</td>
+<td>58500</td>
+<td>320000</td>
+<td>128220</td>
+<td>121750</td>
+<td>44450</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logSalePrice</td>
+<td>100</td>
+<td>0</td>
+<td>11</td>
+<td>13</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logGrLivArea</td>
+<td>100</td>
+<td>0</td>
+<td>6</td>
+<td>9</td>
+<td>7</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td>NAmes</td>
+<td>225</td>
+<td>Id</td>
+<td>225</td>
+<td>0</td>
+<td>15</td>
+<td>1459</td>
+<td>738</td>
+<td>761</td>
+<td>737</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MSSubClass</td>
+<td>225</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>39</td>
+<td>20</td>
+<td>40</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GrLivArea</td>
+<td>225</td>
+<td>0</td>
+<td>767</td>
+<td>3112</td>
+<td>1310</td>
+<td>1200</td>
+<td>439</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SalePrice</td>
+<td>225</td>
+<td>0</td>
+<td>87500</td>
+<td>345000</td>
+<td>145847</td>
+<td>140000</td>
+<td>30500</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logSalePrice</td>
+<td>225</td>
+<td>0</td>
+<td>11</td>
+<td>13</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logGrLivArea</td>
+<td>225</td>
+<td>0</td>
+<td>7</td>
+<td>8</td>
+<td>7</td>
+<td>7</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="combined_cleansed_vall_ntarget">combined_cleansed_vall_ntarget</h3>
+
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>N</th>
+<th>N Miss</th>
+<th>Minimum</th>
+<th>Maximum</th>
+<th>Mean</th>
+<th>Median</th>
+<th>Quartile Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>745</td>
+<td>0</td>
+<td>10</td>
+<td>2873</td>
+<td>1454</td>
+<td>1425</td>
+<td>1470</td>
+</tr>
+<tr>
+<td>MSSubClass</td>
+<td>745</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>44</td>
+<td>30</td>
+<td>40</td>
+</tr>
+<tr>
+<td>LotArea</td>
+<td>745</td>
+<td>0</td>
+<td>2522</td>
+<td>63887</td>
+<td>9675</td>
+<td>9020</td>
+<td>3117</td>
+</tr>
+<tr>
+<td>OverallQual</td>
+<td>745</td>
+<td>0</td>
+<td>1</td>
+<td>10</td>
+<td>5</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td>OverallCond</td>
+<td>745</td>
+<td>0</td>
+<td>1</td>
+<td>9</td>
+<td>6</td>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr>
+<td>YearBuilt</td>
+<td>745</td>
+<td>0</td>
+<td>1900</td>
+<td>2009</td>
+<td>1955</td>
+<td>1957</td>
+<td>16</td>
+</tr>
+<tr>
+<td>YearRemodAdd</td>
+<td>745</td>
+<td>0</td>
+<td>1950</td>
+<td>2010</td>
+<td>1971</td>
+<td>1964</td>
+<td>39</td>
+</tr>
+<tr>
+<td>MasVnrArea</td>
+<td>744</td>
+<td>1</td>
+<td>0</td>
+<td>1224</td>
+<td>69</td>
+<td>0</td>
+<td>91</td>
+</tr>
+<tr>
+<td>BsmtFinSF1</td>
+<td>744</td>
+<td>1</td>
+<td>0</td>
+<td>5644</td>
+<td>424</td>
+<td>399</td>
+<td>652</td>
+</tr>
+<tr>
+<td>BsmtFinSF2</td>
+<td>744</td>
+<td>1</td>
+<td>0</td>
+<td>1164</td>
+<td>65</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>BsmtUnfSF</td>
+<td>744</td>
+<td>1</td>
+<td>0</td>
+<td>1866</td>
+<td>466</td>
+<td>414</td>
+<td>529</td>
+</tr>
+<tr>
+<td>TotalBsmtSF</td>
+<td>744</td>
+<td>1</td>
+<td>0</td>
+<td>6110</td>
+<td>955</td>
+<td>952</td>
+<td>356</td>
+</tr>
+<tr>
+<td>FirstFlrSF</td>
+<td>745</td>
+<td>0</td>
+<td>334</td>
+<td>5095</td>
+<td>1120</td>
+<td>1054</td>
+<td>345</td>
+</tr>
+<tr>
+<td>SecondFlrSF</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>1836</td>
+<td>172</td>
+<td>0</td>
+<td>328</td>
+</tr>
+<tr>
+<td>LowQualFinSF</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>512</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>GrLivArea</td>
+<td>745</td>
+<td>0</td>
+<td>334</td>
+<td>5642</td>
+<td>1296</td>
+<td>1200</td>
+<td>454</td>
+</tr>
+<tr>
+<td>BsmtFullBath</td>
+<td>743</td>
+<td>2</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>BsmtHalfBath</td>
+<td>743</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>FullBath</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>HalfBath</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>BedroomAbvGr</td>
+<td>745</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>KitchenAbvGr</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>TotRmsAbvGrd</td>
+<td>745</td>
+<td>0</td>
+<td>2</td>
+<td>15</td>
+<td>6</td>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Fireplaces</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GarageYrBlt</td>
+<td>686</td>
+<td>59</td>
+<td>1910</td>
+<td>2009</td>
+<td>1962</td>
+<td>1960</td>
+<td>16</td>
+</tr>
+<tr>
+<td>GarageCars</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GarageArea</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>1418</td>
+<td>385</td>
+<td>364</td>
+<td>226</td>
+</tr>
+<tr>
+<td>WoodDeckSF</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>736</td>
+<td>62</td>
+<td>0</td>
+<td>104</td>
+</tr>
+<tr>
+<td>OpenPorchSF</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>484</td>
+<td>30</td>
+<td>0</td>
+<td>40</td>
+</tr>
+<tr>
+<td>EnclosedPorch</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>552</td>
+<td>25</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ThreeSsnPorch</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>407</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ScreenPorch</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>576</td>
+<td>22</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>PoolArea</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>738</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MiscVal</td>
+<td>745</td>
+<td>0</td>
+<td>0</td>
+<td>17000</td>
+<td>109</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MoSold</td>
+<td>745</td>
+<td>0</td>
+<td>1</td>
+<td>12</td>
+<td>6</td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<td>YrSold</td>
+<td>745</td>
+<td>0</td>
+<td>2006</td>
+<td>2010</td>
+<td>2008</td>
+<td>2008</td>
+<td>2</td>
+</tr>
+<tr>
+<td>SalePrice</td>
+<td>383</td>
+<td>362</td>
+<td>39300</td>
+<td>345000</td>
+<td>138063</td>
+<td>135500</td>
+<td>39000</td>
+</tr>
+<tr>
+<td>logSalePrice</td>
+<td>383</td>
+<td>362</td>
+<td>11</td>
+<td>13</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td>logGrLivArea</td>
+<td>745</td>
+<td>0</td>
+<td>6</td>
+<td>9</td>
+<td>7</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td>total_area</td>
+<td>744</td>
+<td>1</td>
+<td>334</td>
+<td>13170</td>
+<td>2636</td>
+<td>2554</td>
+<td>804</td>
+</tr>
+<tr>
+<td>remodel_age</td>
+<td>745</td>
+<td>0</td>
+<td>8</td>
+<td>68</td>
+<td>47</td>
+<td>54</td>
+<td>39</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="combined_cleansed_vall_ntarget-by-neighborhood">combined_cleansed_vall_ntarget by Neighborhood</h3>
+
+<table>
+<thead>
+<tr>
+<th>Neighborhood</th>
+<th>N Obs</th>
+<th>Variable</th>
+<th>N</th>
+<th>N Miss</th>
+<th>Minimum</th>
+<th>Maximum</th>
+<th>Mean</th>
+<th>Median</th>
+<th>Quartile Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BrkSide</td>
+<td>108</td>
+<td>Id</td>
+<td>108</td>
+<td>0</td>
+<td>10</td>
+<td>2796</td>
+<td>1378</td>
+<td>1394</td>
+<td>1503</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MSSubClass</td>
+<td>108</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>49</td>
+<td>50</td>
+<td>20</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>LotArea</td>
+<td>108</td>
+<td>0</td>
+<td>3500</td>
+<td>21384</td>
+<td>6960</td>
+<td>6168</td>
+<td>1342</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OverallQual</td>
+<td>108</td>
+<td>0</td>
+<td>1</td>
+<td>7</td>
+<td>5</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OverallCond</td>
+<td>108</td>
+<td>0</td>
+<td>2</td>
+<td>9</td>
+<td>6</td>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YearBuilt</td>
+<td>108</td>
+<td>0</td>
+<td>1900</td>
+<td>1970</td>
+<td>1932</td>
+<td>1930</td>
+<td>15</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YearRemodAdd</td>
+<td>108</td>
+<td>0</td>
+<td>1950</td>
+<td>2008</td>
+<td>1968</td>
+<td>1950</td>
+<td>45</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MasVnrArea</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>444</td>
+<td>11</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFinSF1</td>
+<td>107</td>
+<td>1</td>
+<td>0</td>
+<td>1309</td>
+<td>201</td>
+<td>68</td>
+<td>336</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFinSF2</td>
+<td>107</td>
+<td>1</td>
+<td>0</td>
+<td>606</td>
+<td>20</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtUnfSF</td>
+<td>107</td>
+<td>1</td>
+<td>0</td>
+<td>1078</td>
+<td>543</td>
+<td>524</td>
+<td>537</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TotalBsmtSF</td>
+<td>107</td>
+<td>1</td>
+<td>0</td>
+<td>1324</td>
+<td>764</td>
+<td>788</td>
+<td>277</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>FirstFlrSF</td>
+<td>108</td>
+<td>0</td>
+<td>334</td>
+<td>1445</td>
+<td>899</td>
+<td>901</td>
+<td>235</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SecondFlrSF</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>908</td>
+<td>331</td>
+<td>399</td>
+<td>583</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>LowQualFinSF</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>360</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GrLivArea</td>
+<td>108</td>
+<td>0</td>
+<td>334</td>
+<td>2134</td>
+<td>1235</td>
+<td>1231</td>
+<td>559</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFullBath</td>
+<td>107</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtHalfBath</td>
+<td>107</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>FullBath</td>
+<td>108</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>HalfBath</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BedroomAbvGr</td>
+<td>108</td>
+<td>0</td>
+<td>1</td>
+<td>5</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>KitchenAbvGr</td>
+<td>108</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TotRmsAbvGrd</td>
+<td>108</td>
+<td>0</td>
+<td>2</td>
+<td>10</td>
+<td>6</td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Fireplaces</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageYrBlt</td>
+<td>96</td>
+<td>12</td>
+<td>1916</td>
+<td>2004</td>
+<td>1948</td>
+<td>1940</td>
+<td>37</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageCars</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageArea</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>1184</td>
+<td>314</td>
+<td>280</td>
+<td>224</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>WoodDeckSF</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>509</td>
+<td>46</td>
+<td>0</td>
+<td>42</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OpenPorchSF</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>365</td>
+<td>25</td>
+<td>0</td>
+<td>18</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>EnclosedPorch</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>268</td>
+<td>39</td>
+<td>0</td>
+<td>70</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ThreeSsnPorch</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>150</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ScreenPorch</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>259</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PoolArea</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MiscVal</td>
+<td>108</td>
+<td>0</td>
+<td>0</td>
+<td>2000</td>
+<td>41</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MoSold</td>
+<td>108</td>
+<td>0</td>
+<td>1</td>
+<td>12</td>
+<td>6</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YrSold</td>
+<td>108</td>
+<td>0</td>
+<td>2006</td>
+<td>2010</td>
+<td>2008</td>
+<td>2008</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SalePrice</td>
+<td>58</td>
+<td>50</td>
+<td>39300</td>
+<td>223500</td>
+<td>124834</td>
+<td>124300</td>
+<td>41500</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logSalePrice</td>
+<td>58</td>
+<td>50</td>
+<td>11</td>
+<td>12</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logGrLivArea</td>
+<td>108</td>
+<td>0</td>
+<td>6</td>
+<td>8</td>
+<td>7</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>total_area</td>
+<td>107</td>
+<td>1</td>
+<td>334</td>
+<td>3491</td>
+<td>2316</td>
+<td>2321</td>
+<td>776</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>remodel_age</td>
+<td>108</td>
+<td>0</td>
+<td>10</td>
+<td>68</td>
+<td>50</td>
+<td>68</td>
+<td>45</td>
+</tr>
+<tr>
+<td>Edwards</td>
+<td>194</td>
+<td>Id</td>
+<td>194</td>
+<td>0</td>
+<td>40</td>
+<td>2873</td>
+<td>1515</td>
+<td>1437</td>
+<td>1473</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MSSubClass</td>
+<td>194</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>55</td>
+<td>50</td>
+<td>60</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>LotArea</td>
+<td>194</td>
+<td>0</td>
+<td>2522</td>
+<td>63887</td>
+<td>10356</td>
+<td>9345</td>
+<td>3281</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OverallQual</td>
+<td>194</td>
+<td>0</td>
+<td>1</td>
+<td>10</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OverallCond</td>
+<td>194</td>
+<td>0</td>
+<td>1</td>
+<td>9</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YearBuilt</td>
+<td>194</td>
+<td>0</td>
+<td>1900</td>
+<td>2009</td>
+<td>1957</td>
+<td>1954</td>
+<td>31</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YearRemodAdd</td>
+<td>194</td>
+<td>0</td>
+<td>1950</td>
+<td>2010</td>
+<td>1974</td>
+<td>1968</td>
+<td>47</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MasVnrArea</td>
+<td>193</td>
+<td>1</td>
+<td>0</td>
+<td>1224</td>
+<td>50</td>
+<td>0</td>
+<td>48</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFinSF1</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>5644</td>
+<td>410</td>
+<td>289</td>
+<td>609</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFinSF2</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>1164</td>
+<td>47</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtUnfSF</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>1678</td>
+<td>429</td>
+<td>392</td>
+<td>606</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TotalBsmtSF</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>6110</td>
+<td>885</td>
+<td>864</td>
+<td>434</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>FirstFlrSF</td>
+<td>194</td>
+<td>0</td>
+<td>495</td>
+<td>5095</td>
+<td>1115</td>
+<td>1056</td>
+<td>331</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SecondFlrSF</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>1836</td>
+<td>218</td>
+<td>0</td>
+<td>462</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>LowQualFinSF</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>450</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GrLivArea</td>
+<td>194</td>
+<td>0</td>
+<td>498</td>
+<td>5642</td>
+<td>1338</td>
+<td>1196</td>
+<td>429</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFullBath</td>
+<td>193</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtHalfBath</td>
+<td>193</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>FullBath</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>HalfBath</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BedroomAbvGr</td>
+<td>194</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>KitchenAbvGr</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TotRmsAbvGrd</td>
+<td>194</td>
+<td>0</td>
+<td>3</td>
+<td>15</td>
+<td>6</td>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Fireplaces</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageYrBlt</td>
+<td>157</td>
+<td>37</td>
+<td>1910</td>
+<td>2009</td>
+<td>1966</td>
+<td>1958</td>
+<td>29</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageCars</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageArea</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>1418</td>
+<td>336</td>
+<td>321</td>
+<td>268</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>WoodDeckSF</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>736</td>
+<td>71</td>
+<td>0</td>
+<td>120</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OpenPorchSF</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>484</td>
+<td>34</td>
+<td>0</td>
+<td>40</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>EnclosedPorch</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>286</td>
+<td>25</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ThreeSsnPorch</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>180</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ScreenPorch</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>576</td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PoolArea</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>738</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MiscVal</td>
+<td>194</td>
+<td>0</td>
+<td>0</td>
+<td>17000</td>
+<td>123</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MoSold</td>
+<td>194</td>
+<td>0</td>
+<td>1</td>
+<td>12</td>
+<td>6</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YrSold</td>
+<td>194</td>
+<td>0</td>
+<td>2006</td>
+<td>2010</td>
+<td>2008</td>
+<td>2008</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SalePrice</td>
+<td>100</td>
+<td>94</td>
+<td>58500</td>
+<td>320000</td>
+<td>128220</td>
+<td>121750</td>
+<td>44450</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logSalePrice</td>
+<td>100</td>
+<td>94</td>
+<td>11</td>
+<td>13</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logGrLivArea</td>
+<td>194</td>
+<td>0</td>
+<td>6</td>
+<td>9</td>
+<td>7</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>total_area</td>
+<td>194</td>
+<td>0</td>
+<td>880</td>
+<td>13170</td>
+<td>2559</td>
+<td>2439</td>
+<td>948</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>remodel_age</td>
+<td>194</td>
+<td>0</td>
+<td>8</td>
+<td>68</td>
+<td>44</td>
+<td>50</td>
+<td>47</td>
+</tr>
+<tr>
+<td>NAmes</td>
+<td>443</td>
+<td>Id</td>
+<td>443</td>
+<td>0</td>
+<td>15</td>
+<td>2772</td>
+<td>1446</td>
+<td>1436</td>
+<td>1345</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MSSubClass</td>
+<td>443</td>
+<td>0</td>
+<td>20</td>
+<td>190</td>
+<td>38</td>
+<td>20</td>
+<td>30</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>LotArea</td>
+<td>443</td>
+<td>0</td>
+<td>4058</td>
+<td>39384</td>
+<td>10040</td>
+<td>9500</td>
+<td>2786</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OverallQual</td>
+<td>443</td>
+<td>0</td>
+<td>3</td>
+<td>8</td>
+<td>5</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OverallCond</td>
+<td>443</td>
+<td>0</td>
+<td>3</td>
+<td>9</td>
+<td>6</td>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YearBuilt</td>
+<td>443</td>
+<td>0</td>
+<td>1918</td>
+<td>2003</td>
+<td>1960</td>
+<td>1959</td>
+<td>10</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YearRemodAdd</td>
+<td>443</td>
+<td>0</td>
+<td>1950</td>
+<td>2009</td>
+<td>1971</td>
+<td>1964</td>
+<td>26</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MasVnrArea</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>1115</td>
+<td>92</td>
+<td>0</td>
+<td>151</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFinSF1</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>1880</td>
+<td>484</td>
+<td>500</td>
+<td>521</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFinSF2</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>1029</td>
+<td>84</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtUnfSF</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>1866</td>
+<td>463</td>
+<td>398</td>
+<td>444</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TotalBsmtSF</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>2223</td>
+<td>1031</td>
+<td>1031</td>
+<td>341</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>FirstFlrSF</td>
+<td>443</td>
+<td>0</td>
+<td>576</td>
+<td>2223</td>
+<td>1175</td>
+<td>1107</td>
+<td>385</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SecondFlrSF</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>1778</td>
+<td>113</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>LowQualFinSF</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>512</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GrLivArea</td>
+<td>443</td>
+<td>0</td>
+<td>715</td>
+<td>3112</td>
+<td>1292</td>
+<td>1200</td>
+<td>452</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtFullBath</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BsmtHalfBath</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>FullBath</td>
+<td>443</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>HalfBath</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>BedroomAbvGr</td>
+<td>443</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>KitchenAbvGr</td>
+<td>443</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TotRmsAbvGrd</td>
+<td>443</td>
+<td>0</td>
+<td>4</td>
+<td>12</td>
+<td>6</td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Fireplaces</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageYrBlt</td>
+<td>433</td>
+<td>10</td>
+<td>1918</td>
+<td>2008</td>
+<td>1964</td>
+<td>1961</td>
+<td>12</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageCars</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GarageArea</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>1200</td>
+<td>423</td>
+<td>418</td>
+<td>223</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>WoodDeckSF</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>657</td>
+<td>63</td>
+<td>0</td>
+<td>108</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OpenPorchSF</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>319</td>
+<td>30</td>
+<td>0</td>
+<td>40</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>EnclosedPorch</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>552</td>
+<td>21</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ThreeSsnPorch</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>407</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ScreenPorch</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>385</td>
+<td>26</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PoolArea</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>512</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MiscVal</td>
+<td>443</td>
+<td>0</td>
+<td>0</td>
+<td>15500</td>
+<td>119</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MoSold</td>
+<td>443</td>
+<td>0</td>
+<td>1</td>
+<td>12</td>
+<td>6</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>YrSold</td>
+<td>443</td>
+<td>0</td>
+<td>2006</td>
+<td>2010</td>
+<td>2008</td>
+<td>2008</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SalePrice</td>
+<td>225</td>
+<td>218</td>
+<td>87500</td>
+<td>345000</td>
+<td>145847</td>
+<td>140000</td>
+<td>30500</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logSalePrice</td>
+<td>225</td>
+<td>218</td>
+<td>11</td>
+<td>13</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>logGrLivArea</td>
+<td>443</td>
+<td>0</td>
+<td>7</td>
+<td>8</td>
+<td>7</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>total_area</td>
+<td>443</td>
+<td>0</td>
+<td>1176</td>
+<td>5267</td>
+<td>2747</td>
+<td>2662</td>
+<td>789</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>remodel_age</td>
+<td>443</td>
+<td>0</td>
+<td>9</td>
+<td>68</td>
+<td>47</td>
+<td>54</td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="appendix-c-data-descriptions">Appendix C - Data Descriptions</h2>
+
+<hr>
+<p>MSSubClass: Identifies the type of dwelling involved in the sale.</p>
+<pre class="language-text">    20	1-STORY 1946 &amp; NEWER ALL STYLES
+    30	1-STORY 1945 &amp; OLDER
+    40	1-STORY W&#x2F;FINISHED ATTIC ALL AGES
+    45	1-1&#x2F;2 STORY - UNFINISHED ALL AGES
+    50	1-1&#x2F;2 STORY FINISHED ALL AGES
+    60	2-STORY 1946 &amp; NEWER
+    70	2-STORY 1945 &amp; OLDER
+    75	2-1&#x2F;2 STORY ALL AGES
+    80	SPLIT OR MULTI-LEVEL
+    85	SPLIT FOYER
+    90	DUPLEX - ALL STYLES AND AGES
+   120	1-STORY PUD (Planned Unit Development) - 1946 &amp; NEWER
+   150	1-1&#x2F;2 STORY PUD - ALL AGES
+   160	2-STORY PUD - 1946 &amp; NEWER
+   180	PUD - MULTILEVEL - INCL SPLIT LEV&#x2F;FOYER
+   190	2 FAMILY CONVERSION - ALL STYLES AND AGES
+</pre>
+<p>MSZoning: Identifies the general zoning classification of the sale.</p>
+<pre class="language-text">   A	Agriculture
+   C	Commercial
+   FV	Floating Village Residential
+   I	Industrial
+   RH	Residential High Density
+   RL	Residential Low Density
+   RP	Residential Low Density Park 
+   RM	Residential Medium Density
+</pre>
+<p>LotFrontage: Linear feet of street connected to property</p>
+<p>LotArea: Lot size in square feet</p>
+<p>Street: Type of road access to property</p>
+<pre class="language-text">   Grvl	Gravel	
+   Pave	Paved
+</pre>
+<p>Alley: Type of alley access to property</p>
+<pre class="language-text">   Grvl	Gravel
+   Pave	Paved
+   NA 	No alley access
+</pre>
+<p>LotShape: General shape of property</p>
+<pre class="language-text">   Reg	Regular	
+   IR1	Slightly irregular
+   IR2	Moderately Irregular
+   IR3	Irregular
+</pre>
+<p>LandContour: Flatness of the property</p>
+<pre class="language-text">   Lvl	Near Flat&#x2F;Level	
+   Bnk	Banked - Quick and significant rise from street grade to building
+   HLS	Hillside - Significant slope from side to side
+   Low	Depression
+</pre>
+<p>Utilities: Type of utilities available</p>
+<pre class="language-text">   AllPub	All public Utilities (E,G,W,&amp; S)	
+   NoSewr	Electricity, Gas, and Water (Septic Tank)
+   NoSeWa	Electricity and Gas Only
+   ELO	Electricity only	
+</pre>
+<p>LotConfig: Lot configuration</p>
+<pre class="language-text">   Inside	Inside lot
+   Corner	Corner lot
+   CulDSac	Cul-de-sac
+   FR2	Frontage on 2 sides of property
+   FR3	Frontage on 3 sides of property
+</pre>
+<p>LandSlope: Slope of property</p>
+<pre class="language-text">   Gtl	Gentle slope
+   Mod	Moderate Slope	
+   Sev	Severe Slope
+</pre>
+<p>Neighborhood: Physical locations within Ames city limits</p>
+<pre class="language-text">   Blmngtn	Bloomington Heights
+   Blueste	Bluestem
+   BrDale	Briardale
+   BrkSide	Brookside
+   ClearCr	Clear Creek
+   CollgCr	College Creek
+   Crawfor	Crawford
+   Edwards	Edwards
+   Gilbert	Gilbert
+   IDOTRR	Iowa DOT and Rail Road
+   MeadowV	Meadow Village
+   Mitchel	Mitchell
+   Names	North Ames
+   NoRidge	Northridge
+   NPkVill	Northpark Villa
+   NridgHt	Northridge Heights
+   NWAmes	Northwest Ames
+   OldTown	Old Town
+   SWISU	South &amp; West of Iowa State University
+   Sawyer	Sawyer
+   SawyerW	Sawyer West
+   Somerst	Somerset
+   StoneBr	Stone Brook
+   Timber	Timberland
+   Veenker	Veenker
+</pre>
+<p>Condition1: Proximity to various conditions</p>
+<pre class="language-text">   Artery	Adjacent to arterial street
+   Feedr	Adjacent to feeder street	
+   Norm	Normal	
+   RRNn	Within 200&#x27; of North-South Railroad
+   RRAn	Adjacent to North-South Railroad
+   PosN	Near positive off-site feature--park, greenbelt, etc.
+   PosA	Adjacent to postive off-site feature
+   RRNe	Within 200&#x27; of East-West Railroad
+   RRAe	Adjacent to East-West Railroad
+</pre>
+<p>Condition2: Proximity to various conditions (if more than one is present)</p>
+<pre class="language-text">   Artery	Adjacent to arterial street
+   Feedr	Adjacent to feeder street	
+   Norm	Normal	
+   RRNn	Within 200&#x27; of North-South Railroad
+   RRAn	Adjacent to North-South Railroad
+   PosN	Near positive off-site feature--park, greenbelt, etc.
+   PosA	Adjacent to postive off-site feature
+   RRNe	Within 200&#x27; of East-West Railroad
+   RRAe	Adjacent to East-West Railroad
+</pre>
+<p>BldgType: Type of dwelling</p>
+<pre class="language-text">   1Fam	Single-family Detached	
+   2FmCon	Two-family Conversion; originally built as one-family dwelling
+   Duplx	Duplex
+   TwnhsE	Townhouse End Unit
+   TwnhsI	Townhouse Inside Unit
+</pre>
+<p>HouseStyle: Style of dwelling</p>
+<pre class="language-text">   1Story	One story
+   1.5Fin	One and one-half story: 2nd level finished
+   1.5Unf	One and one-half story: 2nd level unfinished
+   2Story	Two story
+   2.5Fin	Two and one-half story: 2nd level finished
+   2.5Unf	Two and one-half story: 2nd level unfinished
+   SFoyer	Split Foyer
+   SLvl	Split Level
+</pre>
+<p>OverallQual: Rates the overall material and finish of the house</p>
+<pre class="language-text">   10	Very Excellent
+   9	Excellent
+   8	Very Good
+   7	Good
+   6	Above Average
+   5	Average
+   4	Below Average
+   3	Fair
+   2	Poor
+   1	Very Poor
+</pre>
+<p>OverallCond: Rates the overall condition of the house</p>
+<pre class="language-text">   10	Very Excellent
+   9	Excellent
+   8	Very Good
+   7	Good
+   6	Above Average	
+   5	Average
+   4	Below Average	
+   3	Fair
+   2	Poor
+   1	Very Poor
+</pre>
+<p>YearBuilt: Original construction date</p>
+<p>YearRemodAdd: Remodel date (same as construction date if no remodeling or additions)</p>
+<p>RoofStyle: Type of roof</p>
+<pre class="language-text">   Flat	Flat
+   Gable	Gable
+   Gambrel	Gabrel (Barn)
+   Hip	Hip
+   Mansard	Mansard
+   Shed	Shed
+</pre>
+<p>RoofMatl: Roof material</p>
+<pre class="language-text">   ClyTile	Clay or Tile
+   CompShg	Standard (Composite) Shingle
+   Membran	Membrane
+   Metal	Metal
+   Roll	Roll
+   Tar&amp;Grv	Gravel &amp; Tar
+   WdShake	Wood Shakes
+   WdShngl	Wood Shingles
+</pre>
+<p>Exterior1st: Exterior covering on house</p>
+<pre class="language-text">   AsbShng	Asbestos Shingles
+   AsphShn	Asphalt Shingles
+   BrkComm	Brick Common
+   BrkFace	Brick Face
+   CBlock	Cinder Block
+   CemntBd	Cement Board
+   HdBoard	Hard Board
+   ImStucc	Imitation Stucco
+   MetalSd	Metal Siding
+   Other	Other
+   Plywood	Plywood
+   PreCast	PreCast	
+   Stone	Stone
+   Stucco	Stucco
+   VinylSd	Vinyl Siding
+   Wd Sdng	Wood Siding
+   WdShing	Wood Shingles
+</pre>
+<p>Exterior2nd: Exterior covering on house (if more than one material)</p>
+<pre class="language-text">   AsbShng	Asbestos Shingles
+   AsphShn	Asphalt Shingles
+   BrkComm	Brick Common
+   BrkFace	Brick Face
+   CBlock	Cinder Block
+   CemntBd	Cement Board
+   HdBoard	Hard Board
+   ImStucc	Imitation Stucco
+   MetalSd	Metal Siding
+   Other	Other
+   Plywood	Plywood
+   PreCast	PreCast
+   Stone	Stone
+   Stucco	Stucco
+   VinylSd	Vinyl Siding
+   Wd Sdng	Wood Siding
+   WdShing	Wood Shingles
+</pre>
+<p>MasVnrType: Masonry veneer type</p>
+<pre class="language-text">   BrkCmn	Brick Common
+   BrkFace	Brick Face
+   CBlock	Cinder Block
+   None	None
+   Stone	Stone
+</pre>
+<p>MasVnrArea: Masonry veneer area in square feet</p>
+<p>ExterQual: Evaluates the quality of the material on the exterior</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Average&#x2F;Typical
+   Fa	Fair
+   Po	Poor
+</pre>
+<p>ExterCond: Evaluates the present condition of the material on the exterior</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Average&#x2F;Typical
+   Fa	Fair
+   Po	Poor
+</pre>
+<p>Foundation: Type of foundation</p>
+<pre class="language-text">   BrkTil	Brick &amp; Tile
+   CBlock	Cinder Block
+   PConc	Poured Contrete	
+   Slab	Slab
+   Stone	Stone
+   Wood	Wood
+</pre>
+<p>BsmtQual: Evaluates the height of the basement</p>
+<pre class="language-text">   Ex	Excellent (100+ inches)	
+   Gd	Good (90-99 inches)
+   TA	Typical (80-89 inches)
+   Fa	Fair (70-79 inches)
+   Po	Poor (&lt;70 inches
+   NA	No Basement
+</pre>
+<p>BsmtCond: Evaluates the general condition of the basement</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Typical - slight dampness allowed
+   Fa	Fair - dampness or some cracking or settling
+   Po	Poor - Severe cracking, settling, or wetness
+   NA	No Basement
+</pre>
+<p>BsmtExposure: Refers to walkout or garden level walls</p>
+<pre class="language-text">   Gd	Good Exposure
+   Av	Average Exposure (split levels or foyers typically score average or above)	
+   Mn	Mimimum Exposure
+   No	No Exposure
+   NA	No Basement
+</pre>
+<p>BsmtFinType1: Rating of basement finished area</p>
+<pre class="language-text">   GLQ	Good Living Quarters
+   ALQ	Average Living Quarters
+   BLQ	Below Average Living Quarters	
+   Rec	Average Rec Room
+   LwQ	Low Quality
+   Unf	Unfinshed
+   NA	No Basement
+</pre>
+<p>BsmtFinSF1: Type 1 finished square feet</p>
+<p>BsmtFinType2: Rating of basement finished area (if multiple types)</p>
+<pre class="language-text">   GLQ	Good Living Quarters
+   ALQ	Average Living Quarters
+   BLQ	Below Average Living Quarters	
+   Rec	Average Rec Room
+   LwQ	Low Quality
+   Unf	Unfinshed
+   NA	No Basement
+</pre>
+<p>BsmtFinSF2: Type 2 finished square feet</p>
+<p>BsmtUnfSF: Unfinished square feet of basement area</p>
+<p>TotalBsmtSF: Total square feet of basement area</p>
+<p>Heating: Type of heating</p>
+<pre class="language-text">   Floor	Floor Furnace
+   GasA	Gas forced warm air furnace
+   GasW	Gas hot water or steam heat
+   Grav	Gravity furnace	
+   OthW	Hot water or steam heat other than gas
+   Wall	Wall furnace
+</pre>
+<p>HeatingQC: Heating quality and condition</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Average&#x2F;Typical
+   Fa	Fair
+   Po	Poor
+</pre>
+<p>CentralAir: Central air conditioning</p>
+<pre class="language-text">   N	No
+   Y	Yes
+</pre>
+<p>Electrical: Electrical system</p>
+<pre class="language-text">   SBrkr	Standard Circuit Breakers &amp; Romex
+   FuseA	Fuse Box over 60 AMP and all Romex wiring (Average)	
+   FuseF	60 AMP Fuse Box and mostly Romex wiring (Fair)
+   FuseP	60 AMP Fuse Box and mostly knob &amp; tube wiring (poor)
+   Mix	Mixed
+</pre>
+<p>1stFlrSF: First Floor square feet</p>
+<p>2ndFlrSF: Second floor square feet</p>
+<p>LowQualFinSF: Low quality finished square feet (all floors)</p>
+<p>GrLivArea: Above grade (ground) living area square feet</p>
+<p>BsmtFullBath: Basement full bathrooms</p>
+<p>BsmtHalfBath: Basement half bathrooms</p>
+<p>FullBath: Full bathrooms above grade</p>
+<p>HalfBath: Half baths above grade</p>
+<p>Bedroom: Bedrooms above grade (does NOT include basement bedrooms)</p>
+<p>Kitchen: Kitchens above grade</p>
+<p>KitchenQual: Kitchen quality</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Typical&#x2F;Average
+   Fa	Fair
+   Po	Poor
+</pre>
+<p>TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)</p>
+<p>Functional: Home functionality (Assume typical unless deductions are warranted)</p>
+<pre class="language-text">   Typ	Typical Functionality
+   Min1	Minor Deductions 1
+   Min2	Minor Deductions 2
+   Mod	Moderate Deductions
+   Maj1	Major Deductions 1
+   Maj2	Major Deductions 2
+   Sev	Severely Damaged
+   Sal	Salvage only
+</pre>
+<p>Fireplaces: Number of fireplaces</p>
+<p>FireplaceQu: Fireplace quality</p>
+<pre class="language-text">   Ex	Excellent - Exceptional Masonry Fireplace
+   Gd	Good - Masonry Fireplace in main level
+   TA	Average - Prefabricated Fireplace in main living area or Masonry Fireplace in basement
+   Fa	Fair - Prefabricated Fireplace in basement
+   Po	Poor - Ben Franklin Stove
+   NA	No Fireplace
+</pre>
+<p>GarageType: Garage location</p>
+<pre class="language-text">   2Types	More than one type of garage
+   Attchd	Attached to home
+   Basment	Basement Garage
+   BuiltIn	Built-In (Garage part of house - typically has room above garage)
+   CarPort	Car Port
+   Detchd	Detached from home
+   NA	No Garage
+</pre>
+<p>GarageYrBlt: Year garage was built</p>
+<p>GarageFinish: Interior finish of the garage</p>
+<pre class="language-text">   Fin	Finished
+   RFn	Rough Finished	
+   Unf	Unfinished
+   NA	No Garage
+</pre>
+<p>GarageCars: Size of garage in car capacity</p>
+<p>GarageArea: Size of garage in square feet</p>
+<p>GarageQual: Garage quality</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Typical&#x2F;Average
+   Fa	Fair
+   Po	Poor
+   NA	No Garage
+</pre>
+<p>GarageCond: Garage condition</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Typical&#x2F;Average
+   Fa	Fair
+   Po	Poor
+   NA	No Garage
+</pre>
+<p>PavedDrive: Paved driveway</p>
+<pre class="language-text">   Y	Paved 
+   P	Partial Pavement
+   N	Dirt&#x2F;Gravel
+</pre>
+<p>WoodDeckSF: Wood deck area in square feet</p>
+<p>OpenPorchSF: Open porch area in square feet</p>
+<p>EnclosedPorch: Enclosed porch area in square feet</p>
+<p>3SsnPorch: Three season porch area in square feet</p>
+<p>ScreenPorch: Screen porch area in square feet</p>
+<p>PoolArea: Pool area in square feet</p>
+<p>PoolQC: Pool quality</p>
+<pre class="language-text">   Ex	Excellent
+   Gd	Good
+   TA	Average&#x2F;Typical
+   Fa	Fair
+   NA	No Pool
+</pre>
+<p>Fence: Fence quality</p>
+<pre class="language-text">   GdPrv	Good Privacy
+   MnPrv	Minimum Privacy
+   GdWo	Good Wood
+   MnWw	Minimum Wood&#x2F;Wire
+   NA	No Fence
+</pre>
+<p>MiscFeature: Miscellaneous feature not covered in other categories</p>
+<pre class="language-text">   Elev	Elevator
+   Gar2	2nd Garage (if not described in garage section)
+   Othr	Other
+   Shed	Shed (over 100 SF)
+   TenC	Tennis Court
+   NA	None
+</pre>
+<p>MiscVal: $Value of miscellaneous feature</p>
+<p>MoSold: Month Sold (MM)</p>
+<p>YrSold: Year Sold (YYYY)</p>
+<p>SaleType: Type of sale</p>
+<pre class="language-text">   WD 	Warranty Deed - Conventional
+   CWD	Warranty Deed - Cash
+   VWD	Warranty Deed - VA Loan
+   New	Home just constructed and sold
+   COD	Court Officer Deed&#x2F;Estate
+   Con	Contract 15% Down payment regular terms
+   ConLw	Contract Low Down payment and low interest
+   ConLI	Contract Low Interest
+   ConLD	Contract Low Down
+   Oth	Other
+</pre>
+<p>SaleCondition: Condition of sale</p>
+<pre class="language-text">   Normal	Normal Sale
+   Abnorml	Abnormal Sale -  trade, foreclosure, short sale
+   AdjLand	Adjoining Land Purchase
+   Alloca	Allocation - two linked properties with separate deeds, typically condo with a garage unit	
+   Family	Sale between family members
+   Partial	Home was not completed when last assessed (associated with New Homes)
+</pre>
+<h2 class="mume-header" id="appendix-f-additional-plots-and-tables">Appendix F - Additional Plots and Tables</h2>
+
+<hr>
+<h3 class="mume-header" id="analysis-2-supplemental-formulas">Analysis 2 Supplemental Formulas</h3>
+
+<p><strong>Ames (North):</strong> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="0.16667em"></mspace><mspace width="0.16667em"></mspace><mover accent="true"><mi>μ</mi><mo>^</mo></mover><mo>{</mo><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>S</mi><msub><mi>P</mi><mrow><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi></mrow></msub><mo>)</mo></mrow><mo>}</mo><mspace width="0.16667em"></mspace><mo>=</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>0</mn></msub><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>1</mn></msub><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>2</mn></msub><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>3</mn></msub><mspace width="0.16667em"></mspace><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>4</mn></msub><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mo>)</mo><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mspace width="0.16667em"></mspace><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\,\,
+\hat\mu \{ {log(SP_{Ames})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mspace thinspace"></span><span class="mspace thinspace"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathit">μ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"></span></span></span></span><span class="mopen">{</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">A</span><span class="mord mathit mtight">m</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mclose">)</span></span><span class="mclose">}</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">A</span><span class="mord mathit">m</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mclose">)</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mclose">)</span></span></span></span></p>
+<p><strong>Brookside:</strong> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="0.16667em"></mspace><mspace width="0.16667em"></mspace><mover accent="true"><mi>μ</mi><mo>^</mo></mover><mo>{</mo><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>S</mi><msub><mi>P</mi><mrow><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi></mrow></msub><mo>)</mo></mrow><mo>}</mo><mspace width="0.16667em"></mspace><mo>=</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>0</mn></msub><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>1</mn></msub><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>2</mn></msub><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>3</mn></msub><mspace width="0.16667em"></mspace><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>4</mn></msub><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mo>)</mo><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mspace width="0.16667em"></mspace><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\,\,
+\hat\mu \{ {log(SP_{Brookside})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mspace thinspace"></span><span class="mspace thinspace"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathit">μ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"></span></span></span></span><span class="mopen">{</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.05017em;">B</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">o</span><span class="mord mathit mtight">o</span><span class="mord mathit mtight" style="margin-right:0.03148em;">k</span><span class="mord mathit mtight">s</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">d</span><span class="mord mathit mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mclose">)</span></span><span class="mclose">}</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">A</span><span class="mord mathit">m</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mclose">)</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mclose">)</span></span></span></span></p>
+<p><strong>Edwards:</strong> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="0.16667em"></mspace><mspace width="0.16667em"></mspace><mover accent="true"><mi>μ</mi><mo>^</mo></mover><mo>{</mo><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>S</mi><msub><mi>P</mi><mrow><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi></mrow></msub><mo>)</mo></mrow><mo>}</mo><mspace width="0.16667em"></mspace><mo>=</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>0</mn></msub><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>1</mn></msub><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>2</mn></msub><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>3</mn></msub><mspace width="0.16667em"></mspace><mi>A</mi><mi>m</mi><mi>e</mi><mi>s</mi><mspace width="0.16667em"></mspace><mo>+</mo><mspace width="0.16667em"></mspace><msub><mi>β</mi><mn>4</mn></msub><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>B</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>e</mi><mo>)</mo><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mspace width="0.16667em"></mspace><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>L</mi><mi>A</mi><mo>)</mo><mspace width="0.16667em"></mspace><mi>E</mi><mi>d</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\,\,
+\hat\mu \{ {log(SP_{Edwards})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mspace thinspace"></span><span class="mspace thinspace"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathit">μ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"></span></span></span></span><span class="mopen">{</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.05764em;">E</span><span class="mord mathit mtight">d</span><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">d</span><span class="mord mathit mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mclose">)</span></span><span class="mclose">}</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mord mathit">A</span><span class="mord mathit">m</span><span class="mord mathit">e</span><span class="mord mathit">s</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mspace thinspace"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">s</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mclose">)</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mspace thinspace"></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">L</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mspace thinspace"></span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mclose">)</span></span></span></span></p>
+<h3 class="mume-header" id="analysis-2-parameter-estimates-scattermatrix">Analysis 2 Parameter Estimates &amp; ScatterMatrix</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="../figs/analysis2_param_estimates.png" alt="analysis2_param_estimates"></td>
+<td style="text-align:center"><img src="../figs/analysis2_modelcomp_scm1.png" alt="analysis2_modelcomp_scm1"></td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="appendix-e-additional-information">Appendix E - Additional Information</h2>
+
+<p><strong><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">Kaggle Competition Info</a></strong></p>
+<p><strong><a href="dev/kaggle-download.md">Downloading from the Kaggle API</a></strong></p>
+<p><strong><a href="https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/code-chunk.md">Using Code Blocks in Markdown</a></strong></p>
+<p><strong><a href="dev/sasmarkdown.Rmd">Using SAS in Markdown Code Blocks</a></strong></p>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#ameing-for-the-stars-predicing-home-value-in-ames-iowa">Ameing for the Stars: Predicing Home Value in Ames, Iowa</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#data-synopsis">Data Synopsis</a></li>
+<li><a href="#analysis-question-1">Analysis Question 1</a>
+<ul>
+<li><a href="#restatement-of-problem">Restatement of Problem</a></li>
+<li><a href="#build-and-fit-the-model">Build and Fit the Model</a>
+<ul>
+<li><a href="#assumptions">Assumptions</a>
+<ul>
+<li><a href="#collinearity">Collinearity</a></li>
+<li><a href="#r2">R2</a></li>
+</ul>
+</li>
+<li><a href="#model-comparison">Model Comparison</a>
+<ul>
+<li><a href="#no-interactions">No Interactions</a></li>
+<li><a href="#with-interactions">With Interactions</a></li>
+<li><a href="#parameters-equations">Parameters &amp; Equations</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#analysis-question-2">Analysis Question 2</a>
+<ul>
+<li><a href="#restate-problem">Restate Problem</a></li>
+<li><a href="#model-selection">Model Selection</a></li>
+<li><a href="#check-assumptions">Check Assumptions</a></li>
+<li><a href="#comparing-competing-models">Comparing Competing Models</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#appendix-a">Appendix A</a>
+<ul>
+<li><a href="#sas-program">SAS Program</a></li>
+<li><a href="#mainsas">main.sas</a></li>
+<li><a href="#dataimportsas">dataimport.sas</a></li>
+<li><a href="#procmeanssas">procmeans.sas</a></li>
+<li><a href="#analysis1_model_interactionssas">analysis1_model_interactions.sas</a></li>
+<li><a href="#analysis1_model1_nointeractionssas">analysis1_model1_nointeractions.sas</a></li>
+<li><a href="#analysis2_backwardsas">analysis2_backward.sas</a></li>
+<li><a href="#analysis2_forwardsas">analysis2_forward.sas</a></li>
+<li><a href="#analysis2_stepwisesas">analysis2_stepwise.sas</a></li>
+<li><a href="#analysis2_customsas">analysis2_custom.sas</a></li>
+</ul>
+</li>
+<li><a href="#appendix-b-datasets">Appendix B - Datasets</a>
+<ul>
+<li><a href="#train_cleansed_vtarget_ntarget-by-neighborhood">train_cleansed_vtarget_ntarget by Neighborhood</a></li>
+<li><a href="#combined_cleansed_vall_ntarget">combined_cleansed_vall_ntarget</a></li>
+<li><a href="#combined_cleansed_vall_ntarget-by-neighborhood">combined_cleansed_vall_ntarget by Neighborhood</a></li>
+</ul>
+</li>
+<li><a href="#appendix-c-data-descriptions">Appendix C - Data Descriptions</a></li>
+<li><a href="#appendix-f-additional-plots-and-tables">Appendix F - Additional Plots and Tables</a>
+<ul>
+<li><a href="#analysis-2-supplemental-formulas">Analysis 2 Supplemental Formulas</a></li>
+<li><a href="#analysis-2-parameter-estimates-scattermatrix">Analysis 2 Parameter Estimates &amp; ScatterMatrix</a></li>
+</ul>
+</li>
+<li><a href="#appendix-e-additional-information">Appendix E - Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>

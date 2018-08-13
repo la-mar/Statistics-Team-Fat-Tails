@@ -1,75 +1,35 @@
+# Ameing for the Stars: Predicting Home Value in Ames, Iowa
 
+**A Kaggle Project by Team Fat Tails**
 
-# Kaggle Project - Team Fat Tails
+---
 
+Authors: Quinton Nixon, Grant Bourzikas, Brock Friedrich
+Date: Aug. 12, 2018
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-* [Kaggle Project - Team Fat Tails](#kaggle-project-team-fat-tails)
-	* [Introduction](#introduction)
-	* [Data Synopsis](#data-synopsis)
-	* [Analysis Question 1](#analysis-question-1)
-		* [Restatement of Problem](#restatement-of-problem)
-		* [Build and Fit the Model](#build-and-fit-the-model)
-			* [Interrogate the Data](#interrogate-the-data)
-				* [Collinearity](#collinearity)
-				* [R2](#r2)
-			* [Check Assumptions](#check-assumptions)
-				* [Homogeneity of Variances](#homogeneity-of-variances)
-				* [Normality](#normality)
-				* [Residual Diagnostics](#residual-diagnostics)
-				* [Outlier Analysis](#outlier-analysis)
-			* [Model Comparison](#model-comparison)
-				* [No Interactions](#no-interactions)
-				* [With Interactions](#with-interactions)
-				* [Adj R2](#adj-r2)
-				* [Parameters & Equations](#parameters-equations)
-				* [Conclusion](#conclusion)
-	* [Analysis Question 2](#analysis-question-2)
-		* [Restate Problem](#restate-problem)
-		* [Model Selection](#model-selection)
-		* [Check Assumptions](#check-assumptions-1)
-			* [Linearity](#linearity)
-			* [Heteroscedacity](#heteroscedacity)
-			* [Check Normality](#check-normality)
-			* [Independence](#independence)
-			* [Residual Diagnostics](#residual-diagnostics-1)
-			* [Outlier Analysis](#outlier-analysis-1)
-		* [Comparing Competing Models](#comparing-competing-models)
-		* [Conclusion](#conclusion-1)
-	* [Appendix A](#appendix-a)
-			* [SAS Program](#sas-program)
-			* [main.sas](#mainsas)
-			* [dataimport.sas](#dataimportsas)
-			* [procmeans.sas](#procmeanssas)
-			* [analysis1_model_interactions.sas](#analysis1_model_interactionssas)
-			* [analysis1_model1_nointeractions.sas](#analysis1_model1_nointeractionssas)
-	* [Appendix B](#appendix-b)
-		* [train_cleansed_vtarget_ntarget by Neighborhood](#train_cleansed_vtarget_ntarget-by-neighborhood)
-		* [combined_cleansed_vall_ntarget](#combined_cleansed_vall_ntarget)
-		* [combined_cleansed_vall_ntarget by Neighborhood](#combined_cleansed_vall_ntarget-by-neighborhood)
-	* [Appendix X](#appendix-x)
-	* [Appendix XX](#appendix-xx)
-
-<!-- /code_chunk_output -->
-
-
-
-
-
+* [Introduction](#introduction)
+* [Data Synopsis](#data-synopsis)
+* [Analysis Question 1](#analysis-question-1)
+	* [Restatement of Problem](#restatement-of-problem)
+	* [Build and Fit the Model](#build-and-fit-the-model)
+	* [Model Comparison](#model-comparison)
+	* [Conclusion](#conclusion)
+* [Analysis Question 2](#analysis-question-2)
+	* [Restate Problem](#restate-problem)
+	* [Model Selection](#model-selection)
+	* [Check Assumptions](#check-assumptions)
+	* [Comparing Competing Models](#comparing-competing-models)
+	* [Conclusion](#conclusion-1)
+* [Appendix](#appendix-a)
 
 
 <!-- TODO: Add QUinton's additional snippets -->
 
-## Introduction
-
 ---
 
+## Introduction
+
 Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad.   However, it is essential to review the data because it proves that there are many other influences in price negotiations than the number of bedrooms or a white-picket fence.
-
-
 
 ---
 
@@ -78,17 +38,13 @@ Ask a home buyer to describe their dream house, and they probably won't begin wi
 <!-- 
 Where did the data come from?  How big is it? 
 
-
-
 How many observations?  Where can we find out more?  
-
-
 
 What are the specific variables that we need to know with respect to your analysis?
 
-
-
  -->
+
+
 
 The Ames House dataset was compiled by Dean De Cock and contains 79 explanatory variables describing almost every aspect of residual home in Ames Iowa from 2006 to 2010. The data set contains 2930 observations involved in assessing home values.
 
@@ -170,18 +126,18 @@ When one of the predictor variables impacts how another predictor variable is re
 
 In Assessing the Fit, the coefficient is interpreted by the following models utilizing the base formula:
 •	Ames^SalesPrice = β0 + β1*BrkSide + β1*Edwards + β3:*NAmes + β4 (LogLivingArea*BrkSide) + β5(LogLivingArea*Edwards)
-o	β0: The intercept in this model provides an estimate 8.49 of the logGrLivArwea (reference NAmes) with a logGrLivArwea of zero. Of course, this is extrapolation and does not have a clear, practical meaning. 
+o	β0: The intercept in this model provides an estimate 8.49 of the logGrLivArwea (reference NAmes) with a logGrLivArwea of zero. Of course, this is extrapolation and does not have a clear, practical meaning.
 o	β1: This is the adjustment of the intercept for a Neighborhood BrkSide with respect to a NAmes Neighborhood. For a Living room of zero, the Neighborhood BrkSide has an estimated Sale Price Increases of -5. 16 (2^-2.58 back transformation) dollars per square foot less than the NAmes Livingroom. 
 o	β1 This is the adjustment of the intercept for a Neighborhood Edwards with respect to a NAmes Neighborhood. For a Living room of zero, the Neighborhood Edwards has an estimated Sale Price Increases of -1.40 (2^-0.49 back transformation) dollars per square foot less than the NAmes Livingroom.
 o	β3: For each 1 unit increase in the Living Room of a NAmes, the estimated Sale Price increases 2^0.47 units
-o	β4: For each 1 unit increase in the Living Room Size of BrkSide, the estimated Sale Price increases 8.16 (2^0.35 Back transformed) dollars per square foot from the change with the NAmes. 
-o	β5: For each 1 unit increase in the Living Room Size of Edwards, the estimated Sale Price increases 1.04 (2^0.05 Back transformed) dollars per square foot from the change with the NAmes. 
+o	β4: For each 1 unit increase in the Living Room Size of BrkSide, the estimated Sale Price increases 8.16 (2^0.35 Back transformed) dollars per square foot from the change with the NAmes.
+o	β5: For each 1 unit increase in the Living Room Size of Edwards, the estimated Sale Price increases 1.04 (2^0.05 Back transformed) dollars per square foot from the change with the NAmes.
 
 <!-- TODO: Regression Fit -->
 
 ---
 
-#### Interrogate the Data
+#### Assumptions
 
 In reviewing the data, an analysis was performed using QQ Plots and Histograms, the linearity of the data is not in question due to the sample size, the data is right skewed and is not normally distributed as depicted, the data does not have equal standard deviations, and the data is independent of each other.
 
@@ -197,40 +153,13 @@ Additionally, there is no collinearity in the data because Neighborhood and Gran
 
 ##### R2
 
-With only an R^2 .421 and an adjusted R^2 of .418, the fit of of the model of predicting sales price by Nieghborhood and Grand Living Room square foot, is not a good model.  It is recommended that additianla variables should be used to calculate a more accute Sales Price.
-
-#### Check Assumptions
-
-##### Homogeneity of Variances
-
-<!-- Add Scatterplots -->
-
-<!-- TODO: Add interpretation -->
-
-##### Normality
-
-<!-- TODO: Add Histograms -->
-
-<!-- TODO: Add interpretation -->
-
-##### Residual Diagnostics
-
-<!-- TODO: Add interpretation and plots -->
-
-##### Outlier Analysis
-
-<!-- Influential point analysis (Cook’s D and Leverage) -->
-
-<!-- TODO: Leverage Plot and Cooks D plot from outlier_analysis.sas -->
-
-<!-- TODO: Add interpretation -->
-
+With only an $R^2$ .421 and an adjusted $R^2$ of .418, the fit of of the model of predicting sales price by Nieghborhood and Grand Living Room square foot, is not a good model.  It is recommended that additianla variables should be used to calculate a more accute Sales Price.
 
 ---
 
 #### Model Comparison
 
-After reviewing the models after and before the transformation, the R-Square is (0.51, 0.45, respectively) with a RMSE of (0.19, 28552.30, respectively)  and a Coefficient Variance of (1.63, 20.68, respectively) ensuring the better fit is with the transformed data.
+After reviewing the models after and before the transformation, the R-Squared is (0.51, 0.45, respectively) with a RMSE of (0.19, 28552.30, respectively)  and a Coefficient Variance of (1.63, 20.68, respectively) ensuring the better fit is with the transformed data.
 
 
 ##### No Interactions
@@ -277,19 +206,16 @@ After reviewing the models after and before the transformation, the R-Square is 
 
 ![analysis1_noint_cov](../figs/analysis1_model_int_cov.png)
 
-##### Adj R2
-
-<!-- TODO: Compare Adj R^2-->
-
-
 ##### Parameters & Equations
-      - Estimates
+
+<!-- 
+	  - Estimates
       - Interpretation 
       - Confidence Intervals 
 
 Variables:
 SalesPrice = SP
-LivingArea = LA
+LivingArea = LA -->
 
 
 <!-- $\hat\mu \{ {SP_{log}} \} \, = \, \beta_0\, +\, \beta_1 \, \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, \, Ames\, +\, \beta_4(LivingArea_{log}\, \, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, \, Edwards)$ -->
@@ -298,9 +224,7 @@ LivingArea = LA
 
 ---
 
-**General Formula:**
-
-$$
+**General Formula:** $\,\,
 \hat\mu \{ {log(SP)} \}
 \,=\,
 \beta_0\,
@@ -309,53 +233,9 @@ $$
 +\,\beta_3\,Ames\,
 +\,\beta_4(log(LA)\,Brookside)
 +\beta_{5}\,(log(LA)\,Edwards)
-$$
+$
 
----
-
-**Ames (North):**
-
-$$
-\hat\mu \{ {log(SP_{Ames})} \}
-\,=\,
-\beta_0\,
-+\,\beta_1\,Brookside\,
-+\,\beta_2\,Edwards\,
-+\,\beta_3\,Ames\,
-+\,\beta_4(log(LA)\,Brookside)
-+\beta_{5}\,(log(LA)\,Edwards)
-$$
-
----
-
-**Brookside:**
-
-$$
-\hat\mu \{ {log(SP_{Brookside})} \}
-\,=\,
-\beta_0\,
-+\,\beta_1\,Brookside\,
-+\,\beta_2\,Edwards\,
-+\,\beta_3\,Ames\,
-+\,\beta_4(log(LA)\,Brookside)
-+\beta_{5}\,(log(LA)\,Edwards)
-$$
-
----
-
-**Edwards:**
-
-$$
-\hat\mu \{ {log(SP_{Edwards})} \}
-\,=\,
-\beta_0\,
-+\,\beta_1\,Brookside\,
-+\,\beta_2\,Edwards\,
-+\,\beta_3\,Ames\,
-+\,\beta_4(log(LA)\,Brookside)
-+\beta_{5}\,(log(LA)\,Edwards)
-$$
-
+<!-- TODO: Reference appendix -->
 ---
 
 
@@ -382,7 +262,7 @@ $$ -->
 <!-- $$\hat\mu \{ {log(SP_{Edwards})} \} \, = \, \beta_0\, +\, \beta_1 \, \, BrkSide\, +\, \beta_2\,Edwards\, +\, \beta_3\, \, NAmes\, +\, \beta_4(LivingArea_{log}\, \, BrkSide) + \beta_{5}\, x\, (LivingArea_{log} \, \, Edwards)$$ -->
 
 
-##### Conclusion
+#### Conclusion
 
 <!--
 Potential Objectives:
@@ -396,14 +276,17 @@ Are we attempting to predict the mean or a single value?
 -  Mean - YES
 -  ~~Specific Value~~ - NO
 -->
-<!-- To interpret the model, a change in Living Room Square Feet Is a 10-fold increase.  For the neighborhood with approximately the same mass, it is estimate that a 10-fold increase in the Living Room Square feet is associated with a (2^-2.58 = 0.167) which is a 83.2% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of (2^-3.76, 2^-1.4) = (0.074, 0.38) which equates to an estimated increase between % and 860%.
+To interpret the model, a change in Living Room Square Feet Is a 2x increase.  For the neighborhood with approximately the same mass, it is estimate that a 2-fold increase in the Living Area Square feet is associated with a ($e^{0.47} = 1.39$) which is a 38.8% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of (e^{0.38}, e^{0.56}) = (1.3, 1.48) which equates to an estimated increase between **30.5%** and **47.7%**.
 
-The predicted median of Names sales price with a living room space of 1 ft^2 = $4865. Doubling the living room space multiplies the predicted median Names sales price by 2^0.47 = 1.38510946811. In other words, it increases by 38%. For 100 ft^2 in Names, the sales price would be $42,379. -->
+ Doubling the living area space multiplies the predicted median sales price of North Ames homes by $e^{0.47} = 1.39$. In other words, the sales price increases by **38%** for every doubling of square footage in the general living space.
 
-<!-- TODO: Fit numbers from excel sheet into interpretation here. -->
-
-
- To interpret the model, a change in Living Room Square Feet is a doubled increase.  For the neighborhood with approximately the same mass, it is estimate that a 10-fold increase in the Living Area Square feet is associated with a XX which is a 83.2% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of XX = CI which equates to an estimated increase between X% and X%.
+| LivingArea 	|  	|  	|  	|
+|------------	|-------	|-------	|-------	|
+| estimate 	| 0.47 	| 0.38 	| 0.56 	|
+| change 	| 1.39 	| 1.30 	| 1.48 	|
+| % change 	| 38.80 	| 30.47 	| 47.67 	|
+<!-- 
+ To interpret the model, a change in Living Room Square Feet is a doubled increase.  For the neighborhood with approximately the same mass, it is estimate that a 10-fold increase in the Living Area Square feet is associated with a XX which is a 83.2% increase in the median Sales Price of the neighborhood. (P value < 0.001).  At a 95% confidence intervals for the increase in sales price of XX = CI which equates to an estimated increase between X% and X%. -->
 
 <!-- TODO: Add verbage -->
 
@@ -457,47 +340,30 @@ Custom -  ???
 
 Backward elimination, forward selection, stepwise selection, and custom models were built for this question.  All models were built using log-log transformed data (log of SalePrice and log of GrLivArea).  Forward selection and stepwise selection had comparable Kaggle scores.  Based on interpretability, the Forward Selection Model was chosen.
 
-
-
-
-
 ### Check Assumptions
 
 <!-- The model must have: 1) Linearity, 2) Residuals are normally distributed, 3) Independence, 4) Errors should have mean of 0 and have the same variance, 5) Equal SD: There is little evidence from the scatter plots of heteroscedasticity, 6) Normality of scatter plot, qq plot, and histogram of residuals -->
 Based on the lack of overwhelming evidence to support the assumptions, a number of transformations were considered and a decision was made to use a log-log transformation as the basis of the most predictive model.
 
-#### Linearity
+* **Linearity**
+	We know from the previous question that SalePrice is linearly correlated with some of the explanatory variables (size, for example), but it is unlikely to be correlated with all of them.  
 
-We know from the previous question that SalePrice is linearly correlated with some of the explanatory variables (size, for example), but it is unlikely to be correlated with all of them.  
+* **Heteroscedacity**
+	There is some visual evidence against constant variance.  With the large number of observations, visual inspection becomes more challenging.
 
-<!-- TODO: Add plots -->
+* **Normality**
+	A histogram of saleprice across all neighborhoods shows evidence of right skewness.
 
-#### Heteroscedacity
+* **Independence**
+	Although, homeowners are free to price their homes as they wish and buyers can make whatever offer they choose, there is no way to say with much certainty that home prices are truly independent.
 
-There is some visual evidence against constant variance.  With the large number of observations, visual inspection becomes more challenging.
-
-<!-- TODO: Add plots -->
-
-#### Check Normality
-
-A histogram of saleprice across all neighborhoods shows evidence of right skewness.
-
-<!-- TODO: Why do we ignore it or how to we remediate against it? -->
-
-<!-- TODO: Add plots -->
-
-#### Independence
-
-Although, homeowners are free to price their homes as they wish and buyers can make whatever offer they choose, there is no way to say with much certainty that home prices are truly independent. 
-
-
-#### Residual Diagnostics
+* **Residual Diagnostics**
 
 <!-- TODO: Add plots -->
 
 <!-- TODO: Add interpretation and plots -->
 
-#### Outlier Analysis
+* **Outlier Analysis**
 
 <!-- The rstudent values have the majority of the data within range of the limits, with the center value as 0 (4). There are some data points still causing leverage in the data. The cook’s D has some data points that would influence the linear regression of the data, but when doing further exploration, those data points are not caused by the 3 neighborhoods that we are trying to analyze. -->
 
@@ -511,10 +377,11 @@ And no observations appeared to be particularly high leverage so we can proceed 
 
 | Predictive Models 	| Adjusted R2 	| CV PRESS 	| Kaggle Score 	|
 |-------------------	|-------------	|----------	|--------------	|
-| Forward 	| .8501 	| 31.18449 	| .14880 	|
-| Backward 	| .9350 	| 31.67571 	| .21225 	|
-| Stepwise 	| .9206 	| 19.14915 	| .14880 	|
-| CUSTOM 	|  	|  	|  	|
+| Forward 	| .8501 	| 31.18449 		| .14880 			|
+| Backward 	| .9350 	| 31.67571 		| .21225 		|
+| Stepwise 	| .9206 	| 19.14915 		| .14880 		|
+| CUSTOM 	| .9351 	| 31.84610 		| .21261 		|
+
 
 **Best model:  Forward selection**
 
@@ -540,6 +407,8 @@ $$
 $$
 
 
+### Conclusion
+
 What this means in real world terms is that a 10% increase in the above ground living area should result in an ~4.4% increase in price ($1.1^{\beta_4} = 1.1^{0.455} = 1.044$) due to log transforming the SalePrice and the GrLivArea variable.
 
 The selection of Neighborhood impacts the mean selling price by the relative percentage of $e^{\beta_5}$.  The mean price for Neighborhoods with negative coefficients goes down relative to the Veenker reference neighborhood.
@@ -552,53 +421,65 @@ For each unit increase in BsmtFinSF1, the mean selling price will increase by ap
 
 Visually we can see that $\log$(GrLivArea) is the strongest predictor of price followed by OverallQual.  This makes sense conceptually.  It’s reasonable to assume people will pay more for a big, nice home.
 
-<!-- TODO: Add code for these plots to appendix -->
-
-![analysis1_noint_cov](../figs/analysis2_modelcomp_scm1.png)
-
-![analysis1_noint_cov](../figs/analysis2_glmselect.png)
-
-![analysis1_noint_cov](../figs/analysis2_param_estimates.png)
-
-<!-- TODO: Move parameter estimates to appendix -->
-
-### Conclusion
+![analysis2_glmselect](../figs/analysis2_forward_summary.png)
 
 
-<!-- TODO: Probably insert something here -->
 
+
+---
 
 ## Appendix A
 
+---
+
 <!--TODO: Add links from graphics in document to code segments -->
 
-#### SAS Program 
+### SAS Program 
 
-<!-- TODO: Add comments to all code chunk -->
 
-#### main.sas
+### main.sas
 
 @import "main.sas"
 
-#### dataimport.sas
+### dataimport.sas
 
 @import "dataimport.sas"
 
-#### procmeans.sas
+### procmeans.sas
 
 @import "procmeans.sas"
 
-#### analysis1_model_interactions.sas
+### analysis1_model_interactions.sas
 
 @import "analysis1_model_interactions.sas"
 
-#### analysis1_model1_nointeractions.sas
+### analysis1_model1_nointeractions.sas
 
 @import "analysis1_model_interactions.sas"
 
+### analysis2_backward.sas
+
+@import "analysis2_backward.sas"
+
+### analysis2_forward.sas
+
+@import "analysis2_forward.sas"
+
+### analysis2_stepwise.sas
+
+@import "analysis2_stepwise.sas"
+
+### analysis2_custom.sas
+
+@import "analysis2_custom.sas"
 
 
-## Appendix B
+
+---
+
+## Appendix B - Datasets
+
+---
 
 ### train_cleansed_vtarget_ntarget by Neighborhood
 
@@ -797,15 +678,80 @@ Visually we can see that $\log$(GrLivArea) is the strongest predictor of price f
 |              |       | total_area    | 443 | 0      | 1176    | 5267    | 2747   | 2662   | 789            |
 |              |       | remodel_age   | 443 | 0      | 9       | 68      | 47     | 54     | 26             |
 
+---
 
-## Appendix X
+## Appendix C - Data Descriptions
+
+---
 
 <!-- TODO: Link here from data description section -->
 
 @import "../data/data_description.md"
 
 
-## Appendix XX
+## Appendix F - Additional Plots and Tables
+
+---
+
+### Analysis 2 Supplemental Formulas
+
+**Ames (North):** $\,\,
+\hat\mu \{ {log(SP_{Ames})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$
+
+<!-- TODO: Reduce equation -->
+
+**Brookside:** $\,\,
+\hat\mu \{ {log(SP_{Brookside})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$
+
+<!-- TODO: Reduce equation -->
+
+
+
+**Edwards:** $\,\,
+\hat\mu \{ {log(SP_{Edwards})} \}
+\,=\,
+\beta_0\,
++\,\beta_1\,Brookside\,
++\,\beta_2\,Edwards\,
++\,\beta_3\,Ames\,
++\,\beta_4(log(LA)\,Brookside)
++\beta_{5}\,(log(LA)\,Edwards)
+$
+
+<!-- TODO: Reduce equation -->
+
+
+### Analysis 2 Parameter Estimates & ScatterMatrix
+
+|           |  |
+:-------------------------:|:-------------------------:
+![analysis2_param_estimates](../figs/analysis2_param_estimates.png)  |  ![analysis2_modelcomp_scm1](../figs/analysis2_modelcomp_scm1.png)
+
+
+
+
+
+## Appendix E - Additional Information
+
+**[Github Repository](https://github.com/la-mar/Statistics-Team-Fat-Tails)**
+
+**[Kaggle Competition Info](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)**
 
 **[Downloading from the Kaggle API](dev/kaggle-download.md)**
 

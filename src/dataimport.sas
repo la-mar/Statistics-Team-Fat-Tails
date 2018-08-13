@@ -28,8 +28,10 @@ data train_cleansed_calcs;
 set train_original;                                                                                                          
 logSalePrice = log(SalePrice); /* natural log of SalePrice */                                                                                                             
 logGrLivArea = log(GrLivArea); /* natural log of GrLivArea */
+logliv = log(GrLivArea);
+logprice = log(SalePrice);
 total_area = GrLivArea + GarageArea + TotalBsmtSF;
-remodel_age = 2018 - YearRemodAdd;                                                                                             
+remodel_age = 2018 - YearRemodAd;                                                                                           
 run;
 
 /* train dataset with ALL variables and ALL neighborhoods */  
@@ -66,37 +68,39 @@ run;
 /* Create derivatives of the combined dataset for use in various models */
 
 /* Combined dataset unfiltered with added calculation columns */
-data combined_cleansed_calcs;                                                                                                                       
+data combined_cl_calcs;                                                                                                                       
 set combined_original; /* train_reduced */                                                                                                             
 logSalePrice = log(SalePrice); /* natural log of SalePrice */                                                                                                             
 logGrLivArea = log(GrLivArea); /* natural log of GrLivArea */
+logliv = log(GrLivArea);
+logprice = log(SalePrice);
 total_area = GrLivArea + GarageArea + TotalBsmtSF;
-remodel_age = 2018 - YearRemodAdd;                                                                                                
+remodel_age = 2018 - YearRemodAd;                                                                                               
 run;
 
 /* Combined dataset with ALL variables and ALL neighborhoods */ 
-data combined_cleansed_vall_nall;                                                                                                                      
-set combined_cleansed_calcs;                                                                                                                                                                                                    
+data combined_cl_vall_nall;                                                                                                                      
+set combined_cl_calcs;                                                                                                                                                                                                    
 run;
 
 /* Combined dataset with ALL variables and TARGET neighborhoods */
-data combined_cleansed_vall_ntarget;                                                                                                                      
-set combined_cleansed_calcs;
+data combined_cl_vall_ntarget;                                                                                                                      
+set combined_cl_calcs;
 where Neighborhood = 'NAmes'    /* North Ames */
    or Neighborhood = 'Edwards'  /* Edwards */
    or Neighborhood = 'BrkSide'; /* Brookside */                                                                                                                                                                                                                  
 run;
 
 /* Combined dataset with TARGET variables and ALL neighborhoods */ 
-data combined_cleansed_vtarget_nall;                                                                                                                      
-set combined_cleansed_calcs(keep= Id MSSubClass SalePrice 
+data combined_cl_vtarget_nall;                                                                                                                      
+set combined_cl_calcs(keep= Id MSSubClass SalePrice 
 								  GrLivArea logSalePrice 
 						  		  logGrLivArea Neighborhood);                                                                                                                                                                                                      
 run;
 
 /* Combined dataset with TARGET variables and TARGET neighborhoods */    
-data combined_cleansed_vtarget_ntarget;                                                                                                                   
-set combined_cleansed_calcs(keep= Id MSSubClass SalePrice 
+data combined_cl_vtarget_ntarget;                                                                                                                   
+set combined_cl_calcs(keep= Id MSSubClass SalePrice 
 								  GrLivArea logSalePrice 
 						  		  logGrLivArea Neighborhood); 
 where Neighborhood = 'NAmes'    /* North Ames */
